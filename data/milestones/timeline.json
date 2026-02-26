@@ -1,0 +1,29 @@
+{
+  "metadata": {
+    "last_updated": "2026-02-26",
+    "note": "Master timeline of all quantum computing milestones relevant to Q-Day."
+  },
+  "milestones": [
+    { "date": "1994", "category": "theory", "event": "Peter Shor publishes quantum factoring algorithm", "significance": "Theoretical foundation for quantum threat to RSA" },
+    { "date": "2001-12", "category": "factoring", "event": "First implementation of Shor's algorithm — factors 15", "significance": "Proof of concept on 7-qubit NMR computer" },
+    { "date": "2012-10", "category": "factoring", "event": "Shor's algorithm factors 21 on photonic QC", "significance": "Largest quantum factoring to date (still)" },
+    { "date": "2016-05", "category": "hardware", "event": "IBM Quantum Experience launches — 5 qubits, cloud access", "significance": "Quantum computing becomes accessible to researchers" },
+    { "date": "2019-10", "category": "hardware", "event": "Google Sycamore — 53 qubits, quantum supremacy", "significance": "First claim of quantum advantage over classical" },
+    { "date": "2020-02", "category": "factoring", "event": "RSA-250 (829 bits) factored classically", "significance": "Classical factoring record — no quantum involved" },
+    { "date": "2021-11", "category": "hardware", "event": "IBM Eagle — 127 qubits", "significance": "First >100 qubit processor" },
+    { "date": "2022-07", "category": "standards", "event": "NIST selects first PQC algorithms (CRYSTALS, FALCON, SPHINCS+)", "significance": "Standards selection after 6-year competition" },
+    { "date": "2022-11", "category": "hardware", "event": "IBM Osprey — 433 qubits", "significance": "Rapid physical qubit scaling" },
+    { "date": "2023-09", "category": "adoption", "event": "Signal deploys PQXDH — first major messenger with PQC", "significance": "Consumer PQC deployment begins" },
+    { "date": "2023-10", "category": "hardware", "event": "Atom Computing — 1,180 qubits (neutral atom)", "significance": "Alternative architecture reaches 1000+ qubits" },
+    { "date": "2023-12", "category": "hardware", "event": "IBM Condor — 1,121 qubits", "significance": "Peak physical qubit count (IBM shifts strategy after this)" },
+    { "date": "2024-02", "category": "adoption", "event": "Apple iMessage deploys PQ3 (ML-KEM)", "significance": "Largest consumer PQC deployment by user count" },
+    { "date": "2024-06", "category": "adoption", "event": "AWS and GCP deploy PQ TLS for cloud services", "significance": "Major cloud infrastructure goes PQ" },
+    { "date": "2024-08", "category": "standards", "event": "NIST finalizes ML-KEM, ML-DSA, SLH-DSA standards", "significance": "Official PQC standards published — YELLOW alert" },
+    { "date": "2024-09", "category": "adoption", "event": "Cloudflare enables PQ TLS for all customers", "significance": "CDN-level PQC — covers millions of websites" },
+    { "date": "2024-10", "category": "blockchain", "event": "Ethereum adds PQC to 'The Splurge' roadmap", "significance": "Largest smart contract platform acknowledges threat" },
+    { "date": "2024-11", "category": "funding", "event": "DOE Genesis Mission — fault-tolerant by 2028", "significance": "US government commits to fault-tolerant quantum — YELLOW alert" },
+    { "date": "2024-12", "category": "hardware", "event": "Google Willow — below-threshold error correction", "significance": "First proof that QEC improves with more qubits — YELLOW alert" },
+    { "date": "2025-02", "category": "hardware", "event": "Microsoft Majorana 1 — topological qubit chip", "significance": "New approach to fault-tolerant qubits, if verified" },
+    { "date": "2026-01", "category": "blockchain", "event": "Ethereum forms dedicated PQ security team", "significance": "Active engineering investment in blockchain PQC — YELLOW alert" }
+  ]
+}

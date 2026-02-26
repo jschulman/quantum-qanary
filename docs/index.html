@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Quantum Qanary — Monitoring the Quantum Threat to Cryptography</title>
+  <meta name="description" content="Real-time dashboard tracking quantum computing progress toward breaking cryptography (Q-Day). Alert levels, hardware milestones, PQC adoption, and threat timeline.">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="site-header">
+    <div class="container">
+      <div class="header-content">
+        <h1 class="site-title"><span class="canary-icon">&#x1F426;</span> The Quantum Qanary</h1>
+        <p class="site-subtitle">Monitoring the quantum threat to cryptography</p>
+        <p class="last-updated" id="lastUpdated">Last updated: loading...</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== ALERT STATUS HERO ===== -->
+  <section class="hero-alert" id="heroAlert">
+    <div class="container">
+      <div class="alert-grid">
+        <div class="traffic-light-wrap">
+          <div class="traffic-light">
+            <div class="light light-green" data-level="GREEN">
+              <span class="light-inner"></span>
+            </div>
+            <div class="light light-yellow" data-level="YELLOW">
+              <span class="light-inner"></span>
+            </div>
+            <div class="light light-orange" data-level="ORANGE">
+              <span class="light-inner"></span>
+            </div>
+            <div class="light light-red" data-level="RED">
+              <span class="light-inner"></span>
+            </div>
+          </div>
+        </div>
+        <div class="alert-info">
+          <div class="alert-level-label" id="alertLevelLabel">Loading...</div>
+          <div class="alert-level-desc" id="alertLevelDesc"></div>
+        </div>
+      </div>
+
+      <div class="triggered-section">
+        <h3 class="section-subhead">Triggered Milestones</h3>
+        <div class="triggered-timeline" id="triggeredTimeline"></div>
+      </div>
+
+      <div class="watch-section">
+        <h3 class="section-subhead">Watch Items</h3>
+        <div class="watch-items" id="watchItems"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Q-DAY DISTANCE ===== -->
+  <section class="section" id="qdaySection">
+    <div class="container">
+      <h2 class="section-title">Q-Day Distance Estimate</h2>
+      <div class="qday-hero">
+        <div class="qday-number" id="qdayNumber">--</div>
+        <div class="qday-label">Estimated years to cryptographically relevant quantum computing</div>
+      </div>
+      <div class="components-bar" id="componentsBar"></div>
+      <div class="components-detail" id="componentsDetail"></div>
+      <p class="caveat-text" id="caveatText"></p>
+    </div>
+  </section>
+
+  <!-- ===== CANARY LADDERS ===== -->
+  <section class="section" id="laddersSection">
+    <div class="container">
+      <h2 class="section-title">Canary Ladders</h2>
+      <div class="ladders-grid">
+        <div class="ladder-card">
+          <h3 class="ladder-title">RSA Factoring Ladder</h3>
+          <p class="ladder-subtitle">Quantum factoring milestones toward breaking RSA-2048</p>
+          <div class="ladder" id="rsaLadder"></div>
+          <div class="classical-context" id="classicalContext"></div>
+        </div>
+        <div class="ladder-card">
+          <h3 class="ladder-title">ECDLP Ladder</h3>
+          <p class="ladder-subtitle">Quantum progress toward breaking elliptic curve cryptography</p>
+          <div class="ladder" id="ecdlpLadder"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HARDWARE PROGRESS ===== -->
+  <section class="section" id="hardwareSection">
+    <div class="container">
+      <h2 class="section-title">Hardware Progress</h2>
+      <p class="section-desc">Physical qubit counts over time across vendors. Target: ~4,000 logical qubits for RSA-2048.</p>
+      <div class="chart-wrap">
+        <canvas id="hardwareChart"></canvas>
+      </div>
+      <div class="roadmap-targets" id="roadmapTargets"></div>
+    </div>
+  </section>
+
+  <!-- ===== DEFENSIVE READINESS ===== -->
+  <section class="section" id="defenseSection">
+    <div class="container">
+      <h2 class="section-title">Defensive Readiness</h2>
+
+      <!-- PQC Adoption Matrix -->
+      <div class="subsection">
+        <h3 class="subsection-title">PQC Adoption Matrix</h3>
+        <p class="section-desc">Post-quantum cryptography deployment status across major platforms.</p>
+        <div class="table-wrap">
+          <table class="pqc-table" id="pqcTable">
+            <thead>
+              <tr>
+                <th>Entity</th>
+                <th>Category</th>
+                <th>Status</th>
+                <th>Standard</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody id="pqcTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Blockchain PQC Status -->
+      <div class="subsection">
+        <h3 class="subsection-title">Blockchain PQC Status</h3>
+        <p class="section-desc">Quantum readiness of major blockchain networks.</p>
+        <div class="blockchain-grid" id="blockchainGrid"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTEXT SIGNALS ===== -->
+  <section class="section" id="signalsSection">
+    <div class="container">
+      <h2 class="section-title">Context Signals</h2>
+      <div class="charts-side-by-side">
+        <div class="chart-card">
+          <h3 class="chart-title">Government & Private Funding</h3>
+          <p class="section-desc">Annual quantum computing investment by country (USD billions).</p>
+          <div class="chart-wrap">
+            <canvas id="fundingChart"></canvas>
+          </div>
+          <div class="funding-note" id="fundingNote"></div>
+        </div>
+        <div class="chart-card">
+          <h3 class="chart-title">Research Velocity</h3>
+          <p class="section-desc">Monthly arXiv paper counts by category.</p>
+          <div class="chart-wrap">
+            <canvas id="arxivChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MOSCA'S THEOREM CALCULATOR ===== -->
+  <section class="section" id="moscaSection">
+    <div class="container">
+      <h2 class="section-title">Mosca's Theorem Calculator</h2>
+      <div class="mosca-explainer">
+        <p>If your data needs to stay secret for <strong>X years</strong>, and migrating to post-quantum cryptography takes <strong>Y years</strong>, and quantum computers break current encryption in <strong>Z years</strong>... you need to start <strong>now</strong> if X + Y &gt; Z.</p>
+      </div>
+      <div class="mosca-calculator">
+        <div class="mosca-inputs">
+          <div class="mosca-slider-group">
+            <label class="mosca-label">
+              Data shelf life (years)
+              <span class="mosca-value" id="shelfLifeValue">10</span>
+            </label>
+            <input type="range" id="shelfLifeSlider" min="1" max="30" value="10" class="mosca-range">
+          </div>
+          <div class="mosca-slider-group">
+            <label class="mosca-label">
+              Migration time (years)
+              <span class="mosca-value" id="migrationValue">3</span>
+            </label>
+            <input type="range" id="migrationSlider" min="1" max="10" value="3" class="mosca-range">
+          </div>
+          <div class="mosca-slider-group">
+            <label class="mosca-label">
+              Time to quantum threat (years)
+              <span class="mosca-value" id="threatValue">--</span>
+            </label>
+            <input type="range" id="threatSlider" min="1" max="30" value="15" class="mosca-range">
+          </div>
+        </div>
+        <div class="mosca-result" id="moscaResult">
+          <div class="mosca-result-text" id="moscaResultText">Calculating...</div>
+        </div>
+        <div class="mosca-timeline" id="moscaTimeline">
+          <div class="mosca-bar-container">
+            <div class="mosca-bar mosca-bar-shelf" id="moscaBarShelf"></div>
+            <div class="mosca-bar mosca-bar-migration" id="moscaBarMigration"></div>
+            <div class="mosca-bar-threat-line" id="moscaBarThreat"></div>
+          </div>
+          <div class="mosca-bar-labels">
+            <span class="mosca-bar-label label-shelf">Data shelf life</span>
+            <span class="mosca-bar-label label-migration">Migration</span>
+            <span class="mosca-bar-label label-threat">Quantum threat</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== METHODOLOGY & FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>Methodology</h4>
+          <p><a href="METHODOLOGY.md">Read our full methodology</a> for how alert levels, Q-Day estimates, and risk components are calculated.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Data Sources</h4>
+          <ul class="footer-list">
+            <li>NIST Post-Quantum Cryptography standards</li>
+            <li>Vendor roadmaps (IBM, Google, Microsoft, Quantinuum)</li>
+            <li>Academic publications and arXiv pre-prints</li>
+            <li>Government funding announcements (US, EU, UK, JP, CN)</li>
+            <li>Product changelogs and security advisories</li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>About</h4>
+          <p>Built by <strong>Jay Schulman</strong></p>
+          <p><a href="https://github.com/jschulman/quantum-qanary">GitHub Repository</a></p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>The Quantum Qanary &mdash; Open-source quantum threat monitoring</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>

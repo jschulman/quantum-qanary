@@ -1,0 +1,109 @@
+{
+  "metadata": {
+    "last_updated": "2026-02-26",
+    "source": "Academic papers, IACR ePrint, vendor publications",
+    "note": "Edit this file to add new factoring records. Push to trigger dashboard rebuild."
+  },
+  "rsa_ladder": [
+    {
+      "bits": 15,
+      "label": "15 = 3 x 5",
+      "status": "achieved",
+      "date": "2001-12",
+      "method": "Shor's algorithm on 7-qubit NMR quantum computer",
+      "source": "Vandersypen et al., Nature 414, 883 (2001)",
+      "note": "First implementation of Shor's algorithm"
+    },
+    {
+      "bits": 21,
+      "label": "21 = 3 x 7",
+      "status": "achieved",
+      "date": "2012-10",
+      "method": "Shor's algorithm on photonic quantum computer",
+      "source": "Martin-Lopez et al., Nature Photonics 6, 773 (2012)",
+      "note": "Largest number factored by Shor's on quantum hardware"
+    },
+    {
+      "bits": 100,
+      "label": "~100-bit semiprime",
+      "status": "pending",
+      "date": null,
+      "method": null,
+      "signal": "Proves the physics works at meaningful scale without classical shortcuts"
+    },
+    {
+      "bits": 512,
+      "label": "RSA-512",
+      "status": "pending",
+      "date": null,
+      "method": null,
+      "signal": "THE CANARY. Hockey stick begins. Breaking RSA becomes an engineering problem.",
+      "canary": true
+    },
+    {
+      "bits": 1024,
+      "label": "RSA-1024",
+      "status": "pending",
+      "date": null,
+      "method": null,
+      "signal": "Legacy systems fall. Mass migration urgency."
+    },
+    {
+      "bits": 2048,
+      "label": "RSA-2048",
+      "status": "pending",
+      "date": null,
+      "method": null,
+      "signal": "Q-DAY. Current encryption standard broken.",
+      "qday": true
+    }
+  ],
+  "ecdlp_ladder": [
+    {
+      "bits": 0,
+      "label": "No quantum ECDLP break",
+      "status": "current",
+      "date": null,
+      "note": "No quantum computer has solved any ECDLP instance"
+    },
+    {
+      "bits": 64,
+      "label": "64-bit ECDLP",
+      "status": "pending",
+      "date": null,
+      "signal": "Proof of concept for quantum ECDLP"
+    },
+    {
+      "bits": 128,
+      "label": "128-bit ECDLP",
+      "status": "pending",
+      "date": null,
+      "signal": "THE CANARY. Engineering sprint begins. Blockchain migration race starts.",
+      "canary": true
+    },
+    {
+      "bits": 192,
+      "label": "192-bit ECDLP",
+      "status": "pending",
+      "date": null,
+      "signal": "Older elliptic curves fall"
+    },
+    {
+      "bits": 256,
+      "label": "256-bit ECDLP (secp256k1)",
+      "status": "pending",
+      "date": null,
+      "signal": "Q-DAY (Blockchain). Bitcoin and Ethereum keys breakable.",
+      "qday": true
+    }
+  ],
+  "classical_context": [
+    {
+      "bits": 829,
+      "label": "RSA-250 (829 bits)",
+      "date": "2020-02",
+      "method": "Classical (number field sieve, ~2700 CPU-years)",
+      "note": "Largest RSA number factored by any method"
+    }
+  ]
+}

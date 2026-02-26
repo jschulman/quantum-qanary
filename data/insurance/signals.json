@@ -1,0 +1,16 @@
+{
+  "metadata": {
+    "last_updated": "2026-02-26",
+    "source": "Insurance industry publications, carrier websites",
+    "note": "Edit when carrier PQC requirements are detected. This is a key ORANGE alert trigger."
+  },
+  "status": "no_requirements",
+  "status_label": "No carrier requirements detected",
+  "events": [],
+  "watch_items": [
+    "Any carrier adds PQC-related questions to cyber insurance applications",
+    "Any carrier publishes PQC guidance or readiness requirements",
+    "Any carrier adjusts premiums based on PQC readiness",
+    "Any reinsurer (Lloyd's, Swiss Re, Munich Re) flags quantum as systemic risk"
+  ]
+}

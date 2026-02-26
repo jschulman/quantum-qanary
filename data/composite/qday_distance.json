@@ -1,0 +1,40 @@
+{
+  "metadata": {
+    "last_updated": "2026-02-26"
+  },
+  "estimate": {
+    "low_years": 2,
+    "high_years": 4,
+    "midpoint_years": 3.0
+  },
+  "components": {
+    "factoring": {
+      "weight": 0.3,
+      "current_bits": 21,
+      "target_bits": 2048,
+      "progress_pct": 39.9
+    },
+    "logical_qubits": {
+      "weight": 0.25,
+      "current": 1,
+      "target": 4000,
+      "progress_pct": 8.4
+    },
+    "roadmap_consensus": {
+      "weight": 0.2,
+      "avg_target_year": 2029,
+      "years_out": 3
+    },
+    "error_correction": {
+      "weight": 0.15,
+      "below_threshold_demonstrated": true,
+      "score": 50
+    },
+    "investment": {
+      "weight": 0.1,
+      "yoy_growth_pct": 12.1,
+      "accelerating": false
+    }
+  },
+  "caveat": "This estimate reflects current trajectory. Quantum progress is nonlinear -- breakthroughs can compress timelines rapidly."
+}

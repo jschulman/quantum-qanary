@@ -1,0 +1,29 @@
+{
+  "metadata": {
+    "last_updated": "2026-02-26",
+    "source": "Vendor announcements, academic papers, press releases",
+    "note": "Edit to add new hardware milestones. Push to trigger rebuild."
+  },
+  "target_logical_qubits_for_rsa2048": 4000,
+  "milestones": [
+    { "date": "2016-05", "vendor": "IBM", "event": "IBM Quantum Experience — 5 qubits, cloud access", "physical_qubits": 5, "logical_qubits": null },
+    { "date": "2017-11", "vendor": "IBM", "event": "50-qubit prototype", "physical_qubits": 50, "logical_qubits": null },
+    { "date": "2019-01", "vendor": "IBM", "event": "System One — 20 qubits, commercial", "physical_qubits": 20, "logical_qubits": null },
+    { "date": "2019-10", "vendor": "Google", "event": "Sycamore — quantum supremacy claimed", "physical_qubits": 53, "logical_qubits": null },
+    { "date": "2020-06", "vendor": "IonQ", "event": "32-qubit trapped ion system", "physical_qubits": 32, "logical_qubits": null },
+    { "date": "2021-11", "vendor": "IBM", "event": "Eagle processor", "physical_qubits": 127, "logical_qubits": null },
+    { "date": "2022-11", "vendor": "IBM", "event": "Osprey processor", "physical_qubits": 433, "logical_qubits": null },
+    { "date": "2023-10", "vendor": "Atom Computing", "event": "1,180-qubit neutral atom system", "physical_qubits": 1180, "logical_qubits": null },
+    { "date": "2023-12", "vendor": "IBM", "event": "Condor processor", "physical_qubits": 1121, "logical_qubits": null },
+    { "date": "2023-12", "vendor": "IBM", "event": "Heron processor — focus on quality over quantity", "physical_qubits": 133, "logical_qubits": null, "note": "Strategic shift to error-corrected qubits" },
+    { "date": "2024-12", "vendor": "Google", "event": "Willow — below-threshold quantum error correction", "physical_qubits": 105, "logical_qubits": 1, "error_correction": true, "note": "First demonstration of error correction improving with scale" },
+    { "date": "2025-02", "vendor": "Microsoft", "event": "Majorana 1 — topological qubit chip", "physical_qubits": 8, "logical_qubits": null, "note": "Novel topological approach, disputed by some researchers" },
+    { "date": "2025-05", "vendor": "Quantinuum", "event": "H2 system — 56 qubits, record quantum volume", "physical_qubits": 56, "logical_qubits": null, "note": "Trapped-ion, highest quantum volume achieved" }
+  ],
+  "roadmap_targets": [
+    { "vendor": "DOE", "target": "Fault-tolerant quantum computer", "target_year": 2028, "program": "Genesis Mission" },
+    { "vendor": "IBM", "target": "Fault-tolerant quantum", "target_year": 2029, "program": "IBM Quantum Roadmap" },
+    { "vendor": "Industry", "target": "2+ utility-scale systems operational", "target_year": 2028, "program": "CES 2025 consensus" },
+    { "vendor": "IBM", "target": "100,000+ qubit system", "target_year": 2033, "program": "IBM Quantum Roadmap" }
+  ]
+}

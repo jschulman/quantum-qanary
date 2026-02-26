@@ -1,0 +1,87 @@
+{
+  "metadata": {
+    "last_updated": "2026-02-26",
+    "source": "manual curation + computed",
+    "note": "Edit this file to update alert status. Push to trigger dashboard rebuild.",
+    "last_checked": "2026-02-26T11:18:24Z",
+    "computed_level": "YELLOW"
+  },
+  "current_level": "YELLOW",
+  "override": null,
+  "levels": {
+    "GREEN": {
+      "label": "Monitoring",
+      "description": "No canary milestones triggered. Quantum computing progressing but no cryptographically relevant demonstrations."
+    },
+    "YELLOW": {
+      "label": "Milestones Triggered",
+      "description": "Significant milestones confirm quantum progress toward cryptographic relevance. Does not indicate imminent threat."
+    },
+    "ORANGE": {
+      "label": "Watch Closely",
+      "description": "Timeline compressing. Conditions for a cryptographic break are forming."
+    },
+    "RED": {
+      "label": "Canary Down",
+      "description": "Cryptographically relevant quantum factoring demonstrated. Remaining gap to Q-Day is an engineering problem."
+    }
+  },
+  "triggered": [
+    {
+      "date": "2024-08",
+      "event": "NIST finalizes first 3 post-quantum encryption standards (ML-KEM, ML-DSA, SLH-DSA)",
+      "level": "YELLOW",
+      "source": "https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards"
+    },
+    {
+      "date": "2024-10",
+      "event": "Ethereum adds PQC to 'The Splurge' roadmap phase",
+      "level": "YELLOW",
+      "source": "https://ethereum.org/en/roadmap/"
+    },
+    {
+      "date": "2024-11",
+      "event": "DOE Genesis Mission announced \u2014 fault-tolerant quantum by 2028",
+      "level": "YELLOW",
+      "source": "https://www.energy.gov/science/articles/department-energy-announces-genesis-mission"
+    },
+    {
+      "date": "2024-12",
+      "event": "Google Willow chip \u2014 105 qubits with below-threshold error correction",
+      "level": "YELLOW",
+      "source": "https://blog.google/technology/research/google-willow-quantum-chip/"
+    },
+    {
+      "date": "2026-01",
+      "event": "Ethereum forms dedicated post-quantum security team",
+      "level": "YELLOW",
+      "source": "https://ethereum.org/en/roadmap/"
+    }
+  ],
+  "watch_items": [
+    {
+      "event": "Cyber insurers require PQC attestations",
+      "level": "ORANGE"
+    },
+    {
+      "event": "DOE/IBM deliver fault-tolerant systems on 2028-29 timelines",
+      "level": "ORANGE"
+    },
+    {
+      "event": "RSA-512 factored via Shor's algorithm",
+      "level": "RED"
+    },
+    {
+      "event": "128-bit ECDLP solved via quantum",
+      "level": "RED"
+    },
+    {
+      "event": "Ethereum finalizes PQC hard fork timeline with specific dates",
+      "level": "ORANGE"
+    },
+    {
+      "event": "Any credible quantum advantage in cryptanalysis at meaningful scale",
+      "level": "RED"
+    }
+  ]
+}

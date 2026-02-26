@@ -1,0 +1,66 @@
+{
+  "metadata": {
+    "last_updated": "2026-02-26",
+    "source": "Vendor roadmaps, government program announcements",
+    "note": "Edit to add/update roadmap commitments. Push to trigger rebuild."
+  },
+  "commitments": [
+    {
+      "entity": "DOE",
+      "commitment": "Fault-tolerant quantum computer",
+      "target_year": 2028,
+      "status": "in_progress",
+      "program": "Genesis Mission",
+      "announced": "2024-11",
+      "source": "https://www.energy.gov/science/articles/department-energy-announces-genesis-mission",
+      "note": "Funded commitment with national lab partnerships"
+    },
+    {
+      "entity": "IBM",
+      "commitment": "Fault-tolerant quantum systems",
+      "target_year": 2029,
+      "status": "in_progress",
+      "program": "IBM Quantum Roadmap",
+      "announced": "2023-12",
+      "source": "https://www.ibm.com/quantum/roadmap",
+      "note": "Starling architecture with error-corrected qubits"
+    },
+    {
+      "entity": "Industry",
+      "commitment": "2+ utility-scale quantum systems operational",
+      "target_year": 2028,
+      "status": "announced",
+      "program": "CES 2025 industry consensus",
+      "announced": "2025-01",
+      "note": "Multiple vendors converging on similar timeline"
+    },
+    {
+      "entity": "NIST",
+      "commitment": "Federal agencies complete PQC migration",
+      "target_year": 2035,
+      "status": "active",
+      "program": "NIST IR 8547",
+      "announced": "2024-08",
+      "source": "https://csrc.nist.gov/pubs/ir/8547/final",
+      "note": "Mandatory deadline for US federal systems"
+    },
+    {
+      "entity": "IBM",
+      "commitment": "100,000+ qubit system",
+      "target_year": 2033,
+      "status": "roadmap",
+      "program": "IBM Quantum Roadmap",
+      "announced": "2022-11",
+      "note": "Long-term roadmap target, not yet funded commitment"
+    },
+    {
+      "entity": "Google",
+      "commitment": "Useful error-corrected quantum computation",
+      "target_year": 2029,
+      "status": "in_progress",
+      "program": "Google Quantum AI",
+      "announced": "2024-12",
+      "note": "Post-Willow roadmap milestone"
+    }
+  ]
+}

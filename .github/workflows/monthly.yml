@@ -1,0 +1,102 @@
+name: Monthly - Full Data Refresh
+
+on:
+  schedule:
+    # Run on the 1st of every month at 8 AM UTC
+    - cron: '0 8 1 * *'
+  workflow_dispatch:
+    inputs:
+      mock:
+        description: 'Use mock data instead of live APIs'
+        required: false
+        default: 'false'
+        type: boolean
+
+permissions:
+  contents: write
+
+jobs:
+  full-refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run arXiv collector
+        run: |
+          if [ "${{ inputs.mock }}" = "true" ]; then
+            python collectors/arxiv_quantum.py --mock
+          else
+            python collectors/arxiv_quantum.py
+          fi
+
+      - name: Run GitHub PQC collector
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ "${{ inputs.mock }}" = "true" ]; then
+            python collectors/github_pqc.py --mock
+          else
+            python collectors/github_pqc.py
+          fi
+
+      - name: Run alert checker
+        run: python collectors/alert_checker.py
+
+      - name: Run Q-Day distance estimator
+        run: python normalizers/qday_distance.py
+
+      - name: Copy all processed data to docs
+        run: |
+          mkdir -p docs/data/arxiv
+          mkdir -p docs/data/github_pqc
+          mkdir -p docs/data/composite
+          mkdir -p docs/data/alerts
+          mkdir -p docs/data/factoring
+          mkdir -p docs/data/hardware
+          mkdir -p docs/data/roadmaps
+          mkdir -p docs/data/funding
+          mkdir -p docs/data/adoption
+          mkdir -p docs/data/blockchain
+          mkdir -p docs/data/insurance
+          mkdir -p docs/data/milestones
+
+          # Collector outputs
+          cp -r data/arxiv/processed/* docs/data/arxiv/
+          cp -r data/github_pqc/processed/* docs/data/github_pqc/
+
+          # Computed data
+          cp -r data/composite/* docs/data/composite/
+          cp data/alerts/status.json docs/data/alerts/
+
+          # Curated signal data
+          cp data/factoring/records.json docs/data/factoring/
+          cp data/hardware/qubit_records.json docs/data/hardware/
+          cp data/roadmaps/commitments.json docs/data/roadmaps/
+          cp data/funding/investments.json docs/data/funding/
+          cp data/adoption/pqc_deployments.json docs/data/adoption/
+          cp data/blockchain/pqc_status.json docs/data/blockchain/
+          cp data/insurance/signals.json docs/data/insurance/
+          cp data/milestones/timeline.json docs/data/milestones/
+
+      - name: Check for changes
+        id: changes
+        run: |
+          git diff --quiet data/ docs/data/ || echo "changed=true" >> $GITHUB_OUTPUT
+
+      - name: Commit and push if changed
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/ docs/data/
+          git commit -m "data: full monthly data refresh"
+          git push

@@ -1,0 +1,70 @@
+name: Weekly - GitHub PQC + Alert Check + Q-Day Estimate
+
+on:
+  schedule:
+    # Run every Monday at 7 AM UTC
+    - cron: '0 7 * * 1'
+  workflow_dispatch:
+    inputs:
+      mock:
+        description: 'Use mock data instead of live APIs'
+        required: false
+        default: 'false'
+        type: boolean
+
+permissions:
+  contents: write
+
+jobs:
+  collect-and-compute:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run GitHub PQC collector
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ "${{ inputs.mock }}" = "true" ]; then
+            python collectors/github_pqc.py --mock
+          else
+            python collectors/github_pqc.py
+          fi
+
+      - name: Run alert checker
+        run: python collectors/alert_checker.py
+
+      - name: Run Q-Day distance estimator
+        run: python normalizers/qday_distance.py
+
+      - name: Copy processed data to docs
+        run: |
+          mkdir -p docs/data/github_pqc
+          mkdir -p docs/data/composite
+          mkdir -p docs/data/alerts
+          cp -r data/github_pqc/processed/* docs/data/github_pqc/
+          cp -r data/composite/* docs/data/composite/
+          cp data/alerts/status.json docs/data/alerts/
+
+      - name: Check for changes
+        id: changes
+        run: |
+          git diff --quiet data/ docs/data/ || echo "changed=true" >> $GITHUB_OUTPUT
+
+      - name: Commit and push if changed
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/ docs/data/
+          git commit -m "data: update GitHub PQC activity + Q-Day estimate (weekly)"
+          git push

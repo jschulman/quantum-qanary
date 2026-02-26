@@ -1,0 +1,29 @@
+{
+  "metadata": {
+    "last_updated": "2026-02-26",
+    "source": "Product blogs, security advisories, changelogs",
+    "note": "Edit to add new PQC deployments. Push to trigger rebuild."
+  },
+  "deployments": [
+    { "entity": "Chrome", "category": "browser", "status": "deployed", "standard": "ML-KEM (X25519Kyber768)", "date": "2024-08", "note": "Hybrid PQ TLS enabled by default" },
+    { "entity": "Firefox", "category": "browser", "status": "deployed", "standard": "ML-KEM", "date": "2024-11", "note": "Firefox 132+" },
+    { "entity": "Edge", "category": "browser", "status": "deployed", "standard": "ML-KEM", "date": "2024-08", "note": "Via Chromium" },
+    { "entity": "Safari", "category": "browser", "status": "in_development", "standard": "ML-KEM", "date": null, "note": "WebKit support in progress" },
+
+    { "entity": "Signal", "category": "messaging", "status": "deployed", "standard": "PQXDH (ML-KEM)", "date": "2023-09", "note": "First major messenger with PQC" },
+    { "entity": "iMessage", "category": "messaging", "status": "deployed", "standard": "PQ3 (ML-KEM)", "date": "2024-02", "note": "iOS 17.4+" },
+    { "entity": "WhatsApp", "category": "messaging", "status": "not_started", "standard": null, "date": null, "note": "No public PQC plans" },
+
+    { "entity": "Cloudflare", "category": "cloud", "status": "deployed", "standard": "ML-KEM", "date": "2024-09", "note": "PQ TLS for all customers" },
+    { "entity": "AWS", "category": "cloud", "status": "deployed", "standard": "ML-KEM (s2n-tls, KMS)", "date": "2024-06", "note": "KMS and TLS endpoints" },
+    { "entity": "GCP", "category": "cloud", "status": "deployed", "standard": "ML-KEM", "date": "2024-06", "note": "Cloud KMS with PQ AEAD" },
+    { "entity": "Azure", "category": "cloud", "status": "in_development", "standard": "ML-KEM", "date": null, "note": "Azure Key Vault PQC preview" },
+
+    { "entity": "iOS", "category": "os", "status": "deployed", "standard": "ML-KEM", "date": "2024-03", "note": "iMessage PQ3 in iOS 17.4" },
+    { "entity": "Android", "category": "os", "status": "in_development", "standard": "ML-KEM", "date": null, "note": "Chrome on Android has PQ TLS" },
+    { "entity": "Windows", "category": "os", "status": "in_development", "standard": "ML-KEM", "date": null, "note": "SymCrypt library support" },
+    { "entity": "Linux", "category": "os", "status": "deployed", "standard": "ML-KEM, ML-DSA", "date": "2024-10", "note": "liboqs + OpenSSL integration" }
+  ],
+  "categories": ["browser", "messaging", "cloud", "os"],
+  "statuses": ["not_started", "in_development", "testing", "deployed"]
+}

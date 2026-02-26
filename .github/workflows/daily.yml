@@ -1,0 +1,58 @@
+name: Daily - arXiv Paper Counts
+
+on:
+  schedule:
+    # Run daily at 6 AM UTC
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+    inputs:
+      mock:
+        description: 'Use mock data instead of live API'
+        required: false
+        default: 'false'
+        type: boolean
+
+permissions:
+  contents: write
+
+jobs:
+  collect-arxiv:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run arXiv collector
+        run: |
+          if [ "${{ inputs.mock }}" = "true" ]; then
+            python collectors/arxiv_quantum.py --mock
+          else
+            python collectors/arxiv_quantum.py
+          fi
+
+      - name: Copy processed data to docs
+        run: |
+          mkdir -p docs/data/arxiv
+          cp -r data/arxiv/processed/* docs/data/arxiv/
+
+      - name: Check for changes
+        id: changes
+        run: |
+          git diff --quiet data/ docs/data/ || echo "changed=true" >> $GITHUB_OUTPUT
+
+      - name: Commit and push if changed
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/arxiv/ docs/data/arxiv/
+          git commit -m "data: update arXiv paper counts (daily)"
+          git push

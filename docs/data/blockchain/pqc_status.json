@@ -1,0 +1,73 @@
+{
+  "metadata": {
+    "last_updated": "2026-02-26",
+    "source": "Chain governance, developer forums, GitHub repos",
+    "note": "Edit to update chain PQC status. Push to trigger rebuild."
+  },
+  "statuses": ["not_acknowledged", "discussed", "planned", "in_development", "testnet", "mainnet"],
+  "chains": [
+    {
+      "name": "Ethereum",
+      "ticker": "ETH",
+      "status": "planned",
+      "detail": "PQC in 'The Splurge' roadmap. Dedicated PQ team formed Jan 2026. leanVM development underway.",
+      "last_activity": "2026-01",
+      "exposure": "All historical public keys visible on-chain",
+      "watch": ["EIP for PQC signature scheme", "Testnet deployment", "Hard fork timeline"]
+    },
+    {
+      "name": "Bitcoin",
+      "ticker": "BTC",
+      "status": "discussed",
+      "detail": "No formal PQC plan. Community discussion ongoing. Pay-to-pubkey-hash provides partial protection for unspent outputs.",
+      "last_activity": "2024-06",
+      "exposure": "Reused addresses and spent outputs expose public keys",
+      "watch": ["BIP proposal for PQC signatures", "Consensus on migration approach"]
+    },
+    {
+      "name": "Solana",
+      "ticker": "SOL",
+      "status": "not_acknowledged",
+      "detail": "No public PQC roadmap or discussion.",
+      "last_activity": null,
+      "exposure": "All validator and user public keys on-chain",
+      "watch": ["Any official acknowledgment of quantum risk"]
+    },
+    {
+      "name": "Algorand",
+      "ticker": "ALGO",
+      "status": "in_development",
+      "detail": "State proofs use Falcon (NIST PQC finalist). Partial PQC integration.",
+      "last_activity": "2022-09",
+      "exposure": "Partial — state proofs are PQ-secure, transaction sigs are not",
+      "watch": ["Full transaction signature migration to PQC"]
+    },
+    {
+      "name": "Cosmos",
+      "ticker": "ATOM",
+      "status": "not_acknowledged",
+      "detail": "No public PQC discussion in governance or development.",
+      "last_activity": null,
+      "exposure": "All public keys on-chain via IBC",
+      "watch": ["Governance proposal mentioning PQC"]
+    },
+    {
+      "name": "Polkadot",
+      "ticker": "DOT",
+      "status": "discussed",
+      "detail": "Some research discussion in Web3 Foundation context.",
+      "last_activity": "2024-03",
+      "exposure": "Validator and nominator keys on-chain",
+      "watch": ["RFC or governance proposal for PQC migration"]
+    },
+    {
+      "name": "Cardano",
+      "ticker": "ADA",
+      "status": "not_acknowledged",
+      "detail": "No formal PQC plan despite research-oriented development philosophy.",
+      "last_activity": null,
+      "exposure": "All public keys on-chain",
+      "watch": ["CIP proposal for PQC"]
+    }
+  ]
+}
