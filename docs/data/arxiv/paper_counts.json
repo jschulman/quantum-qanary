@@ -1,7 +1,7 @@
 {
   "metadata": {
     "source": "arxiv API",
-    "last_updated": "2026-03-01",
+    "last_updated": "2026-03-02",
     "mock": false
   },
   "categories": {
@@ -9,11 +9,15 @@
       "label": "Shor's Algorithm Implementation",
       "monthly": [
         {
-          "date": "2023-03",
+          "date": "2023-04",
           "count": 0
         },
         {
           "date": "2023-05",
+          "count": 0
+        },
+        {
+          "date": "2023-06",
           "count": 0
         },
         {
@@ -33,19 +37,11 @@
           "count": 0
         },
         {
-          "date": "2023-11",
-          "count": 0
-        },
-        {
           "date": "2023-12",
           "count": 0
         },
         {
           "date": "2024-01",
-          "count": 0
-        },
-        {
-          "date": "2024-02",
           "count": 0
         },
         {
@@ -114,10 +110,6 @@
         },
         {
           "date": "2025-08",
-          "count": 0
-        },
-        {
-          "date": "2025-09",
           "count": 0
         },
         {
@@ -146,11 +138,15 @@
       "label": "PQC Migration & Deployment",
       "monthly": [
         {
-          "date": "2023-03",
+          "date": "2023-04",
           "count": 0
         },
         {
           "date": "2023-05",
+          "count": 0
+        },
+        {
+          "date": "2023-06",
           "count": 0
         },
         {
@@ -170,19 +166,11 @@
           "count": 0
         },
         {
-          "date": "2023-11",
-          "count": 0
-        },
-        {
           "date": "2023-12",
           "count": 0
         },
         {
           "date": "2024-01",
-          "count": 0
-        },
-        {
-          "date": "2024-02",
           "count": 0
         },
         {
@@ -251,10 +239,6 @@
         },
         {
           "date": "2025-08",
-          "count": 0
-        },
-        {
-          "date": "2025-09",
           "count": 0
         },
         {
@@ -283,11 +267,15 @@
       "label": "Quantum Error Correction",
       "monthly": [
         {
-          "date": "2023-03",
+          "date": "2023-04",
           "count": 0
         },
         {
           "date": "2023-05",
+          "count": 0
+        },
+        {
+          "date": "2023-06",
           "count": 0
         },
         {
@@ -307,19 +295,11 @@
           "count": 0
         },
         {
-          "date": "2023-11",
-          "count": 0
-        },
-        {
           "date": "2023-12",
           "count": 0
         },
         {
           "date": "2024-01",
-          "count": 0
-        },
-        {
-          "date": "2024-02",
           "count": 0
         },
         {
@@ -391,10 +371,6 @@
           "count": 0
         },
         {
-          "date": "2025-09",
-          "count": 0
-        },
-        {
           "date": "2025-10",
           "count": 0
         },
@@ -419,11 +395,15 @@
   },
   "aggregate": [
     {
-      "date": "2023-03",
+      "date": "2023-04",
       "total": 0
     },
     {
       "date": "2023-05",
+      "total": 0
+    },
+    {
+      "date": "2023-06",
       "total": 0
     },
     {
@@ -443,19 +423,11 @@
       "total": 0
     },
     {
-      "date": "2023-11",
-      "total": 0
-    },
-    {
       "date": "2023-12",
       "total": 0
     },
     {
       "date": "2024-01",
-      "total": 0
-    },
-    {
-      "date": "2024-02",
       "total": 0
     },
     {
@@ -524,10 +496,6 @@
     },
     {
       "date": "2025-08",
-      "total": 0
-    },
-    {
-      "date": "2025-09",
       "total": 0
     },
     {
