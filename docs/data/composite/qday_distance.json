@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "last_updated": "2026-03-02"
+    "last_updated": "2026-03-06"
   },
   "estimate": {
     "low_years": 2,
@@ -9,7 +9,7 @@
   },
   "components": {
     "factoring": {
-      "weight": 0.3,
+      "weight": 0.25,
       "current_bits": 21,
       "target_bits": 2048,
       "progress_pct": 39.9
@@ -26,7 +26,7 @@
       "years_out": 3
     },
     "error_correction": {
-      "weight": 0.15,
+      "weight": 0.1,
       "below_threshold_demonstrated": true,
       "score": 50
     },
@@ -34,6 +34,13 @@
       "weight": 0.1,
       "yoy_growth_pct": 12.1,
       "accelerating": false
+    },
+    "divincenzo": {
+      "weight": 0.1,
+      "leading_vendor": "Quantinuum",
+      "core_score": 14,
+      "max_score": 15,
+      "progress_pct": 93.3
     }
   },
   "caveat": "This estimate reflects current trajectory. Quantum progress is nonlinear -- breakthroughs can compress timelines rapidly."

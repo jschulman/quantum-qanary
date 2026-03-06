@@ -80,6 +80,7 @@ jobs:
           # Curated signal data
           cp data/factoring/records.json docs/data/factoring/
           cp data/hardware/qubit_records.json docs/data/hardware/
+          cp data/hardware/divincenzo.json docs/data/hardware/ 2>/dev/null || true
           cp data/roadmaps/commitments.json docs/data/roadmaps/
           cp data/funding/investments.json docs/data/funding/
           cp data/adoption/pqc_deployments.json docs/data/adoption/

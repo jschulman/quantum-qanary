@@ -6,11 +6,12 @@ Computes the Q-Day distance estimate from all signal files using a weighted
 multi-factor model. This is the core analytical engine of the dashboard.
 
 Signal weights:
-  - Factoring record progress: 30% (log scale)
+  - Factoring record progress: 25% (log scale)
   - Logical qubit progress: 25% (log scale)
   - Vendor roadmap consensus: 20% (weighted avg of credible vendor target years)
-  - Error correction trajectory: 15% (below-threshold demonstrated or not)
+  - Error correction trajectory: 10% (below-threshold demonstrated or not)
   - Investment acceleration: 10% (YoY growth rate of global funding)
+  - DiVincenzo completeness: 10% (leading vendor's core criteria fulfillment)
 
 Usage:
   python normalizers/qday_distance.py
@@ -44,13 +45,13 @@ def compute_factoring_component(factoring_data):
     """
     Compute the factoring record progress component.
 
-    Weight: 30%
+    Weight: 25%
     Uses log scale: current record bits vs 2048-bit target.
     The gap is enormous (21 bits vs 2048 bits), but progress on a log scale
     is what matters for estimating trajectory.
     """
     if not factoring_data:
-        return {"weight": 0.30, "current_bits": 0, "target_bits": 2048, "progress_pct": 0.0}
+        return {"weight": 0.25, "current_bits": 0, "target_bits": 2048, "progress_pct": 0.0}
 
     # Find the highest achieved factoring record
     current_bits = 0
@@ -70,7 +71,7 @@ def compute_factoring_component(factoring_data):
         progress_pct = 0.0
 
     return {
-        "weight": 0.30,
+        "weight": 0.25,
         "current_bits": current_bits,
         "target_bits": target_bits,
         "progress_pct": progress_pct,
@@ -177,14 +178,14 @@ def compute_error_correction_component(hardware_data):
     """
     Compute the error correction trajectory component.
 
-    Weight: 15%
+    Weight: 10%
     Binary question: has below-threshold error correction been demonstrated?
     Score: 50 if yes, 0 if no. This is a significant milestone that
     changes the trajectory calculation.
     """
     if not hardware_data:
         return {
-            "weight": 0.15,
+            "weight": 0.10,
             "below_threshold_demonstrated": False,
             "score": 0,
         }
@@ -198,7 +199,7 @@ def compute_error_correction_component(hardware_data):
     score = 50 if below_threshold else 0
 
     return {
-        "weight": 0.15,
+        "weight": 0.10,
         "below_threshold_demonstrated": below_threshold,
         "score": score,
     }
@@ -257,6 +258,57 @@ def compute_investment_component(funding_data):
     }
 
 
+def compute_divincenzo_component(divincenzo_data):
+    """
+    Compute the DiVincenzo Criteria completeness component.
+
+    Weight: 10% (taken from investment, which drops to 5%)
+    Measures how close the leading vendor is to satisfying all 5 core criteria.
+    Status scores: not_demonstrated=0, partial=1, demonstrated=2, scalable=3.
+    Max possible = 15 (5 criteria x 3 points each).
+    """
+    if not divincenzo_data:
+        return {
+            "weight": 0.10,
+            "leading_vendor": "Unknown",
+            "core_score": 0,
+            "max_score": 15,
+            "progress_pct": 0.0,
+        }
+
+    status_scores = {
+        "not_demonstrated": 0,
+        "partial": 1,
+        "demonstrated": 2,
+        "scalable": 3,
+    }
+    core_ids = ["C1", "C2", "C3", "C4", "C5"]
+
+    best_vendor = "Unknown"
+    best_score = 0
+
+    for vendor in divincenzo_data.get("vendors", []):
+        assessments = vendor.get("assessments", {})
+        score = 0
+        for cid in core_ids:
+            a = assessments.get(cid, {})
+            score += status_scores.get(a.get("status", "not_demonstrated"), 0)
+        if score > best_score:
+            best_score = score
+            best_vendor = vendor.get("name", "Unknown")
+
+    max_score = 15
+    progress_pct = round((best_score / max_score) * 100, 1) if max_score > 0 else 0.0
+
+    return {
+        "weight": 0.10,
+        "leading_vendor": best_vendor,
+        "core_score": best_score,
+        "max_score": max_score,
+        "progress_pct": progress_pct,
+    }
+
+
 def compute_qday_estimate(components):
     """
     Compute the Q-Day distance estimate from all components.
@@ -278,6 +330,7 @@ def compute_qday_estimate(components):
     roadmap = components["roadmap_consensus"]
     error_corr = components["error_correction"]
     investment = components["investment"]
+    divincenzo = components.get("divincenzo", {"weight": 0.10, "progress_pct": 0.0})
 
     # Base estimate from roadmap consensus (most direct signal)
     base_years = roadmap["years_out"]
@@ -320,6 +373,18 @@ def compute_qday_estimate(components):
     else:
         inv_modifier = 1.0
 
+    # DiVincenzo completeness modifier
+    # High completeness (>80%) means hardware is nearly viable, compresses timeline
+    dv_progress = divincenzo["progress_pct"] / 100.0
+    if dv_progress > 0.80:
+        dv_modifier = 0.8
+    elif dv_progress > 0.60:
+        dv_modifier = 0.9
+    elif dv_progress > 0.40:
+        dv_modifier = 1.0
+    else:
+        dv_modifier = 1.2
+
     # Weighted composite modifier
     composite_modifier = (
         factoring_modifier * factoring["weight"]
@@ -327,12 +392,14 @@ def compute_qday_estimate(components):
         + 1.0 * roadmap["weight"]  # Roadmap is the base, modifier is 1.0
         + ec_modifier * error_corr["weight"]
         + inv_modifier * investment["weight"]
+        + dv_modifier * divincenzo["weight"]
     ) / (
         factoring["weight"]
         + qubits["weight"]
         + roadmap["weight"]
         + error_corr["weight"]
         + investment["weight"]
+        + divincenzo["weight"]
     )
 
     # Apply modifier to base
@@ -368,6 +435,9 @@ def main():
 
     funding_data = load_json("data/funding/investments.json")
     print(f"  funding/investments.json: {'loaded' if funding_data else 'MISSING'}")
+
+    divincenzo_data = load_json("data/hardware/divincenzo.json")
+    print(f"  hardware/divincenzo.json: {'loaded' if divincenzo_data else 'MISSING'}")
 
     # Compute each component
     print("\nComputing components:")
@@ -405,6 +475,13 @@ def main():
         f"accelerating = {investment_component['accelerating']}"
     )
 
+    divincenzo_component = compute_divincenzo_component(divincenzo_data)
+    print(
+        f"  DiVincenzo: {divincenzo_component['leading_vendor']} leads "
+        f"{divincenzo_component['core_score']}/{divincenzo_component['max_score']} = "
+        f"{divincenzo_component['progress_pct']}%"
+    )
+
     # Assemble components
     components = {
         "factoring": factoring_component,
@@ -412,6 +489,7 @@ def main():
         "roadmap_consensus": roadmap_component,
         "error_correction": error_corr_component,
         "investment": investment_component,
+        "divincenzo": divincenzo_component,
     }
 
     # Compute estimate

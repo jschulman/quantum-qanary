@@ -19,7 +19,8 @@
     "#8b5cf6",
     "#f97316",
     "#22c55e",
-    "#ef4444"
+    "#ef4444",
+    "#eab308"
   ];
 
   // ─────────────────────────────────────────
@@ -58,7 +59,8 @@
     funding: fetchJSON("funding/investments.json"),
     qday: fetchJSON("composite/qday_distance.json"),
     milestones: fetchJSON("milestones/timeline.json"),
-    arxiv: fetchJSON("arxiv/processed/paper_counts.json").catch(function () { return null; })
+    arxiv: fetchJSON("arxiv/processed/paper_counts.json").catch(function () { return null; }),
+    divincenzo: fetchJSON("hardware/divincenzo.json").catch(function () { return null; })
   };
 
   // Load all data then render
@@ -71,7 +73,8 @@
     dataPromises.funding,
     dataPromises.qday,
     dataPromises.milestones,
-    dataPromises.arxiv
+    dataPromises.arxiv,
+    dataPromises.divincenzo
   ]).then(function (results) {
     var data = {
       alerts: results[0],
@@ -82,7 +85,8 @@
       funding: results[5],
       qday: results[6],
       milestones: results[7],
-      arxiv: results[8]
+      arxiv: results[8],
+      divincenzo: results[9]
     };
 
     renderAll(data);
@@ -99,6 +103,7 @@
     renderQdayDistance(data.qday);
     renderLadders(data.factoring);
     renderHardwareChart(data.hardware);
+    renderDiVincenzo(data.divincenzo);
     renderPqcTable(data.adoption);
     renderBlockchain(data.blockchain);
     renderFundingChart(data.funding);
@@ -190,7 +195,8 @@
       logical_qubits: "Logical Qubits",
       roadmap_consensus: "Roadmap Consensus",
       error_correction: "Error Correction",
-      investment: "Investment Trend"
+      investment: "Investment Trend",
+      divincenzo: "DiVincenzo Completeness"
     };
 
     keys.forEach(function (key, idx) {
@@ -218,6 +224,9 @@
       } else if (key === "investment") {
         progress = Math.min(100, comp.yoy_growth_pct * 2);
         detailText = comp.yoy_growth_pct + "% YoY growth";
+      } else if (key === "divincenzo") {
+        progress = comp.progress_pct || 0;
+        detailText = (comp.leading_vendor || "?") + ": " + (comp.core_score || 0) + "/" + (comp.max_score || 15) + " core criteria";
       }
 
       detailHtml += '<div class="comp-card">'
@@ -468,6 +477,107 @@
         + '</div>';
     });
     targetsEl.innerHTML = targetsHtml;
+  }
+
+  // ─────────────────────────────────────────
+  // 5b. DiVincenzo Scorecard
+  // ─────────────────────────────────────────
+  function renderDiVincenzo(dv) {
+    var scorecardEl = $("dvScorecard");
+    var legendEl = $("dvLegend");
+
+    if (!dv || !dv.vendors) {
+      scorecardEl.innerHTML = '<div class="placeholder-msg"><span class="placeholder-icon">&#9881;</span>DiVincenzo Criteria data not yet available.</div>';
+      return;
+    }
+
+    var coreCriteria = dv.criteria.core || [];
+    var networkCriteria = dv.criteria.networking || [];
+    var allCriteria = coreCriteria.concat(networkCriteria);
+    var statusLevels = dv.status_levels || {};
+    var vendors = dv.vendors || [];
+
+    // Status to numeric value for sorting
+    var statusRank = { scalable: 4, demonstrated: 3, partial: 2, not_demonstrated: 1 };
+
+    // Sort vendors by overall_score descending
+    vendors.sort(function (a, b) {
+      return (b.overall_score || 0) - (a.overall_score || 0);
+    });
+
+    // Build the heatmap grid
+    var html = '<div class="dv-grid">';
+
+    // Header row: empty corner + criteria
+    html += '<div class="dv-header-cell dv-corner"></div>';
+    for (var ci = 0; ci < allCriteria.length; ci++) {
+      var c = allCriteria[ci];
+      var isNet = ci >= coreCriteria.length;
+      html += '<div class="dv-header-cell' + (isNet ? ' dv-net-header' : '') + '" title="' + escapeHtml(c.description) + '">'
+        + '<span class="dv-criterion-id">' + escapeHtml(c.id) + '</span>'
+        + '<span class="dv-criterion-name">' + escapeHtml(c.name) + '</span>'
+        + '</div>';
+    }
+    // Score header
+    html += '<div class="dv-header-cell dv-score-header">Score</div>';
+
+    // Vendor rows
+    for (var vi = 0; vi < vendors.length; vi++) {
+      var vendor = vendors[vi];
+      var assessments = vendor.assessments || {};
+
+      html += '<div class="dv-vendor-cell">'
+        + '<span class="dv-vendor-name">' + escapeHtml(vendor.name) + '</span>'
+        + '<span class="dv-vendor-platform">' + escapeHtml(vendor.platform) + '</span>'
+        + '</div>';
+
+      for (var cj = 0; cj < allCriteria.length; cj++) {
+        var criterion = allCriteria[cj];
+        var assessment = assessments[criterion.id] || {};
+        var status = assessment.status || "not_demonstrated";
+        var levelInfo = statusLevels[status] || {};
+        var color = levelInfo.color || "#64748b";
+        var rank = statusRank[status] || 1;
+
+        // Build tooltip content
+        var tooltipParts = [escapeHtml(levelInfo.label || status)];
+        if (assessment.metric) {
+          tooltipParts.push(escapeHtml(assessment.metric));
+        }
+        if (assessment.evidence) {
+          tooltipParts.push(escapeHtml(assessment.evidence));
+        }
+        var tooltip = tooltipParts.join(" | ");
+
+        html += '<div class="dv-cell dv-cell-' + escapeHtml(status) + '" title="' + tooltip + '" data-rank="' + rank + '">'
+          + '<span class="dv-cell-dot" style="background:' + color + ';"></span>'
+          + '<span class="dv-cell-label">' + escapeHtml(levelInfo.label || status) + '</span>'
+          + '</div>';
+      }
+
+      // Score cell
+      html += '<div class="dv-score-cell">'
+        + '<span class="dv-score-number">' + (vendor.overall_score || 0) + '</span>'
+        + '<span class="dv-score-max">/5</span>'
+        + '</div>';
+    }
+
+    html += '</div>';
+    scorecardEl.innerHTML = html;
+
+    // Legend
+    var legendHtml = '<div class="dv-legend-items">';
+    var levelKeys = ["not_demonstrated", "partial", "demonstrated", "scalable"];
+    for (var li = 0; li < levelKeys.length; li++) {
+      var lk = levelKeys[li];
+      var lv = statusLevels[lk] || {};
+      legendHtml += '<div class="dv-legend-item">'
+        + '<span class="dv-legend-dot" style="background:' + (lv.color || "#64748b") + ';"></span>'
+        + '<span class="dv-legend-label">' + escapeHtml(lv.label || lk) + '</span>'
+        + '</div>';
+    }
+    legendHtml += '</div>';
+    legendEl.innerHTML = legendHtml;
   }
 
   // ─────────────────────────────────────────

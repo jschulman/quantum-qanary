@@ -1,0 +1,322 @@
+{
+  "metadata": {
+    "source": "Vendor publications, peer-reviewed papers, spec sheets",
+    "last_updated": "2026-03-06",
+    "description": "DiVincenzo Criteria assessment for major quantum computing platforms. The 5 core criteria (plus 2 networking) define hardware viability for fault-tolerant quantum computing."
+  },
+  "criteria": {
+    "core": [
+      {
+        "id": "C1",
+        "name": "Scalable Physical Qubits",
+        "description": "A well-characterized qubit system that can scale to many qubits"
+      },
+      {
+        "id": "C2",
+        "name": "Initialization",
+        "description": "Ability to initialize qubits to a known state"
+      },
+      {
+        "id": "C3",
+        "name": "Long Coherence Times",
+        "description": "Decoherence time much longer than gate operation time"
+      },
+      {
+        "id": "C4",
+        "name": "Universal Gate Set",
+        "description": "A complete set of quantum gates for arbitrary operations"
+      },
+      {
+        "id": "C5",
+        "name": "Qubit-Specific Measurement",
+        "description": "Ability to measure individual qubits reliably"
+      }
+    ],
+    "networking": [
+      {
+        "id": "N1",
+        "name": "Stationary-Flying Interconversion",
+        "description": "Interconversion between stationary and flying qubits"
+      },
+      {
+        "id": "N2",
+        "name": "Flying Qubit Transmission",
+        "description": "Faithful transmission of flying qubits between locations"
+      }
+    ]
+  },
+  "status_levels": {
+    "not_demonstrated": {
+      "label": "Not Demonstrated",
+      "description": "No public demonstration of this capability",
+      "color": "#64748b"
+    },
+    "partial": {
+      "label": "Partial",
+      "description": "Early demonstrations but not yet at scale or production quality",
+      "color": "#eab308"
+    },
+    "demonstrated": {
+      "label": "Demonstrated",
+      "description": "Capability proven in production or peer-reviewed experiments",
+      "color": "#22c55e"
+    },
+    "scalable": {
+      "label": "Scalable",
+      "description": "Demonstrated at scale with clear path to fault-tolerant operation",
+      "color": "#06b6d4"
+    }
+  },
+  "vendors": [
+    {
+      "name": "IBM",
+      "platform": "Superconducting Transmon",
+      "flagship": "Heron R2 (156 qubits)",
+      "assessments": {
+        "C1": {
+          "status": "demonstrated",
+          "evidence": "Heron R2: 156 qubits in heavy-hexagonal lattice; Condor: 1,121 qubits demonstrated",
+          "date": "2024-07",
+          "metric": "156 production / 1,121 demonstrated"
+        },
+        "C2": {
+          "status": "demonstrated",
+          "evidence": "Active reset achieves <0.1% residual excited-state population within 34 ns",
+          "date": "2024-07",
+          "metric": ">99.9% fidelity"
+        },
+        "C3": {
+          "status": "partial",
+          "evidence": "T1 ~100 us median, best qubits ~300 us; T2/gate ratio ~250-500x",
+          "date": "2024-07",
+          "metric": "T1 ~100 us, T2 ~100 us"
+        },
+        "C4": {
+          "status": "scalable",
+          "evidence": "Native CZ, RZ, SX, X gates on Heron; 5,000 two-qubit gate circuits demonstrated",
+          "date": "2024-07",
+          "metric": "1Q: 99.95%, 2Q: 99.5-99.7%"
+        },
+        "C5": {
+          "status": "demonstrated",
+          "evidence": "Dispersive readout per qubit; simultaneous multi-qubit measurement with mid-circuit capability",
+          "date": "2024-07",
+          "metric": "~99.0-99.5% readout fidelity"
+        },
+        "N1": {
+          "status": "partial",
+          "evidence": "Microwave-to-optical transduction via GaP cavity demonstrated in lab (IBM Zurich)",
+          "date": "2024-01",
+          "metric": "Lab demo only"
+        },
+        "N2": {
+          "status": "not_demonstrated",
+          "evidence": "Cryogenic chip-to-chip coupling at short range only; optical fiber transmission not demonstrated",
+          "date": null,
+          "metric": null
+        }
+      },
+      "overall_score": 4
+    },
+    {
+      "name": "Google",
+      "platform": "Superconducting Transmon",
+      "flagship": "Willow (105 qubits)",
+      "assessments": {
+        "C1": {
+          "status": "demonstrated",
+          "evidence": "Willow: 105 qubits with below-threshold error correction proving scaling viability",
+          "date": "2024-12",
+          "metric": "105 qubits"
+        },
+        "C2": {
+          "status": "demonstrated",
+          "evidence": "Co-optimized reset integrated into error correction cycles at 1.1 us cycle time",
+          "date": "2024-12",
+          "metric": "Standard in QEC cycle"
+        },
+        "C3": {
+          "status": "demonstrated",
+          "evidence": "T1 ~100 us (5x over Sycamore); logical memory lifetime exceeds physical by 2.4x",
+          "date": "2024-12",
+          "metric": "T1 ~100 us, ratio ~2,000-3,000x"
+        },
+        "C4": {
+          "status": "scalable",
+          "evidence": "Native sqrt(iSWAP), CZ gates; 1Q fidelity 99.97%, 2Q fidelity 99.88% average",
+          "date": "2024-12",
+          "metric": "1Q: 99.97%, 2Q: 99.88%"
+        },
+        "C5": {
+          "status": "demonstrated",
+          "evidence": "Readout fidelity ~99.3% simultaneous; real-time decoding at 63 us latency (distance-5)",
+          "date": "2024-12",
+          "metric": "~99.3% readout, 900K QEC cycles/sec"
+        },
+        "N1": {
+          "status": "not_demonstrated",
+          "evidence": "No public microwave-to-optical transduction work; focus on single-chip QEC",
+          "date": null,
+          "metric": null
+        },
+        "N2": {
+          "status": "not_demonstrated",
+          "evidence": "Same fundamental transduction challenge as all superconducting platforms",
+          "date": null,
+          "metric": null
+        }
+      },
+      "overall_score": 4
+    },
+    {
+      "name": "Quantinuum",
+      "platform": "Trapped Ion (QCCD)",
+      "flagship": "H2 (56 qubits)",
+      "assessments": {
+        "C1": {
+          "status": "demonstrated",
+          "evidence": "H2: 56 qubits all-to-all connected via QCCD shuttling; 12 logical qubits with Microsoft",
+          "date": "2024-09",
+          "metric": "56 qubits, QV 2^25"
+        },
+        "C2": {
+          "status": "scalable",
+          "evidence": "Optical pumping initialization with qubit reuse and mid-circuit re-initialization",
+          "date": "2024-01",
+          "metric": ">99.85% SPAM fidelity"
+        },
+        "C3": {
+          "status": "scalable",
+          "evidence": "Yb+ coherence times of seconds (stationary); T2/gate ratio >10,000x",
+          "date": "2024-01",
+          "metric": "T2 ~seconds, ratio >10,000x"
+        },
+        "C4": {
+          "status": "scalable",
+          "evidence": "All-to-all connectivity; 2Q fidelity 99.8% (H2), 99.914% (H1-1); mid-circuit measurement + conditional logic",
+          "date": "2024-04",
+          "metric": "2Q: 99.8-99.9%"
+        },
+        "C5": {
+          "status": "scalable",
+          "evidence": "SPAM fidelity >99.75%; individual fluorescence detection with mid-circuit branching commercially available",
+          "date": "2024-01",
+          "metric": ">99.75% SPAM, 0.14-0.15% error"
+        },
+        "N1": {
+          "status": "partial",
+          "evidence": "Lab demonstrations of ion-photon entanglement; Apollo architecture planned with photonic links",
+          "date": "2024-01",
+          "metric": "Lab R&D stage"
+        },
+        "N2": {
+          "status": "partial",
+          "evidence": "Academic ion-photon entanglement distribution across traps (NIST/Oxford heritage)",
+          "date": "2024-01",
+          "metric": "Not in production hardware"
+        }
+      },
+      "overall_score": 5
+    },
+    {
+      "name": "IonQ",
+      "platform": "Trapped Ion",
+      "flagship": "Forte Enterprise (36 qubits)",
+      "assessments": {
+        "C1": {
+          "status": "partial",
+          "evidence": "Forte: 36 qubits (single chain); Tempo: 100 qubits expected; scaling requires photonic interconnects",
+          "date": "2024-01",
+          "metric": "36 qubits (#AQ 29)"
+        },
+        "C2": {
+          "status": "scalable",
+          "evidence": "Optical pumping to ground hyperfine state; Ba+ platform achieves 99.96% state prep",
+          "date": "2024-09",
+          "metric": "99.5% (Yb+), 99.96% (Ba+)"
+        },
+        "C3": {
+          "status": "scalable",
+          "evidence": "T1: 10-100 s; T2 up to 4,200 s with dynamical decoupling; T2/gate ratio ~100,000x",
+          "date": "2024-01",
+          "metric": "T1 ~10-100 s, ratio ~100,000x"
+        },
+        "C4": {
+          "status": "demonstrated",
+          "evidence": "XX/ZZ native gates; 1Q fidelity 99.98%; 2Q fidelity 99.6% (Yb+), 99.9% (Ba+ dev)",
+          "date": "2024-09",
+          "metric": "1Q: 99.98%, 2Q: 99.6-99.9%"
+        },
+        "C5": {
+          "status": "demonstrated",
+          "evidence": "Individual ion fluorescence detection; SPAM fidelity 99.5% (Forte), 99.96% (Ba+ dev)",
+          "date": "2024-01",
+          "metric": "99.5-99.96% SPAM"
+        },
+        "N1": {
+          "status": "demonstrated",
+          "evidence": "Ion-photon entanglement (Feb 2024); remote ion-ion entanglement via photonic link (Oct 2024)",
+          "date": "2024-10",
+          "metric": "~250 Hz entanglement rate"
+        },
+        "N2": {
+          "status": "partial",
+          "evidence": "Photon transmission between trap nodes with entanglement swapping; milestone 2 of 4 achieved",
+          "date": "2024-10",
+          "metric": "Milestone 2/4"
+        }
+      },
+      "overall_score": 4
+    },
+    {
+      "name": "PsiQuantum",
+      "platform": "Photonic",
+      "flagship": "Omega Chipset (Feb 2025)",
+      "assessments": {
+        "C1": {
+          "status": "partial",
+          "evidence": "Omega chipset has all components for million-qubit systems in semiconductor fab; no multi-qubit processor yet",
+          "date": "2025-02",
+          "metric": "Component-level demo"
+        },
+        "C2": {
+          "status": "demonstrated",
+          "evidence": "Dual-rail photonic qubit state preparation fidelity 99.98% with deterministic photon source",
+          "date": "2025-02",
+          "metric": "99.98% prep fidelity"
+        },
+        "C3": {
+          "status": "partial",
+          "evidence": "Photons don't decohere traditionally; loss is dominant error (~1% per stage, down from ~50%)",
+          "date": "2025-02",
+          "metric": "~1% loss/stage"
+        },
+        "C4": {
+          "status": "partial",
+          "evidence": "Interferometer fidelity 99.999%; 2Q fusion fidelity 99.22%; full fault-tolerant circuit not demonstrated",
+          "date": "2025-02",
+          "metric": "1Q: 99.999%, fusion: 99.22%"
+        },
+        "C5": {
+          "status": "demonstrated",
+          "evidence": "On-chip SNSPDs with 99.98% SPAM fidelity; measurement is inherent in photonic detection",
+          "date": "2025-02",
+          "metric": "99.98% measurement"
+        },
+        "N1": {
+          "status": "scalable",
+          "evidence": "Photonic qubits are natively flying qubits; no modality conversion needed",
+          "date": "2025-02",
+          "metric": "Native advantage"
+        },
+        "N2": {
+          "status": "demonstrated",
+          "evidence": "Chip-to-chip qubit transmission over optical fiber at 99.72% fidelity up to 250 m",
+          "date": "2025-02",
+          "metric": "99.72% over 250 m"
+        }
+      },
+      "overall_score": 3
+    }
+  ]
+}

@@ -595,6 +595,172 @@ a:hover {
 }
 
 /* ===========================================
+   DIVINCENZO SCORECARD
+   =========================================== */
+.dv-scorecard {
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+
+.dv-grid {
+  display: grid;
+  grid-template-columns: 160px repeat(7, 1fr) 72px;
+  gap: 2px;
+  min-width: 700px;
+}
+
+.dv-header-cell {
+  background: #1e293b;
+  padding: 10px 8px;
+  text-align: center;
+  border-radius: 6px 6px 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.dv-corner {
+  background: transparent;
+}
+
+.dv-criterion-id {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #06b6d4;
+  font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace;
+}
+
+.dv-criterion-name {
+  font-size: 0.65rem;
+  color: #94a3b8;
+  line-height: 1.3;
+}
+
+.dv-net-header {
+  border-top: 2px solid #334155;
+}
+
+.dv-net-header .dv-criterion-id {
+  color: #a78bfa;
+}
+
+.dv-score-header {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  justify-content: center;
+}
+
+.dv-vendor-cell {
+  background: #1e293b;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 6px 0 0 6px;
+}
+
+.dv-vendor-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #e2e8f0;
+}
+
+.dv-vendor-platform {
+  font-size: 0.7rem;
+  color: #64748b;
+}
+
+.dv-cell {
+  background: #0f172a;
+  padding: 10px 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  cursor: default;
+  transition: background 0.15s ease;
+  position: relative;
+}
+
+.dv-cell:hover {
+  background: #1a2540;
+}
+
+.dv-cell-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.dv-cell-label {
+  font-size: 0.6rem;
+  color: #94a3b8;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.dv-cell-not_demonstrated .dv-cell-dot { opacity: 0.5; }
+.dv-cell-partial .dv-cell-dot { box-shadow: 0 0 6px rgba(234, 179, 8, 0.3); }
+.dv-cell-demonstrated .dv-cell-dot { box-shadow: 0 0 6px rgba(34, 197, 94, 0.3); }
+.dv-cell-scalable .dv-cell-dot { box-shadow: 0 0 8px rgba(6, 182, 212, 0.4); }
+
+.dv-score-cell {
+  background: #1e293b;
+  padding: 10px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  border-radius: 0 6px 6px 0;
+}
+
+.dv-score-number {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #06b6d4;
+}
+
+.dv-score-max {
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+.dv-legend {
+  margin-top: 12px;
+}
+
+.dv-legend-items {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.dv-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dv-legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.dv-legend-label {
+  font-size: 0.8rem;
+  color: #94a3b8;
+}
+
+/* ===========================================
    PQC ADOPTION TABLE
    =========================================== */
 .table-wrap {
@@ -1028,6 +1194,18 @@ a:hover {
   .site-title {
     font-size: 1.75rem;
   }
+
+  .dv-grid {
+    grid-template-columns: 120px repeat(7, 1fr) 60px;
+  }
+
+  .dv-vendor-name {
+    font-size: 0.85rem;
+  }
+
+  .dv-cell-label {
+    display: none;
+  }
 }
 
 @media (max-width: 600px) {
@@ -1059,5 +1237,14 @@ a:hover {
 
   .footer-grid {
     grid-template-columns: 1fr;
+  }
+
+  .dv-grid {
+    grid-template-columns: 100px repeat(7, 1fr) 50px;
+    min-width: 580px;
+  }
+
+  .dv-criterion-name {
+    display: none;
   }
 }
