@@ -1,9 +1,9 @@
 {
   "metadata": {
-    "last_updated": "2026-04-01",
+    "last_updated": "2026-04-06",
     "source": "manual curation + computed",
     "note": "Edit this file to update alert status. Push to trigger dashboard rebuild.",
-    "last_checked": "2026-04-01T09:22:09Z",
+    "last_checked": "2026-04-06T08:26:01Z",
     "computed_level": "YELLOW"
   },
   "current_level": "YELLOW",
