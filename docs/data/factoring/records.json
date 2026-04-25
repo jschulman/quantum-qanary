@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "last_updated": "2026-02-26",
+    "last_updated": "2026-04-25",
     "source": "Academic papers, IACR ePrint, vendor publications",
     "note": "Edit this file to add new factoring records. Push to trigger dashboard rebuild."
   },
@@ -60,11 +60,22 @@
   ],
   "ecdlp_ladder": [
     {
-      "bits": 0,
-      "label": "No quantum ECDLP break",
-      "status": "current",
-      "date": null,
-      "note": "No quantum computer has solved any ECDLP instance"
+      "bits": 6,
+      "label": "6-bit ECDLP",
+      "status": "achieved",
+      "date": "2025-09",
+      "method": "Shor's variant on public quantum cloud hardware",
+      "source": "Project Eleven Q-Day Prize entry",
+      "note": "Prior largest public quantum ECDLP attack before April 2026"
+    },
+    {
+      "bits": 15,
+      "label": "15-bit ECDLP (Bitcoin-style key)",
+      "status": "achieved",
+      "date": "2026-04",
+      "method": "Shor's variant on ~70-qubit public cloud quantum device",
+      "source": "Giancarlo Lelli, Project Eleven Q-Day Prize (1 BTC bounty, April 2026)",
+      "note": "First non-trivial quantum ECDLP attack; ~512x prior 6-bit public record. Key space 32,767; recovered in minutes."
     },
     {
       "bits": 64,

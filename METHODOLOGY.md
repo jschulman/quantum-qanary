@@ -15,6 +15,7 @@ No quantum computer has factored anything beyond 21 bits using Shor's algorithm.
 - A major vendor demonstrates below-threshold quantum error correction (occurred December 2024)
 - A government announces a funded fault-tolerant quantum program (occurred November 2024)
 - A major blockchain forms a dedicated PQC team (occurred January 2026)
+- First non-trivial quantum ECDLP attack demonstrated (occurred April 2026 — 15-bit elliptic-curve key recovered via Shor's variant on a public quantum cloud, Project Eleven Q-Day Prize)
 
 **Current status: YELLOW** — Multiple YELLOW triggers have fired.
 

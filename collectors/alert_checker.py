@@ -72,7 +72,12 @@ def check_factoring_milestones(factoring_data):
                 "bits": record.get("bits"),
             })
 
+    max_ecdlp_bits = 0
     for record in factoring_data.get("ecdlp_ladder", []):
+        if record.get("status") == "achieved":
+            bits = record.get("bits", 0)
+            if bits > max_ecdlp_bits:
+                max_ecdlp_bits = bits
         if record.get("status") == "achieved" and record.get("canary"):
             triggers.append({
                 "source": "factoring",
@@ -80,6 +85,14 @@ def check_factoring_milestones(factoring_data):
                 "level": "RED",
                 "bits": record.get("bits"),
             })
+
+    if max_ecdlp_bits >= 1:
+        triggers.append({
+            "source": "factoring",
+            "event": f"First non-trivial quantum ECDLP attack demonstrated ({max_ecdlp_bits}-bit)",
+            "level": "YELLOW",
+            "bits": max_ecdlp_bits,
+        })
 
     return triggers
 

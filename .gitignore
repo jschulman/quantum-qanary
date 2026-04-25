@@ -12,3 +12,6 @@ build/
 
 # Raw API responses (large, regenerable)
 data/*/raw/
+
+# Local-only files
+CLAUDE.md
