@@ -9,7 +9,7 @@
       "label": "Shor's Algorithm Implementation",
       "monthly": [
         {
-          "date": "2023-05",
+          "date": "2023-06",
           "count": 0
         },
         {
@@ -94,10 +94,6 @@
         },
         {
           "date": "2025-05",
-          "count": 0
-        },
-        {
-          "date": "2025-06",
           "count": 0
         },
         {
@@ -142,7 +138,7 @@
       "label": "PQC Migration & Deployment",
       "monthly": [
         {
-          "date": "2023-05",
+          "date": "2023-06",
           "count": 0
         },
         {
@@ -227,10 +223,6 @@
         },
         {
           "date": "2025-05",
-          "count": 0
-        },
-        {
-          "date": "2025-06",
           "count": 0
         },
         {
@@ -275,7 +267,7 @@
       "label": "Quantum Error Correction",
       "monthly": [
         {
-          "date": "2023-05",
+          "date": "2023-06",
           "count": 0
         },
         {
@@ -363,10 +355,6 @@
           "count": 0
         },
         {
-          "date": "2025-06",
-          "count": 0
-        },
-        {
           "date": "2025-07",
           "count": 0
         },
@@ -407,7 +395,7 @@
   },
   "aggregate": [
     {
-      "date": "2023-05",
+      "date": "2023-06",
       "total": 0
     },
     {
@@ -492,10 +480,6 @@
     },
     {
       "date": "2025-05",
-      "total": 0
-    },
-    {
-      "date": "2025-06",
       "total": 0
     },
     {
