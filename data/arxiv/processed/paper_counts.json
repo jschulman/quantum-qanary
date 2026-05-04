@@ -1,7 +1,7 @@
 {
   "metadata": {
     "source": "arxiv API",
-    "last_updated": "2026-05-03",
+    "last_updated": "2026-05-04",
     "mock": false
   },
   "categories": {
@@ -86,6 +86,10 @@
         },
         {
           "date": "2025-01",
+          "count": 0
+        },
+        {
+          "date": "2025-02",
           "count": 0
         },
         {
@@ -234,6 +238,10 @@
           "count": 0
         },
         {
+          "date": "2025-02",
+          "count": 0
+        },
+        {
           "date": "2025-03",
           "count": 0
         },
@@ -379,6 +387,10 @@
           "count": 0
         },
         {
+          "date": "2025-02",
+          "count": 0
+        },
+        {
           "date": "2025-03",
           "count": 0
         },
@@ -520,6 +532,10 @@
     },
     {
       "date": "2025-01",
+      "total": 0
+    },
+    {
+      "date": "2025-02",
       "total": 0
     },
     {
