@@ -1,16 +1,29 @@
 {
   "metadata": {
-    "last_updated": "2026-02-26",
+    "last_updated": "2026-05-14",
     "source": "Insurance industry publications, carrier websites",
     "note": "Edit when carrier PQC requirements are detected. This is a key ORANGE alert trigger."
   },
   "status": "no_requirements",
-  "status_label": "No carrier requirements detected",
+  "status_label": "No carrier requirements detected (early questionnaire signals only)",
   "events": [],
+  "precursor_signals": [
+    {
+      "date": "2026",
+      "event": "Cyber insurance underwriters reportedly incorporating quantum readiness into renewal risk assessment questionnaires (industry analyses)",
+      "note": "Questionnaire questions, not yet a published requirement, attestation, or premium adjustment. Does not yet meet ORANGE threshold."
+    },
+    {
+      "date": "2026-01",
+      "event": "CISA Product Categories for PQC-Capable Technologies could establish 'reasonable standard of care' that future plaintiffs cite",
+      "note": "Indirect insurance-relevant benchmark; not a carrier action."
+    }
+  ],
   "watch_items": [
-    "Any carrier adds PQC-related questions to cyber insurance applications",
-    "Any carrier publishes PQC guidance or readiness requirements",
-    "Any carrier adjusts premiums based on PQC readiness",
-    "Any reinsurer (Lloyd's, Swiss Re, Munich Re) flags quantum as systemic risk"
+    "First carrier to publish formal PQC readiness questionnaire as a renewal requirement",
+    "First carrier to adjust premiums based on PQC readiness",
+    "Any reinsurer (Lloyd's, Swiss Re, Munich Re) flags quantum as systemic risk",
+    "Carrier denials or coverage exclusions tied to non-PQC encryption posture",
+    "Lawsuit citing CISA PQC-capable benchmark as 'reasonable standard of care' for negligence"
   ]
 }

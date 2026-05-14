@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "last_updated": "2026-02-26",
+    "last_updated": "2026-05-14",
     "source": "Chain governance, developer forums, GitHub repos",
     "note": "Edit to update chain PQC status. Push to trigger rebuild."
   },
@@ -9,29 +9,29 @@
     {
       "name": "Ethereum",
       "ticker": "ETH",
-      "status": "planned",
-      "detail": "PQC in 'The Splurge' roadmap. Dedicated PQ team formed Jan 2026. leanVM development underway.",
-      "last_activity": "2026-01",
+      "status": "in_development",
+      "detail": "leanXMSS (hash-based signatures) + leanVM zkVM for 250x signature aggregation. EIP-8141 under consideration for Hegotá hard fork (H2 2026). Buterin presented full architecture at ETHDenver Feb 2026. Beam Chain production coding underway, deployment targeted 2029-30.",
+      "last_activity": "2026-02",
       "exposure": "All historical public keys visible on-chain",
-      "watch": ["EIP for PQC signature scheme", "Testnet deployment", "Hard fork timeline"]
+      "watch": ["EIP-8141 adoption in Hegotá", "leanXMSS testnet deployment", "Beam Chain production code milestones"]
     },
     {
       "name": "Bitcoin",
       "ticker": "BTC",
-      "status": "discussed",
-      "detail": "No formal PQC plan. Community discussion ongoing. Pay-to-pubkey-hash provides partial protection for unspent outputs.",
-      "last_activity": "2024-06",
-      "exposure": "Reused addresses and spent outputs expose public keys",
-      "watch": ["BIP proposal for PQC signatures", "Consensus on migration approach"]
+      "status": "planned",
+      "detail": "BIP-360 (Pay-to-Merkle-Root) proposed Feb 2026 for quantum-safe addresses. BIP-361 (Apr 2026) adds 3-phase legacy signature sunset: Phase A blocks sending to legacy (T+3yr), Phase B invalidates ECDSA/Schnorr signatures (T+5yr), Phase C proposes zk-proof recovery for frozen coins.",
+      "last_activity": "2026-04",
+      "exposure": "~6.7M BTC in vulnerable addresses with on-chain public keys; reused addresses and spent outputs expose public keys",
+      "watch": ["BIP-360 / BIP-361 activation timeline", "Soft fork consensus", "ZK recovery proof feasibility"]
     },
     {
       "name": "Solana",
       "ticker": "SOL",
-      "status": "not_acknowledged",
-      "detail": "No public PQC roadmap or discussion.",
-      "last_activity": null,
+      "status": "discussed",
+      "detail": "Community discussion increased following Project Eleven 15-bit ECDLP demo (Apr 2026). No formal proposal yet.",
+      "last_activity": "2026-04",
       "exposure": "All validator and user public keys on-chain",
-      "watch": ["Any official acknowledgment of quantum risk"]
+      "watch": ["SIMD proposal for PQC signatures", "Foundation acknowledgment of timeline"]
     },
     {
       "name": "Algorand",

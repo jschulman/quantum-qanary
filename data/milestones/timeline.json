@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "last_updated": "2026-02-26",
+    "last_updated": "2026-05-14",
     "note": "Master timeline of all quantum computing milestones relevant to Q-Day."
   },
   "milestones": [
@@ -24,6 +24,23 @@
     { "date": "2024-11", "category": "funding", "event": "DOE Genesis Mission — fault-tolerant by 2028", "significance": "US government commits to fault-tolerant quantum — YELLOW alert" },
     { "date": "2024-12", "category": "hardware", "event": "Google Willow — below-threshold error correction", "significance": "First proof that QEC improves with more qubits — YELLOW alert" },
     { "date": "2025-02", "category": "hardware", "event": "Microsoft Majorana 1 — topological qubit chip", "significance": "New approach to fault-tolerant qubits, if verified" },
-    { "date": "2026-01", "category": "blockchain", "event": "Ethereum forms dedicated PQ security team", "significance": "Active engineering investment in blockchain PQC — YELLOW alert" }
+    { "date": "2025-02", "category": "hardware", "event": "PsiQuantum Omega — manufacturable photonic chipset (GlobalFoundries Fab 8)", "significance": "Million-qubit-scale photonic components ready for semiconductor fab" },
+    { "date": "2025-03", "category": "standards", "event": "NIST selects HQC as 5th PQC algorithm (KEM backup to ML-KEM)", "significance": "Diversification against future ML-KEM weaknesses" },
+    { "date": "2025-06", "category": "roadmap", "event": "IBM details Starling roadmap — 200 logical qubits / 100M gates by 2029", "significance": "First detailed fault-tolerant roadmap with intermediate processors (Loon, Kookaburra, Cockatoo)" },
+    { "date": "2025-09", "category": "factoring", "event": "First quantum ECDLP — 6-bit elliptic-curve key broken on IBM 133-qubit system", "significance": "Project Eleven Q-Day Prize entry (Tippeconnic)" },
+    { "date": "2025-09", "category": "funding", "event": "PsiQuantum raises $1B Series E for million-qubit fault-tolerant systems", "significance": "Largest single quantum funding round; Brisbane and Chicago sites" },
+    { "date": "2025-11", "category": "hardware", "event": "Quantinuum Helios — 94 error-detected / 48 error-corrected logical qubits", "significance": "Beyond break-even QEC at scale; logical error 10-100x below physical" },
+    { "date": "2025", "category": "funding", "event": "Quantum sector receives $4.9B VC + $56.7B public funding (2025)", "significance": "Private VC more than doubled YoY; quantum approaches 'ChatGPT moment'" },
+    { "date": "2026-01", "category": "blockchain", "event": "Ethereum forms dedicated PQ security team (Thomas Coratger)", "significance": "Active engineering investment in blockchain PQC — YELLOW alert" },
+    { "date": "2026-01", "category": "standards", "event": "CISA releases Product Categories for PQC-Capable Technologies", "significance": "Establishes federal procurement benchmark for PQC availability" },
+    { "date": "2026-02", "category": "blockchain", "event": "BIP-360 (Pay-to-Merkle-Root) proposed for Bitcoin quantum-safe addresses", "significance": "First concrete Bitcoin protocol proposal for PQC" },
+    { "date": "2026-02", "category": "blockchain", "event": "Ethereum unveils leanVM + leanXMSS post-quantum architecture (Buterin, ETHDenver)", "significance": "EIP-8141 considered for Hegotá hard fork (H2 2026); 250x signature aggregation via zkVM" },
+    { "date": "2026-03", "category": "hardware", "event": "QuEra demonstrates 96 logical qubits on neutral-atom processor (Nature)", "significance": "First >48 verified logical qubits with error-corrected gates simultaneously" },
+    { "date": "2026-03", "category": "roadmap", "event": "Quantinuum accelerates roadmap — universal fault-tolerant QC by 2030", "significance": "Industry consensus on fault-tolerance timeline tightens" },
+    { "date": "2026-04", "category": "adoption", "event": "Meta publishes PQC migration framework (WhatsApp contributors)", "significance": "Largest social platform documents enterprise-scale PQC rollout" },
+    { "date": "2026-04", "category": "factoring", "event": "15-bit ECDLP broken on ~70-qubit cloud quantum hardware (Project Eleven, Lelli)", "significance": "512x extension of prior public ECDLP record — YELLOW trigger" },
+    { "date": "2026-04", "category": "blockchain", "event": "BIP-361 (Post-Quantum Migration and Legacy Signature Sunset) proposed", "significance": "3-phase Bitcoin migration; would freeze ~6.7M BTC in vulnerable addresses" },
+    { "date": "2026-05", "category": "hardware", "event": "China unveils Hanyuan-2 — 200-qubit dual-core neutral atom system", "significance": "First dual-core neutral atom architecture; benchmarks pending independent verification" },
+    { "date": "2026-05", "category": "research", "event": "Q-CTRL + IBM demonstrate 3,000x speedup on 120-qubit Fermi-Hubbard simulation", "significance": "Runtime error suppression unlocks practical quantum advantage" }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "last_updated": "2026-05-11"
+    "last_updated": "2026-05-14"
   },
   "estimate": {
     "low_years": 2,
@@ -12,35 +12,41 @@
       "weight": 0.25,
       "current_bits": 21,
       "target_bits": 2048,
-      "progress_pct": 39.9
+      "progress_pct": 39.9,
+      "note": "21-bit RSA via Shor unchanged; 15-bit ECDLP demonstrated Apr 2026"
     },
     "logical_qubits": {
       "weight": 0.25,
-      "current": 1,
+      "current": 96,
       "target": 4000,
-      "progress_pct": 8.4
+      "progress_pct": 56.6,
+      "note": "QuEra Mar 2026 record on neutral atoms; Quantinuum Helios 48 error-corrected (Nov 2025)"
     },
     "roadmap_consensus": {
       "weight": 0.2,
       "avg_target_year": 2029,
-      "years_out": 3
+      "years_out": 3,
+      "note": "DOE 2028, IBM Starling 2029, Google 2029, Microsoft/Atom 2027, Quantinuum 2030, PsiQuantum 2029"
     },
     "error_correction": {
       "weight": 0.1,
       "below_threshold_demonstrated": true,
-      "score": 50
+      "score": 70,
+      "note": "Multi-vendor below-threshold + Quantinuum Helios delivers 10-100x logical-vs-physical improvement"
     },
     "investment": {
       "weight": 0.1,
-      "yoy_growth_pct": 12.1,
-      "accelerating": false
+      "yoy_growth_pct": 25.0,
+      "accelerating": true,
+      "note": "2025 total ~$17.5B (incl $4.9B private VC, more than doubled YoY)"
     },
     "divincenzo": {
       "weight": 0.1,
       "leading_vendor": "Quantinuum",
-      "core_score": 14,
+      "core_score": 15,
       "max_score": 15,
-      "progress_pct": 93.3
+      "progress_pct": 100.0,
+      "note": "Helios upgrades C1 from demonstrated to scalable"
     }
   },
   "caveat": "This estimate reflects current trajectory. Quantum progress is nonlinear -- breakthroughs can compress timelines rapidly."

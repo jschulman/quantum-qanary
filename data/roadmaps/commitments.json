@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "last_updated": "2026-02-26",
+    "last_updated": "2026-05-14",
     "source": "Vendor roadmaps, government program announcements",
     "note": "Edit to add/update roadmap commitments. Push to trigger rebuild."
   },
@@ -17,13 +17,32 @@
     },
     {
       "entity": "IBM",
-      "commitment": "Fault-tolerant quantum systems",
+      "commitment": "Starling — 200 logical qubits, 100M-gate circuits",
       "target_year": 2029,
       "status": "in_progress",
-      "program": "IBM Quantum Roadmap",
-      "announced": "2023-12",
-      "source": "https://www.ibm.com/quantum/roadmap",
-      "note": "Starling architecture with error-corrected qubits"
+      "program": "IBM Quantum Roadmap (updated Jun 2025)",
+      "announced": "2025-06",
+      "source": "https://www.ibm.com/quantum/blog/large-scale-ftqc",
+      "note": "Intermediate processors: Loon (2025), Kookaburra (2026), Cockatoo (2027); Poughkeepsie data center"
+    },
+    {
+      "entity": "Quantinuum",
+      "commitment": "Universal, fully fault-tolerant quantum computing",
+      "target_year": 2030,
+      "status": "in_progress",
+      "program": "Accelerated roadmap (Apollo / post-Helios)",
+      "announced": "2026-03",
+      "source": "https://www.quantinuum.com/press-releases/quantinuum-unveils-accelerated-roadmap-to-achieve-universal-fault-tolerant-quantum-computing-by-2030",
+      "note": "Helios (2025) already delivers 48 error-corrected logical qubits"
+    },
+    {
+      "entity": "Microsoft + Atom Computing",
+      "commitment": "Magne — 50 logical qubits from ~1,200 physical (neutral atoms)",
+      "target_year": 2027,
+      "status": "in_progress",
+      "program": "Azure Quantum Level 2 resilient",
+      "announced": "2025",
+      "note": "Microsoft also pursuing Majorana 1 topological path in parallel"
     },
     {
       "entity": "Industry",
@@ -45,6 +64,42 @@
       "note": "Mandatory deadline for US federal systems"
     },
     {
+      "entity": "NIST",
+      "commitment": "FIPS 140-2 modules moved to Historical list — only FIPS 140-3 valid for new federal procurement",
+      "target_year": 2026,
+      "status": "active",
+      "program": "CMVP transition",
+      "announced": "2024-08",
+      "note": "Effective Sept 21, 2026 — gates PQC validation pipeline"
+    },
+    {
+      "entity": "European Commission",
+      "commitment": "Begin transition by end 2026; complete critical infrastructure by end 2030",
+      "target_year": 2030,
+      "status": "active",
+      "program": "EU PQC migration roadmap",
+      "announced": "2025",
+      "note": "Refined transition plans expected by end 2026"
+    },
+    {
+      "entity": "NSA",
+      "commitment": "CNSA 2.0 — all new NSS quantum-safe",
+      "target_year": 2027,
+      "status": "active",
+      "program": "CNSA Suite 2.0",
+      "announced": "2022-09",
+      "note": "Full app migration by 2030, full infrastructure by 2035"
+    },
+    {
+      "entity": "Microsoft",
+      "commitment": "Quantum-ready core infrastructure; products fully transitioned by 2033",
+      "target_year": 2033,
+      "status": "in_progress",
+      "program": "Quantum Safe Program",
+      "announced": "2025-08",
+      "note": "PQC APIs GA in 2026; Windows/Azure/M365 integrate 2027"
+    },
+    {
       "entity": "IBM",
       "commitment": "100,000+ qubit system",
       "target_year": 2033,
@@ -61,6 +116,16 @@
       "program": "Google Quantum AI",
       "announced": "2024-12",
       "note": "Post-Willow roadmap milestone"
+    },
+    {
+      "entity": "PsiQuantum",
+      "commitment": "Million-qubit-scale fault-tolerant photonic system (Brisbane + Chicago sites)",
+      "target_year": 2029,
+      "status": "in_progress",
+      "program": "DARPA Utility-Scale Quantum Computing (Stage B)",
+      "announced": "2025-09",
+      "source": "https://www.psiquantum.com/omega",
+      "note": "$1B Series E raised Sept 2025; Omega chipset components proven"
     }
   ]
 }

@@ -1,9 +1,9 @@
 {
   "metadata": {
-    "last_updated": "2026-05-11",
+    "last_updated": "2026-05-14",
     "source": "manual curation + computed",
     "note": "Edit this file to update alert status. Push to trigger dashboard rebuild.",
-    "last_checked": "2026-05-11T10:42:09Z",
+    "last_checked": "2026-05-14T00:00:00Z",
     "computed_level": "YELLOW"
   },
   "current_level": "YELLOW",
@@ -52,19 +52,62 @@
       "source": "https://blog.google/technology/research/google-willow-quantum-chip/"
     },
     {
+      "date": "2025-11",
+      "event": "Quantinuum Helios \u2014 98 physical qubits with 48 error-corrected logical qubits (beyond break-even QEC at scale)",
+      "level": "YELLOW",
+      "source": "https://www.quantinuum.com/blog/introducing-helios-the-most-accurate-quantum-computer-in-the-world"
+    },
+    {
       "date": "2026-01",
       "event": "Ethereum forms dedicated post-quantum security team",
       "level": "YELLOW",
       "source": "https://ethereum.org/en/roadmap/"
+    },
+    {
+      "date": "2026-01",
+      "event": "CISA releases Product Categories for PQC-Capable Technologies \u2014 federal procurement benchmark",
+      "level": "YELLOW",
+      "source": "https://www.cisa.gov/"
+    },
+    {
+      "date": "2026-03",
+      "event": "QuEra demonstrates 96 logical qubits on neutral-atom processor (Nature)",
+      "level": "YELLOW",
+      "source": "https://thequantuminsider.com/2026/03/10/quantinuum-researchers-demonstrates-quantum-computations-with-dozens-of-protected-logical-qubits/"
+    },
+    {
+      "date": "2026-04",
+      "event": "First non-trivial quantum ECDLP attack \u2014 15-bit elliptic-curve key recovered (Project Eleven Q-Day Prize)",
+      "level": "YELLOW",
+      "source": "https://blog.projecteleven.com/posts/project-eleven-awards-1-btc-q-day-prize-for-largest-quantum-attack-on-elliptic-curve-cryptography-to-date"
+    },
+    {
+      "date": "2026-04",
+      "event": "Bitcoin BIP-361 proposed \u2014 3-phase post-quantum migration with legacy signature sunset",
+      "level": "YELLOW",
+      "source": "https://bip360.org/"
     }
   ],
   "watch_items": [
     {
-      "event": "Cyber insurers require PQC attestations",
+      "event": "Cyber insurers require PQC attestations (early signals reported in underwriting questionnaires)",
       "level": "ORANGE"
     },
     {
-      "event": "DOE/IBM deliver fault-tolerant systems on 2028-29 timelines",
+      "event": "DOE/IBM deliver fault-tolerant systems on 2028-29 timelines (IBM Kookaburra 2026, Starling 2029)",
+      "level": "ORANGE"
+    },
+    {
+      "event": "Logical qubit counts exceed 100 on a single platform (currently 96 at QuEra; 48 corrected at Quantinuum Helios)",
+      "level": "ORANGE",
+      "note": "Within striking distance \u2014 96 LQ demonstrated Mar 2026"
+    },
+    {
+      "event": "Quantum factoring reaches ~100-bit semiprimes",
+      "level": "ORANGE"
+    },
+    {
+      "event": "Government mandates PQC migration with enforcement deadlines (NIST CMVP FIPS 140-3 transition Sept 2026 is gate; EU 2030 critical infra)",
       "level": "ORANGE"
     },
     {
@@ -76,7 +119,11 @@
       "level": "RED"
     },
     {
-      "event": "Ethereum finalizes PQC hard fork timeline with specific dates",
+      "event": "Ethereum finalizes PQC hard fork timeline with specific dates (EIP-8141 in Hegot\u00e1 H2 2026 would qualify)",
+      "level": "ORANGE"
+    },
+    {
+      "event": "Bitcoin activates BIP-360 / BIP-361 soft fork",
       "level": "ORANGE"
     },
     {

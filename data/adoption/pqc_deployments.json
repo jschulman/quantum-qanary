@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "last_updated": "2026-02-26",
+    "last_updated": "2026-05-14",
     "source": "Product blogs, security advisories, changelogs",
     "note": "Edit to add new PQC deployments. Push to trigger rebuild."
   },
@@ -12,18 +12,23 @@
 
     { "entity": "Signal", "category": "messaging", "status": "deployed", "standard": "PQXDH (ML-KEM)", "date": "2023-09", "note": "First major messenger with PQC" },
     { "entity": "iMessage", "category": "messaging", "status": "deployed", "standard": "PQ3 (ML-KEM)", "date": "2024-02", "note": "iOS 17.4+" },
-    { "entity": "WhatsApp", "category": "messaging", "status": "not_started", "standard": null, "date": null, "note": "No public PQC plans" },
+    { "entity": "WhatsApp", "category": "messaging", "status": "in_development", "standard": "ML-KEM (Meta PQC framework)", "date": "2026-04", "note": "Meta published PQC migration framework Apr 2026; multi-year infrastructure rollout underway" },
 
     { "entity": "Cloudflare", "category": "cloud", "status": "deployed", "standard": "ML-KEM", "date": "2024-09", "note": "PQ TLS for all customers" },
     { "entity": "AWS", "category": "cloud", "status": "deployed", "standard": "ML-KEM (s2n-tls, KMS)", "date": "2024-06", "note": "KMS and TLS endpoints" },
     { "entity": "GCP", "category": "cloud", "status": "deployed", "standard": "ML-KEM", "date": "2024-06", "note": "Cloud KMS with PQ AEAD" },
-    { "entity": "Azure", "category": "cloud", "status": "in_development", "standard": "ML-KEM", "date": null, "note": "Azure Key Vault PQC preview" },
+    { "entity": "Azure", "category": "cloud", "status": "deployed", "standard": "ML-KEM (Key Vault, Microsoft PQC APIs)", "date": "2026-01", "note": "PQC APIs generally available on Microsoft platforms (2026); signing/network services migration accelerating in 2026" },
 
     { "entity": "iOS", "category": "os", "status": "deployed", "standard": "ML-KEM", "date": "2024-03", "note": "iMessage PQ3 in iOS 17.4" },
     { "entity": "Android", "category": "os", "status": "in_development", "standard": "ML-KEM", "date": null, "note": "Chrome on Android has PQ TLS" },
-    { "entity": "Windows", "category": "os", "status": "in_development", "standard": "ML-KEM", "date": null, "note": "SymCrypt library support" },
-    { "entity": "Linux", "category": "os", "status": "deployed", "standard": "ML-KEM, ML-DSA", "date": "2024-10", "note": "liboqs + OpenSSL integration" }
+    { "entity": "Windows", "category": "os", "status": "deployed", "standard": "ML-KEM, ML-DSA (SymCrypt, PQC APIs)", "date": "2026-01", "note": "Microsoft PQC APIs generally available in 2026; SymCrypt PQC stable" },
+    { "entity": "Linux", "category": "os", "status": "deployed", "standard": "ML-KEM, ML-DSA", "date": "2024-10", "note": "liboqs + OpenSSL integration" },
+
+    { "entity": "US Federal (CISA Product Categories)", "category": "regulation", "status": "deployed", "standard": "PQC-capable procurement benchmark", "date": "2026-01", "note": "CISA released and will update list of product categories where PQC-capable products are widely available (Jan 23, 2026)" },
+    { "entity": "NIST CMVP", "category": "regulation", "status": "deployed", "standard": "FIPS 140-3 only for new federal procurement", "date": "2026-09", "note": "Sept 21, 2026 — FIPS 140-2 modules moved to Historical list; gates PQC implementations to FIPS 140-3 validation" },
+    { "entity": "NIST FIPS 206 (FN-DSA / FALCON)", "category": "standard", "status": "in_development", "standard": "FN-DSA draft", "date": "2026", "note": "Draft IPD released early 2026; finalization expected late 2026 / early 2027" },
+    { "entity": "NIST FIPS 203-derived HQC", "category": "standard", "status": "in_development", "standard": "HQC (KEM backup)", "date": "2026", "note": "Draft standard early 2026; final 2027 — diversifies KEM against future ML-KEM weakness" }
   ],
-  "categories": ["browser", "messaging", "cloud", "os"],
+  "categories": ["browser", "messaging", "cloud", "os", "regulation", "standard"],
   "statuses": ["not_started", "in_development", "testing", "deployed"]
 }

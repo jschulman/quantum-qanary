@@ -1,7 +1,7 @@
 {
   "metadata": {
     "source": "Vendor publications, peer-reviewed papers, spec sheets",
-    "last_updated": "2026-03-06",
+    "last_updated": "2026-05-14",
     "description": "DiVincenzo Criteria assessment for major quantum computing platforms. The 5 core criteria (plus 2 networking) define hardware viability for fault-tolerant quantum computing."
   },
   "criteria": {
@@ -171,13 +171,13 @@
     {
       "name": "Quantinuum",
       "platform": "Trapped Ion (QCCD)",
-      "flagship": "H2 (56 qubits)",
+      "flagship": "Helios (98 qubits, 48 error-corrected logical)",
       "assessments": {
         "C1": {
-          "status": "demonstrated",
-          "evidence": "H2: 56 qubits all-to-all connected via QCCD shuttling; 12 logical qubits with Microsoft",
-          "date": "2024-09",
-          "metric": "56 qubits, QV 2^25"
+          "status": "scalable",
+          "evidence": "Helios (Nov 2025): 98 physical qubits delivering 94 error-detected and 48 error-corrected logical qubits; clear path to Apollo / fully fault-tolerant by 2030",
+          "date": "2025-11",
+          "metric": "98 physical / 48 logical (corrected)"
         },
         "C2": {
           "status": "scalable",
@@ -193,9 +193,9 @@
         },
         "C4": {
           "status": "scalable",
-          "evidence": "All-to-all connectivity; 2Q fidelity 99.8% (H2), 99.914% (H1-1); mid-circuit measurement + conditional logic",
-          "date": "2024-04",
-          "metric": "2Q: 99.8-99.9%"
+          "evidence": "All-to-all connectivity; Helios delivers beyond break-even QEC with 2Q 99.9%+; logical error rates 10-100x below physical; mid-circuit measurement + conditional logic; iceberg codes implemented",
+          "date": "2025-11",
+          "metric": "2Q: 99.9%+; logical error << physical"
         },
         "C5": {
           "status": "scalable",

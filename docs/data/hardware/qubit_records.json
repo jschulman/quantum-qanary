@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "last_updated": "2026-02-26",
+    "last_updated": "2026-05-14",
     "source": "Vendor announcements, academic papers, press releases",
     "note": "Edit to add new hardware milestones. Push to trigger rebuild."
   },
@@ -18,12 +18,19 @@
     { "date": "2023-12", "vendor": "IBM", "event": "Heron processor — focus on quality over quantity", "physical_qubits": 133, "logical_qubits": null, "note": "Strategic shift to error-corrected qubits" },
     { "date": "2024-12", "vendor": "Google", "event": "Willow — below-threshold quantum error correction", "physical_qubits": 105, "logical_qubits": 1, "error_correction": true, "note": "First demonstration of error correction improving with scale" },
     { "date": "2025-02", "vendor": "Microsoft", "event": "Majorana 1 — topological qubit chip", "physical_qubits": 8, "logical_qubits": null, "note": "Novel topological approach, disputed by some researchers" },
-    { "date": "2025-05", "vendor": "Quantinuum", "event": "H2 system — 56 qubits, record quantum volume", "physical_qubits": 56, "logical_qubits": null, "note": "Trapped-ion, highest quantum volume achieved" }
+    { "date": "2025-05", "vendor": "Quantinuum", "event": "H2 system — 56 qubits, record quantum volume", "physical_qubits": 56, "logical_qubits": null, "note": "Trapped-ion, highest quantum volume achieved" },
+    { "date": "2025-11", "vendor": "Quantinuum", "event": "Helios — 98 physical qubits, beyond break-even QEC", "physical_qubits": 98, "logical_qubits": 48, "error_correction": true, "note": "94 error-detected and 48 error-corrected logical qubits; logical error rates 10-100x below physical" },
+    { "date": "2026-03", "vendor": "QuEra", "event": "96 logical qubits via [[16,6,4]] code on neutral atoms (Nature)", "physical_qubits": 448, "logical_qubits": 96, "error_correction": true, "note": "First demonstration of >48 verified logical qubits; ~2:1 physical-to-logical ratio with error-corrected gates" },
+    { "date": "2026-05", "vendor": "CAS Cold Atom Technology (China)", "event": "Hanyuan-2 — first dual-core neutral atom system", "physical_qubits": 200, "logical_qubits": null, "note": "Dual rubidium-85/87 cores, <7 kW power; benchmarks not yet independently verified" }
   ],
   "roadmap_targets": [
     { "vendor": "DOE", "target": "Fault-tolerant quantum computer", "target_year": 2028, "program": "Genesis Mission" },
-    { "vendor": "IBM", "target": "Fault-tolerant quantum", "target_year": 2029, "program": "IBM Quantum Roadmap" },
+    { "vendor": "IBM", "target": "Kookaburra — first modular processor with quantum memory + logic", "target_year": 2026, "program": "IBM Quantum Roadmap" },
+    { "vendor": "IBM", "target": "Cockatoo — entangle two Kookaburra modules via L-couplers", "target_year": 2027, "program": "IBM Quantum Roadmap" },
+    { "vendor": "Microsoft + Atom Computing", "target": "Magne — 50 logical qubits from ~1,200 physical", "target_year": 2027, "program": "Azure Quantum / Level 2 resilient" },
     { "vendor": "Industry", "target": "2+ utility-scale systems operational", "target_year": 2028, "program": "CES 2025 consensus" },
+    { "vendor": "IBM", "target": "Starling — 200 logical qubits, 100M gate circuits", "target_year": 2029, "program": "IBM Quantum Roadmap" },
+    { "vendor": "Quantinuum", "target": "Universal, fully fault-tolerant quantum computer", "target_year": 2030, "program": "Accelerated roadmap (Mar 2026)" },
     { "vendor": "IBM", "target": "100,000+ qubit system", "target_year": 2033, "program": "IBM Quantum Roadmap" }
   ]
 }
