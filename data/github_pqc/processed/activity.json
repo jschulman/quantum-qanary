@@ -28,7 +28,7 @@
     }
   ],
   "topic_stats": {
-    "total_repos": 861,
+    "total_repos": 862,
     "total_stars": 16456
   },
   "monthly_activity": [
@@ -88,8 +88,8 @@
       "total_stars_delta": 0
     },
     {
-      "date": "2024-05",
-      "new_repos": 5,
+      "date": "2024-06",
+      "new_repos": 2,
       "total_stars_delta": 0
     },
     {
@@ -204,12 +204,12 @@
     },
     {
       "date": "2026-05",
-      "new_repos": 97,
+      "new_repos": 98,
       "total_stars_delta": 0
     },
     {
       "date": "2026-06",
-      "new_repos": 5,
+      "new_repos": 6,
       "total_stars_delta": 0
     }
   ]

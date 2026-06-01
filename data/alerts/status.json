@@ -3,7 +3,7 @@
     "last_updated": "2026-06-01",
     "source": "manual curation + computed",
     "note": "Edit this file to update alert status. Push to trigger dashboard rebuild.",
-    "last_checked": "2026-06-01T12:43:39Z",
+    "last_checked": "2026-06-01T13:51:16Z",
     "computed_level": "YELLOW"
   },
   "current_level": "YELLOW",
