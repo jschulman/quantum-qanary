@@ -1,9 +1,9 @@
 {
   "metadata": {
-    "last_updated": "2026-05-14",
+    "last_updated": "2026-06-03",
     "source": "manual curation + computed",
     "note": "Edit this file to update alert status. Push to trigger dashboard rebuild.",
-    "last_checked": "2026-05-14T00:00:00Z",
+    "last_checked": "2026-06-03T00:00:00Z",
     "computed_level": "YELLOW"
   },
   "current_level": "YELLOW",
@@ -76,6 +76,18 @@
       "source": "https://thequantuminsider.com/2026/03/10/quantinuum-researchers-demonstrates-quantum-computations-with-dozens-of-protected-logical-qubits/"
     },
     {
+      "date": "2026-03-31",
+      "event": "Google Quantum AI + EF + Stanford \u2014 10x Shor optimization for secp256k1 ECDLP (~1,200-1,450 LQ, <500K physical, ~9 min runtime); ZK-disclosed",
+      "level": "YELLOW",
+      "source": "https://quantumai.google/static/site-assets/downloads/cryptocurrency-whitepaper.pdf"
+    },
+    {
+      "date": "2026-03-31",
+      "event": "Oratomic / Caltech / UC Berkeley \u2014 Shor's algorithm on secp256k1 with only ~10K reconfigurable neutral-atom qubits",
+      "level": "YELLOW",
+      "source": "https://arxiv.org/abs/2603.28627"
+    },
+    {
       "date": "2026-04",
       "event": "First non-trivial quantum ECDLP attack \u2014 15-bit elliptic-curve key recovered (Project Eleven Q-Day Prize)",
       "level": "YELLOW",
@@ -86,6 +98,12 @@
       "event": "Bitcoin BIP-361 proposed \u2014 3-phase post-quantum migration with legacy signature sunset",
       "level": "YELLOW",
       "source": "https://bip360.org/"
+    },
+    {
+      "date": "2026-06-02",
+      "event": "Schrottenloher independently rediscovers Google's secret ECDLP optimization (arXiv); Gidney discloses year-long censorship pressure; ecdsa.fail crowdsourced challenge -8.4% past Google",
+      "level": "YELLOW",
+      "source": "https://ecdsa.fail"
     }
   ],
   "watch_items": [
@@ -101,6 +119,16 @@
       "event": "Logical qubit counts exceed 100 on a single platform (currently 96 at QuEra; 48 corrected at Quantinuum Helios)",
       "level": "ORANGE",
       "note": "Within striking distance \u2014 96 LQ demonstrated Mar 2026"
+    },
+    {
+      "event": "Logical qubit counts reach 1,200+ on a single platform (~Google ECDLP secp256k1 estimate)",
+      "level": "ORANGE",
+      "note": "New milestone post-Mar-2026 papers. With 96 LQ today, this is ~13x away \u2014 still a multi-year gap but the target moved closer."
+    },
+    {
+      "event": "Physical qubit count on a single neutral-atom system reaches 10K with logical qubit support (Oratomic threshold for Shor on secp256k1)",
+      "level": "ORANGE",
+      "note": "QuEra 448 physical / Hanyuan-2 200 physical today \u2014 gap is 1-2 orders of magnitude"
     },
     {
       "event": "Quantum factoring reaches ~100-bit semiprimes",

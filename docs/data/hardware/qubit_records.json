@@ -1,10 +1,13 @@
 {
   "metadata": {
-    "last_updated": "2026-05-14",
+    "last_updated": "2026-06-03",
     "source": "Vendor announcements, academic papers, press releases",
     "note": "Edit to add new hardware milestones. Push to trigger rebuild."
   },
   "target_logical_qubits_for_rsa2048": 4000,
+  "target_logical_qubits_for_ecdlp_secp256k1": 1450,
+  "target_physical_qubits_for_ecdlp_secp256k1_neutral_atom": 10000,
+  "target_notes": "ECDLP secp256k1 targets reflect the Mar 31 2026 Google Quantum AI paper (1,200-1,450 LQ) and the Oratomic neutral-atom paper (~10K physical qubits, space-efficient). These targets have fallen roughly 5 orders of magnitude in 20 years and are still dropping (ecdsa.fail challenge -8.4% from Google as of Jun 2026).",
   "milestones": [
     { "date": "2016-05", "vendor": "IBM", "event": "IBM Quantum Experience — 5 qubits, cloud access", "physical_qubits": 5, "logical_qubits": null },
     { "date": "2017-11", "vendor": "IBM", "event": "50-qubit prototype", "physical_qubits": 50, "logical_qubits": null },

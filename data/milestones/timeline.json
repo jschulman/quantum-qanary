@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "last_updated": "2026-05-14",
+    "last_updated": "2026-06-03",
     "note": "Master timeline of all quantum computing milestones relevant to Q-Day."
   },
   "milestones": [
@@ -37,10 +37,14 @@
     { "date": "2026-02", "category": "blockchain", "event": "Ethereum unveils leanVM + leanXMSS post-quantum architecture (Buterin, ETHDenver)", "significance": "EIP-8141 considered for Hegotá hard fork (H2 2026); 250x signature aggregation via zkVM" },
     { "date": "2026-03", "category": "hardware", "event": "QuEra demonstrates 96 logical qubits on neutral-atom processor (Nature)", "significance": "First >48 verified logical qubits with error-corrected gates simultaneously" },
     { "date": "2026-03", "category": "roadmap", "event": "Quantinuum accelerates roadmap — universal fault-tolerant QC by 2030", "significance": "Industry consensus on fault-tolerance timeline tightens" },
+    { "date": "2026-03-31", "category": "cryptanalysis", "event": "Google Quantum AI + EF + Stanford — 10x Shor optimization for secp256k1 (1,200-1,450 LQ, <500K physical, ~9 min after priming)", "significance": "Bombshell resource-estimate reduction; first use of ZK proof for academic censorship (Groth16/SP1) — YELLOW alert" },
+    { "date": "2026-03-31", "category": "cryptanalysis", "event": "Oratomic — Shor on secp256k1 with only ~10K reconfigurable neutral-atom qubits (arXiv 2603.28627)", "significance": "Five orders of magnitude below 2017 estimates; coordinated release with Google paper — YELLOW alert" },
     { "date": "2026-04", "category": "adoption", "event": "Meta publishes PQC migration framework (WhatsApp contributors)", "significance": "Largest social platform documents enterprise-scale PQC rollout" },
     { "date": "2026-04", "category": "factoring", "event": "15-bit ECDLP broken on ~70-qubit cloud quantum hardware (Project Eleven, Lelli)", "significance": "512x extension of prior public ECDLP record — YELLOW trigger" },
     { "date": "2026-04", "category": "blockchain", "event": "BIP-361 (Post-Quantum Migration and Legacy Signature Sunset) proposed", "significance": "3-phase Bitcoin migration; would freeze ~6.7M BTC in vulnerable addresses" },
     { "date": "2026-05", "category": "hardware", "event": "China unveils Hanyuan-2 — 200-qubit dual-core neutral atom system", "significance": "First dual-core neutral atom architecture; benchmarks pending independent verification" },
-    { "date": "2026-05", "category": "research", "event": "Q-CTRL + IBM demonstrate 3,000x speedup on 120-qubit Fermi-Hubbard simulation", "significance": "Runtime error suppression unlocks practical quantum advantage" }
+    { "date": "2026-05", "category": "research", "event": "Q-CTRL + IBM demonstrate 3,000x speedup on 120-qubit Fermi-Hubbard simulation", "significance": "Runtime error suppression unlocks practical quantum advantage" },
+    { "date": "2026-06-02", "category": "cryptanalysis", "event": "Schrottenloher rediscovers Google's secret ECDLP optimization on arXiv; Gidney discloses year-long censorship pressure; ecdsa.fail Shor-at-home challenge already -8.4% past Google", "significance": "Streisand effect — censored optimization independently rediscovered in 2 months; crowdsourced AI-driven autoresearch breaks new ground" },
+    { "date": "2026-06-02", "category": "estimate", "event": "Justin Drake (Google paper co-author) publicly puts Q-Day odds at 50% by 2032, 10% by 2030", "significance": "Most credible insider estimate to date; calls US gov 2035 timeline 'a joke' that 'should be discounted entirely'" }
   ]
 }

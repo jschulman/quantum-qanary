@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "last_updated": "2026-04-25",
+    "last_updated": "2026-06-03",
     "source": "Academic papers, IACR ePrint, vendor publications",
     "note": "Edit this file to add new factoring records. Push to trigger dashboard rebuild."
   },
@@ -115,6 +115,73 @@
       "date": "2020-02",
       "method": "Classical (number field sieve, ~2700 CPU-years)",
       "note": "Largest RSA number factored by any method"
+    }
+  ],
+  "resource_estimates": {
+    "note": "Resource estimates do NOT advance the canary ladders (no hardware demonstration). They track how much hardware would be required to perform a break given current algorithmic best-known. Trend matters: estimates have fallen ~5 orders of magnitude in 20 years.",
+    "ecdlp_secp256k1": [
+      {
+        "date": "2017",
+        "logical_qubits": null,
+        "physical_qubits_estimate": "~1B",
+        "source": "Roetteler et al. (2017) — superconducting baseline",
+        "note": "Early canonical estimate"
+      },
+      {
+        "date": "2025",
+        "logical_qubits": "~3,500-4,000",
+        "physical_qubits_estimate": "~few million",
+        "source": "Pre-Google state of the art",
+        "note": "Baseline before March 2026 papers"
+      },
+      {
+        "date": "2026-03-31",
+        "logical_qubits": "1,200-1,450",
+        "toffoli_gates": "70-90M",
+        "physical_qubits_estimate": "<500,000",
+        "runtime": "~9 min on superconducting (after one-time priming)",
+        "source": "Google Quantum AI + Ethereum Foundation + Stanford — 'Securing Elliptic Curve Cryptocurrencies against Quantum Vulnerabilities' (ZK-disclosed)",
+        "url": "https://quantumai.google/static/site-assets/downloads/cryptocurrency-whitepaper.pdf",
+        "note": "10x spacetime improvement over prior art. Optimization initially hidden behind a Groth16 SNARK / SP1 zkVM proof — first use of ZK for academic censorship."
+      },
+      {
+        "date": "2026-03-31",
+        "logical_qubits": null,
+        "physical_qubits_estimate": "9,700-11,000 (space-efficient); up to 26,000 (10-day runtime)",
+        "source": "Cain et al. (Oratomic / Caltech / UC Berkeley) — 'Shor's algorithm is possible with as few as 10,000 reconfigurable atomic qubits' (arXiv:2603.28627)",
+        "url": "https://arxiv.org/abs/2603.28627",
+        "note": "Coordinated release with Google paper. Applies Google's logical optimizations + neutral-atom physical optimizations. Five orders of magnitude below 2017 estimate."
+      },
+      {
+        "date": "2026-06-02",
+        "logical_qubits": "matches Google",
+        "source": "Schrottenloher — 'Optimized Point Addition Circuits for Elliptic Curve Discrete Logarithms' (arXiv)",
+        "note": "Independent rediscovery of Google's secret optimization 2 months after publication; confirms the claim is real. Craig Gidney concurrently disclosed he held the same optimization under censorship pressure for a year."
+      },
+      {
+        "date": "2026-06-02",
+        "logical_qubits": "Google -8.4% (LQ x Toffoli)",
+        "source": "ecdsa.fail open challenge (Shor-at-home)",
+        "url": "https://ecdsa.fail",
+        "note": "Crowdsourced optimization using Google's ZK verifier as automated reward function. AI-driven 'autoresearch' contributions from non-experts (incl. a teenager). Compounding micro-optimizations ongoing."
+      }
+    ]
+  },
+  "public_qday_estimates": [
+    {
+      "date": "2024",
+      "source": "NSA / NIST — federal PQC migration deadline 2035",
+      "note": "Standard US gov reference date for forced migration off vulnerable crypto"
+    },
+    {
+      "date": "2026-04-29",
+      "source": "Scott Aaronson (blog)",
+      "note": "Notable independent commentary post-Google-paper"
+    },
+    {
+      "date": "2026-06-02",
+      "source": "Justin Drake (Ethereum Foundation, Google paper co-author) — 50% odds of Q-Day by 2032, 10% by 2030",
+      "note": "Drake calls the NIST 2035 date 'a joke' that 'should be discounted entirely'. References non-public information."
     }
   ]
 }

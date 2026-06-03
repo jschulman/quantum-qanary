@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "last_updated": "2026-05-14",
+    "last_updated": "2026-06-03",
     "source": "Chain governance, developer forums, GitHub repos",
     "note": "Edit to update chain PQC status. Push to trigger rebuild."
   },
@@ -10,10 +10,10 @@
       "name": "Ethereum",
       "ticker": "ETH",
       "status": "in_development",
-      "detail": "leanXMSS (hash-based signatures) + leanVM zkVM for 250x signature aggregation. EIP-8141 under consideration for Hegotá hard fork (H2 2026). Buterin presented full architecture at ETHDenver Feb 2026. Beam Chain production coding underway, deployment targeted 2029-30.",
-      "last_activity": "2026-02",
+      "detail": "Targeting 2029 PQC migration (shared with Google + Cloudflare). leanXMSS (hash-based signatures) + leanVM zkVM (github.com/leanEthereum/leanVM) for 250x signature aggregation, minimal zkVM crafted for end-to-end formal verification. Replaces BLS at consensus, KZG at data layer, ECDSA at execution. EIP-8141 under consideration for Hegotá hard fork (H2 2026). Buterin presented full architecture at ETHDenver Feb 2026; Drake reiterated 2029 target June 2026 post-Google-paper. Beam Chain production coding underway, deployment targeted 2029-30. Two $1M prizes open: Proximity Prize (hash-based SNARK coding-theory conjecture) and Poseidon Initiative (break Poseidon hash).",
+      "last_activity": "2026-06",
       "exposure": "All historical public keys visible on-chain",
-      "watch": ["EIP-8141 adoption in Hegotá", "leanXMSS testnet deployment", "Beam Chain production code milestones"]
+      "watch": ["EIP-8141 adoption in Hegotá", "leanXMSS testnet deployment", "Beam Chain production code milestones", "Proximity Prize / Poseidon Initiative resolution"]
     },
     {
       "name": "Bitcoin",

@@ -1,11 +1,12 @@
 {
   "metadata": {
-    "last_updated": "2026-05-14"
+    "last_updated": "2026-06-03"
   },
   "estimate": {
     "low_years": 2,
-    "high_years": 4,
-    "midpoint_years": 3.0
+    "high_years": 6,
+    "midpoint_years": 4.0,
+    "note": "Range widened post-Mar-2026 papers: low end firm (3.5y matches the Google/Cloudflare/EF 2029 migration target), high end stretched to align with Drake's public 50%-by-2032 (6y) odds. Midpoint moved from 3.0 to 4.0 — slightly later than prior because resource-estimate breakthroughs do not move hardware forward, but uncertainty has grown in both directions."
   },
   "components": {
     "factoring": {
@@ -13,20 +14,22 @@
       "current_bits": 21,
       "target_bits": 2048,
       "progress_pct": 39.9,
-      "note": "21-bit RSA via Shor unchanged; 15-bit ECDLP demonstrated Apr 2026"
+      "note": "21-bit RSA via Shor unchanged; 15-bit ECDLP demonstrated Apr 2026. Algorithmic side has moved sharply: Google paper Mar 31 2026 cuts ECDLP-secp256k1 resource estimate ~10x; Oratomic Mar 31 2026 claims 10K physical qubits suffice; Schrottenloher rediscovery + ecdsa.fail crowdsourced -8.4% (Jun 2026)."
     },
     "logical_qubits": {
       "weight": 0.25,
       "current": 96,
-      "target": 4000,
-      "progress_pct": 56.6,
-      "note": "QuEra Mar 2026 record on neutral atoms; Quantinuum Helios 48 error-corrected (Nov 2025)"
+      "target_rsa2048": 4000,
+      "target_ecdlp_secp256k1": 1450,
+      "primary_target_used": 1450,
+      "progress_pct": 75.7,
+      "note": "Target switched from RSA-2048 (4000 LQ) to ECDLP-secp256k1 (1,200-1,450 LQ per Google Mar 31 2026) since that is now the more proximate cryptographic break. QuEra Mar 2026: 96 LQ; Quantinuum Helios Nov 2025: 48 error-corrected. Log-scale progress."
     },
     "roadmap_consensus": {
       "weight": 0.2,
       "avg_target_year": 2029,
       "years_out": 3,
-      "note": "DOE 2028, IBM Starling 2029, Google 2029, Microsoft/Atom 2027, Quantinuum 2030, PsiQuantum 2029"
+      "note": "DOE 2028, IBM Starling 2029, Google 2029, Microsoft/Atom 2027, Quantinuum 2030, PsiQuantum 2029. Google/Cloudflare/EF have converged on 2029 as the PQC migration target."
     },
     "error_correction": {
       "weight": 0.1,
@@ -49,5 +52,26 @@
       "note": "Helios upgrades C1 from demonstrated to scalable"
     }
   },
-  "caveat": "This estimate reflects current trajectory. Quantum progress is nonlinear -- breakthroughs can compress timelines rapidly."
+  "external_estimates": [
+    {
+      "source": "Justin Drake (Ethereum Foundation, Google paper co-author)",
+      "date": "2026-06-02",
+      "p10_year": 2030,
+      "p50_year": 2032,
+      "url": "https://x.com/drakefjustin/status/2061793725299224676",
+      "note": "Most credible insider estimate. Drake references non-public information and calls the US gov 2035 timeline 'a joke'. Aligns with Google/EF/Cloudflare 2029 PQC migration target as the 'safe' deadline."
+    },
+    {
+      "source": "Scott Aaronson (blog, Apr 29 2026)",
+      "date": "2026-04-29",
+      "note": "Independent academic commentary on the Google paper's implications"
+    },
+    {
+      "source": "US Government (NSA / NIST)",
+      "date": "2024-08",
+      "p50_year": 2035,
+      "note": "Federal PQC migration deadline. Widely considered conservative; expected to be pulled forward."
+    }
+  ],
+  "caveat": "This estimate reflects current trajectory. Quantum progress is nonlinear -- breakthroughs can compress timelines rapidly. Note: Mar 2026 Google + Oratomic papers reduce resource requirements ~10x and ~5 orders of magnitude (vs 2017) respectively, but do NOT advance hardware — actual logical qubit counts still ~13x below the new ECDLP target."
 }
