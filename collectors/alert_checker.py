@@ -212,6 +212,44 @@ def check_insurance_signals(insurance_data):
     return triggers
 
 
+def check_government_milestones(policy_data):
+    """Check government policy mandates for PQC-migration enforcement deadlines.
+
+    Implements the METHODOLOGY.md ORANGE trigger:
+        "A government mandates PQC migration with enforcement deadlines."
+
+    A mandate counts toward ORANGE only when it is enforceable AND carries at
+    least one dated enforcement deadline. Strategy/guidance documents without
+    enforced deadlines do not trigger.
+    """
+    triggers = []
+    if not policy_data:
+        return triggers
+
+    for mandate in policy_data.get("mandates", []):
+        if not mandate.get("enforceable"):
+            continue
+        dated = [
+            d for d in mandate.get("enforcement_deadlines", [])
+            if d.get("deadline")
+        ]
+        if not dated:
+            continue
+        earliest = min(d["deadline"] for d in dated)
+        triggers.append({
+            "source": "government",
+            "event": (
+                f"{mandate.get('jurisdiction', 'A government')} mandates PQC migration "
+                f"with enforcement deadlines ({mandate.get('instrument', '')}; "
+                f"earliest {earliest})"
+            ),
+            "level": "ORANGE",
+            "date": mandate.get("date"),
+        })
+
+    return triggers
+
+
 def check_existing_triggers(status_data):
     """Extract existing manually curated triggers."""
     triggers = []
@@ -275,6 +313,9 @@ def main():
     insurance_data = load_json("data/insurance/signals.json")
     print(f"  insurance/signals.json: {'loaded' if insurance_data else 'MISSING'}")
 
+    policy_data = load_json("data/policy/mandates.json")
+    print(f"  policy/mandates.json: {'loaded' if policy_data else 'MISSING'}")
+
     # Check for override
     if status_data and status_data.get("override"):
         override_level = status_data["override"]
@@ -307,6 +348,10 @@ def main():
     insurance_triggers = check_insurance_signals(insurance_data)
     print(f"  Insurance triggers: {len(insurance_triggers)}")
     all_triggers.extend(insurance_triggers)
+
+    government_triggers = check_government_milestones(policy_data)
+    print(f"  Government triggers: {len(government_triggers)}")
+    all_triggers.extend(government_triggers)
 
     # Compute alert level
     computed_level = compute_alert_level(all_triggers)

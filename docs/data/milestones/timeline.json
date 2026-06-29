@@ -24,6 +24,8 @@
     { "date": "2024-11", "category": "funding", "event": "DOE Genesis Mission — fault-tolerant by 2028", "significance": "US government commits to fault-tolerant quantum — YELLOW alert" },
     { "date": "2024-12", "category": "hardware", "event": "Google Willow — below-threshold error correction", "significance": "First proof that QEC improves with more qubits — YELLOW alert" },
     { "date": "2025-02", "category": "hardware", "event": "Microsoft Majorana 1 — topological qubit chip", "significance": "New approach to fault-tolerant qubits, if verified" },
-    { "date": "2026-01", "category": "blockchain", "event": "Ethereum forms dedicated PQ security team", "significance": "Active engineering investment in blockchain PQC — YELLOW alert" }
+    { "date": "2026-01", "category": "blockchain", "event": "Ethereum forms dedicated PQ security team", "significance": "Active engineering investment in blockchain PQC — YELLOW alert" },
+    { "date": "2026-06", "category": "standards", "event": "US EO 14412 + OMB M-26-15 mandate federal PQC migration with enforcement deadlines", "significance": "First enforceable US federal PQC deadlines (HVAs key establishment 2030 / signatures 2031, full federal migration 2035) — ORANGE alert trigger (government mandate)" },
+    { "date": "2026-06", "category": "funding", "event": "US EO 14413 establishes QC-ADDS — DOE to field a large-scale quantum computer", "significance": "National program to build a large-scale quantum computer; no delivery deadline" }
   ]
 }

@@ -68,6 +68,7 @@ jobs:
           mkdir -p docs/data/blockchain
           mkdir -p docs/data/insurance
           mkdir -p docs/data/milestones
+          mkdir -p docs/data/policy
 
           # Collector outputs
           cp -r data/arxiv/processed/* docs/data/arxiv/
@@ -87,6 +88,7 @@ jobs:
           cp data/blockchain/pqc_status.json docs/data/blockchain/
           cp data/insurance/signals.json docs/data/insurance/
           cp data/milestones/timeline.json docs/data/milestones/
+          cp data/policy/mandates.json docs/data/policy/
 
       - name: Check for changes
         id: changes

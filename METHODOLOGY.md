@@ -23,8 +23,10 @@ No quantum computer has factored anything beyond 21 bits using Shor's algorithm.
 **Triggered when any of these occur:**
 - Quantum factoring reaches ~100-bit semiprimes
 - Insurance carriers begin requiring PQC readiness on applications
-- A government mandates PQC migration with enforcement deadlines
+- A government mandates PQC migration with enforcement deadlines (occurred June 2026 — US EO 14412 + OMB M-26-15: HVA key establishment by 2030, digital signatures by 2031, full federal migration by 2035) — code-backed by `data/policy/mandates.json` via `check_government_milestones()` in `alert_checker.py`
 - Logical qubit counts exceed 100 on a single platform
+
+**Current status: ORANGE** — A government (US federal) has mandated PQC migration with enforceable deadlines (June 22, 2026). This is a policy/ecosystem indicator: the Q-Day hardware-distance estimate is deliberately left unchanged, because these orders contain no new qubit count, factoring result, or cryptographically-relevant-quantum-computer timeline. Threat-capability and policy-response are tracked on separate axes.
 
 ### RED — Critical
 **Triggered when any of these occur:**

@@ -35,14 +35,14 @@
       "note": "Multiple vendors converging on similar timeline"
     },
     {
-      "entity": "NIST",
+      "entity": "US Federal (EO 14412 / OMB M-26-15)",
       "commitment": "Federal agencies complete PQC migration",
       "target_year": 2035,
       "status": "active",
-      "program": "NIST IR 8547",
-      "announced": "2024-08",
-      "source": "https://csrc.nist.gov/pubs/ir/8547/final",
-      "note": "Mandatory deadline for US federal systems"
+      "program": "EO 14412 + OMB M-26-15 (supersedes M-23-02; incorporates NIST IR 8547)",
+      "announced": "2026-06",
+      "source": "https://www.whitehouse.gov/presidential-actions/2026/06/securing-the-nation-against-advanced-cryptographic-attacks/",
+      "note": "Enforceable HVA sub-deadlines: key establishment 2030, digital signatures 2031; full federal migration (classical crypto disallowed) by 2035. Policy axis — skipped by the Q-Day capability path."
     },
     {
       "entity": "IBM",
@@ -61,6 +61,16 @@
       "program": "Google Quantum AI",
       "announced": "2024-12",
       "note": "Post-Willow roadmap milestone"
+    },
+    {
+      "entity": "DOE (EO 14413 / QC-ADDS)",
+      "commitment": "Field a large-scale quantum computer for scientific discovery",
+      "target_year": null,
+      "status": "announced",
+      "program": "Quantum Computer for Application Development and Discovery Science (QC-ADDS)",
+      "announced": "2026-06",
+      "source": "https://www.whitehouse.gov/presidential-actions/2026/06/ushering-in-the-next-frontier-of-quantum-innovation/",
+      "note": "No delivery deadline; 90/180-day planning milestones only. Weak capability-axis signal (national intent to build, not a result)."
     }
   ]
 }

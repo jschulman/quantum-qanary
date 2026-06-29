@@ -20,6 +20,7 @@
     { "date": "2021-01", "event": "EU Quantum Flagship Programme expanded to Phase 2", "amount_label": "EUR 1B" },
     { "date": "2023-03", "event": "UK National Quantum Strategy announced", "amount_label": "GBP 2.5B over 10 years" },
     { "date": "2024-05", "event": "US CHIPS & Science Act quantum provisions funded", "amount_label": "~$1.5B" },
-    { "date": "2024-11", "event": "DOE Genesis Mission — fault-tolerant quantum by 2028", "amount_label": "Undisclosed" }
+    { "date": "2024-11", "event": "DOE Genesis Mission — fault-tolerant quantum by 2028", "amount_label": "Undisclosed" },
+    { "date": "2026-06", "event": "US EO 14413 establishes QC-ADDS — DOE to field a large-scale quantum computer", "amount_label": "Undisclosed" }
   ]
 }

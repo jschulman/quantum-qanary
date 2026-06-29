@@ -3,10 +3,10 @@
     "last_updated": "2026-06-29",
     "source": "manual curation + computed",
     "note": "Edit this file to update alert status. Push to trigger dashboard rebuild.",
-    "last_checked": "2026-06-29T12:04:35Z",
-    "computed_level": "YELLOW"
+    "last_checked": "2026-06-29T14:40:26Z",
+    "computed_level": "ORANGE"
   },
-  "current_level": "YELLOW",
+  "current_level": "ORANGE",
   "override": null,
   "levels": {
     "GREEN": {
@@ -56,6 +56,18 @@
       "event": "Ethereum forms dedicated post-quantum security team",
       "level": "YELLOW",
       "source": "https://ethereum.org/en/roadmap/"
+    },
+    {
+      "date": "2026-06",
+      "event": "US EO 14412 + OMB M-26-15 mandate federal PQC migration with enforcement deadlines (HVAs: key establishment by 2030, digital signatures by 2031; full federal migration by 2035)",
+      "level": "ORANGE",
+      "source": "https://www.whitehouse.gov/presidential-actions/2026/06/securing-the-nation-against-advanced-cryptographic-attacks/"
+    },
+    {
+      "date": "2026-06",
+      "event": "US EO 14413 establishes QC-ADDS \u2014 directs DOE to field a large-scale quantum computer (no delivery deadline)",
+      "level": "YELLOW",
+      "source": "https://www.whitehouse.gov/presidential-actions/2026/06/ushering-in-the-next-frontier-of-quantum-innovation/"
     }
   ],
   "watch_items": [

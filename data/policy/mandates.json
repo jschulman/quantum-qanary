@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "last_updated": "2026-06-29",
+    "source": "Government executive orders, OMB memoranda, national strategies (primary sources only)",
+    "note": "Curated government PQC-migration mandates. Drives the ORANGE alert trigger in alert_checker.py (check_government_milestones). A mandate counts toward ORANGE only when enforceable AND carrying at least one dated enforcement deadline -- strategy/guidance documents without enforced deadlines do not trigger."
+  },
+  "mandates": [
+    {
+      "jurisdiction": "US Federal",
+      "instrument": "EO 14412 + OMB M-26-15",
+      "title": "Securing the Nation Against Advanced Cryptographic Attacks; Execution of the Migration to Post-Quantum Cryptography",
+      "date": "2026-06-22",
+      "enforceable": true,
+      "enforcement_deadlines": [
+        { "scope": "HVA/high-impact systems — key establishment", "deadline": "2030-12-31" },
+        { "scope": "HVA/high-impact systems — digital signatures", "deadline": "2031-12-31" },
+        { "scope": "Full federal migration — classical cryptography disallowed", "deadline": "2035-12-31" }
+      ],
+      "source": "https://www.whitehouse.gov/presidential-actions/2026/06/securing-the-nation-against-advanced-cryptographic-attacks/"
+    }
+  ]
+}
