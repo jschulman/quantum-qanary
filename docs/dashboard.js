@@ -817,11 +817,7 @@
       if (need > threat) {
         var over = need - threat;
         resultEl.classList.add("mosca-result-danger");
-        if (over > migration) {
-          textEl.textContent = "\u26A0\uFE0F You should have started " + (over - migration) + " year" + (over - migration !== 1 ? "s" : "") + " ago";
-        } else {
-          textEl.textContent = "\u26A0\uFE0F Start migration now \u2014 you are " + over + " year" + (over !== 1 ? "s" : "") + " behind";
-        }
+        textEl.textContent = "\u26A0\uFE0F You should have started " + over + " year" + (over !== 1 ? "s" : "") + " ago";
       } else if (need === threat) {
         resultEl.classList.add("mosca-result-warning");
         textEl.textContent = "\u26A0 You need to start this year";
