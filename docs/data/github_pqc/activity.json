@@ -1,20 +1,20 @@
 {
   "metadata": {
     "source": "GitHub API",
-    "last_updated": "2026-07-13",
+    "last_updated": "2026-07-20",
     "mock": false
   },
   "repos": [
     {
       "name": "open-quantum-safe/liboqs",
-      "stars": 2999,
-      "forks": 753,
+      "stars": 3005,
+      "forks": 752,
       "open_issues": 109,
-      "last_push": "2026-07-12"
+      "last_push": "2026-07-19"
     },
     {
       "name": "pq-crystals/kyber",
-      "stars": 1224,
+      "stars": 1227,
       "forks": 293,
       "open_issues": 32,
       "last_push": "2025-02-16"
@@ -28,8 +28,8 @@
     }
   ],
   "topic_stats": {
-    "total_repos": 1057,
-    "total_stars": 17497
+    "total_repos": 1109,
+    "total_stars": 17532
   },
   "monthly_activity": [
     {
@@ -59,7 +59,7 @@
     },
     {
       "date": "2024-01",
-      "new_repos": 5,
+      "new_repos": 6,
       "total_stars_delta": 0
     },
     {
@@ -69,7 +69,7 @@
     },
     {
       "date": "2024-03",
-      "new_repos": 5,
+      "new_repos": 6,
       "total_stars_delta": 0
     },
     {
@@ -124,7 +124,7 @@
     },
     {
       "date": "2025-02",
-      "new_repos": 11,
+      "new_repos": 10,
       "total_stars_delta": 0
     },
     {
@@ -154,7 +154,7 @@
     },
     {
       "date": "2025-08",
-      "new_repos": 15,
+      "new_repos": 16,
       "total_stars_delta": 0
     },
     {
@@ -179,7 +179,7 @@
     },
     {
       "date": "2026-01",
-      "new_repos": 38,
+      "new_repos": 39,
       "total_stars_delta": 0
     },
     {
@@ -189,12 +189,12 @@
     },
     {
       "date": "2026-03",
-      "new_repos": 76,
+      "new_repos": 77,
       "total_stars_delta": 0
     },
     {
       "date": "2026-04",
-      "new_repos": 117,
+      "new_repos": 133,
       "total_stars_delta": 0
     },
     {
@@ -204,12 +204,12 @@
     },
     {
       "date": "2026-06",
-      "new_repos": 131,
+      "new_repos": 134,
       "total_stars_delta": 0
     },
     {
       "date": "2026-07",
-      "new_repos": 38,
+      "new_repos": 65,
       "total_stars_delta": 0
     }
   ]
