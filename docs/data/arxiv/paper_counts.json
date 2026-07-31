@@ -1,7 +1,7 @@
 {
   "metadata": {
     "source": "arxiv API",
-    "last_updated": "2026-07-30",
+    "last_updated": "2026-07-31",
     "mock": false
   },
   "categories": {
@@ -129,15 +129,7 @@
           "count": 0
         },
         {
-          "date": "2026-02",
-          "count": 0
-        },
-        {
           "date": "2026-03",
-          "count": 0
-        },
-        {
-          "date": "2026-04",
           "count": 0
         },
         {
@@ -278,15 +270,7 @@
           "count": 0
         },
         {
-          "date": "2026-02",
-          "count": 0
-        },
-        {
           "date": "2026-03",
-          "count": 0
-        },
-        {
-          "date": "2026-04",
           "count": 0
         },
         {
@@ -427,15 +411,7 @@
           "count": 0
         },
         {
-          "date": "2026-02",
-          "count": 0
-        },
-        {
           "date": "2026-03",
-          "count": 0
-        },
-        {
-          "date": "2026-04",
           "count": 0
         },
         {
@@ -575,15 +551,7 @@
       "total": 0
     },
     {
-      "date": "2026-02",
-      "total": 0
-    },
-    {
       "date": "2026-03",
-      "total": 0
-    },
-    {
-      "date": "2026-04",
       "total": 0
     },
     {
