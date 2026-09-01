@@ -1,16 +1,16 @@
 {
   "metadata": {
     "source": "GitHub API",
-    "last_updated": "2026-08-31",
+    "last_updated": "2026-09-01",
     "mock": false
   },
   "repos": [
     {
       "name": "open-quantum-safe/liboqs",
-      "stars": 3046,
-      "forks": 766,
-      "open_issues": 118,
-      "last_push": "2026-08-30"
+      "stars": 3048,
+      "forks": 767,
+      "open_issues": 115,
+      "last_push": "2026-08-31"
     },
     {
       "name": "pq-crystals/kyber",
@@ -28,8 +28,8 @@
     }
   ],
   "topic_stats": {
-    "total_repos": 1323,
-    "total_stars": 18907
+    "total_repos": 1327,
+    "total_stars": 18917
   },
   "monthly_activity": [
     {
@@ -38,8 +38,8 @@
       "total_stars_delta": 0
     },
     {
-      "date": "2023-10",
-      "new_repos": 4,
+      "date": "2023-11",
+      "new_repos": 3,
       "total_stars_delta": 0
     },
     {
@@ -48,7 +48,7 @@
       "total_stars_delta": 0
     },
     {
-      "date": "2023-12",
+      "date": "2024-01",
       "new_repos": 6,
       "total_stars_delta": 0
     },
@@ -63,12 +63,7 @@
       "total_stars_delta": 0
     },
     {
-      "date": "2024-03",
-      "new_repos": 7,
-      "total_stars_delta": 0
-    },
-    {
-      "date": "2024-05",
+      "date": "2024-04",
       "new_repos": 5,
       "total_stars_delta": 0
     },
@@ -78,8 +73,8 @@
       "total_stars_delta": 0
     },
     {
-      "date": "2024-07",
-      "new_repos": 8,
+      "date": "2024-06",
+      "new_repos": 2,
       "total_stars_delta": 0
     },
     {
@@ -103,8 +98,13 @@
       "total_stars_delta": 0
     },
     {
-      "date": "2024-11",
-      "new_repos": 7,
+      "date": "2024-10",
+      "new_repos": 9,
+      "total_stars_delta": 0
+    },
+    {
+      "date": "2024-12",
+      "new_repos": 10,
       "total_stars_delta": 0
     },
     {
@@ -124,7 +124,7 @@
     },
     {
       "date": "2025-04",
-      "new_repos": 17,
+      "new_repos": 18,
       "total_stars_delta": 0
     },
     {
@@ -135,11 +135,6 @@
     {
       "date": "2025-06",
       "new_repos": 24,
-      "total_stars_delta": 0
-    },
-    {
-      "date": "2025-07",
-      "new_repos": 17,
       "total_stars_delta": 0
     },
     {
@@ -178,6 +173,11 @@
       "total_stars_delta": 0
     },
     {
+      "date": "2026-01",
+      "new_repos": 41,
+      "total_stars_delta": 0
+    },
+    {
       "date": "2026-03",
       "new_repos": 84,
       "total_stars_delta": 0
@@ -199,17 +199,17 @@
     },
     {
       "date": "2026-07",
-      "new_repos": 148,
+      "new_repos": 149,
       "total_stars_delta": 0
     },
     {
       "date": "2026-08",
-      "new_repos": 119,
+      "new_repos": 120,
       "total_stars_delta": 0
     },
     {
-      "date": "2026-08",
-      "new_repos": 119,
+      "date": "2026-09",
+      "new_repos": 0,
       "total_stars_delta": 0
     }
   ]
