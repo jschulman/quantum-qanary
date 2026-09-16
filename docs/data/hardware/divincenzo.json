@@ -1,7 +1,7 @@
 {
   "metadata": {
     "source": "Vendor publications, peer-reviewed papers, spec sheets",
-    "last_updated": "2026-03-06",
+    "last_updated": "2026-09-16",
     "description": "DiVincenzo Criteria assessment for major quantum computing platforms. The 5 core criteria (plus 2 networking) define hardware viability for fault-tolerant quantum computing."
   },
   "criteria": {
@@ -71,13 +71,13 @@
     {
       "name": "IBM",
       "platform": "Superconducting Transmon",
-      "flagship": "Heron R2 (156 qubits)",
+      "flagship": "Nighthawk (120 qubits)",
       "assessments": {
         "C1": {
           "status": "demonstrated",
-          "evidence": "Heron R2: 156 qubits in heavy-hexagonal lattice; Condor: 1,121 qubits demonstrated",
-          "date": "2024-07",
-          "metric": "156 production / 1,121 demonstrated"
+          "evidence": "Nighthawk: 120 qubits, +20% connectivity, 5,000 two-qubit gates (avail. Jan 2026); Loon tests FT logic components; Condor: 1,121 qubits demonstrated",
+          "date": "2026-01",
+          "metric": "120 production / 1,121 demonstrated"
         },
         "C2": {
           "status": "demonstrated",
@@ -86,10 +86,10 @@
           "metric": ">99.9% fidelity"
         },
         "C3": {
-          "status": "partial",
-          "evidence": "T1 ~100 us median, best qubits ~300 us; T2/gate ratio ~250-500x",
-          "date": "2024-07",
-          "metric": "T1 ~100 us, T2 ~100 us"
+          "status": "demonstrated",
+          "evidence": "Nighthawk median T1 ~350 us (record for IBM, ~3.5x over Heron); T2/gate ratio ~5,000x",
+          "date": "2026-01",
+          "metric": "T1 ~350 us"
         },
         "C4": {
           "status": "scalable",
@@ -171,13 +171,13 @@
     {
       "name": "Quantinuum",
       "platform": "Trapped Ion (QCCD)",
-      "flagship": "H2 (56 qubits)",
+      "flagship": "Helios (98 qubits)",
       "assessments": {
         "C1": {
-          "status": "demonstrated",
-          "evidence": "H2: 56 qubits all-to-all connected via QCCD shuttling; 12 logical qubits with Microsoft",
-          "date": "2024-09",
-          "metric": "56 qubits, QV 2^25"
+          "status": "scalable",
+          "evidence": "Helios: 98 physical qubits yielding 48 error-corrected logical qubits (Helix QEC, Nov 2025); clear roadmap Helios->Sol(2027)->Apollo(2029 fault-tolerance)",
+          "date": "2025-11",
+          "metric": "98 physical / 48 logical qubits"
         },
         "C2": {
           "status": "scalable",
@@ -221,13 +221,13 @@
     {
       "name": "IonQ",
       "platform": "Trapped Ion",
-      "flagship": "Forte Enterprise (36 qubits)",
+      "flagship": "Tempo (#AQ 64)",
       "assessments": {
         "C1": {
           "status": "partial",
-          "evidence": "Forte: 36 qubits (single chain); Tempo: 100 qubits expected; scaling requires photonic interconnects",
-          "date": "2024-01",
-          "metric": "36 qubits (#AQ 29)"
+          "evidence": "Tempo: #AQ 64 on 64-qubit register (Sep 2025); 256-qubit systems targeted 2026; scaling still requires photonic interconnects",
+          "date": "2025-09",
+          "metric": "64 qubits (#AQ 64)"
         },
         "C2": {
           "status": "scalable",
@@ -242,10 +242,10 @@
           "metric": "T1 ~10-100 s, ratio ~100,000x"
         },
         "C4": {
-          "status": "demonstrated",
-          "evidence": "XX/ZZ native gates; 1Q fidelity 99.98%; 2Q fidelity 99.6% (Yb+), 99.9% (Ba+ dev)",
-          "date": "2024-09",
-          "metric": "1Q: 99.98%, 2Q: 99.6-99.9%"
+          "status": "scalable",
+          "evidence": "XX/ZZ native gates; world-record 99.99% ('four nines') 2Q gate fidelity via Electronic Qubit Control (Oct 2025), above fault-tolerance threshold; basis for 256-qubit 2026 systems",
+          "date": "2025-10",
+          "metric": "1Q: 99.98%, 2Q: 99.99%"
         },
         "C5": {
           "status": "demonstrated",

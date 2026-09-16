@@ -38,9 +38,9 @@
     "divincenzo": {
       "weight": 0.1,
       "leading_vendor": "Quantinuum",
-      "core_score": 14,
+      "core_score": 15,
       "max_score": 15,
-      "progress_pct": 93.3
+      "progress_pct": 100.0
     }
   },
   "caveat": "This estimate reflects current trajectory. Quantum progress is nonlinear -- breakthroughs can compress timelines rapidly."
