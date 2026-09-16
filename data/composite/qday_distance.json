@@ -1,11 +1,11 @@
 {
   "metadata": {
-    "last_updated": "2026-09-14"
+    "last_updated": "2026-09-16"
   },
   "estimate": {
     "low_years": 2,
     "high_years": 4,
-    "midpoint_years": 3.0
+    "midpoint_years": 2.7
   },
   "components": {
     "factoring": {
@@ -16,9 +16,9 @@
     },
     "logical_qubits": {
       "weight": 0.25,
-      "current": 1,
+      "current": 96,
       "target": 4000,
-      "progress_pct": 8.4
+      "progress_pct": 55.2
     },
     "roadmap_consensus": {
       "weight": 0.2,

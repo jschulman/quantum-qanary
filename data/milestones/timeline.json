@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "last_updated": "2026-02-26",
+    "last_updated": "2026-09-16",
     "note": "Master timeline of all quantum computing milestones relevant to Q-Day."
   },
   "milestones": [
@@ -24,7 +24,14 @@
     { "date": "2024-11", "category": "funding", "event": "DOE Genesis Mission — fault-tolerant by 2028", "significance": "US government commits to fault-tolerant quantum — YELLOW alert" },
     { "date": "2024-12", "category": "hardware", "event": "Google Willow — below-threshold error correction", "significance": "First proof that QEC improves with more qubits — YELLOW alert" },
     { "date": "2025-02", "category": "hardware", "event": "Microsoft Majorana 1 — topological qubit chip", "significance": "New approach to fault-tolerant qubits, if verified" },
+    { "date": "2025-09", "category": "factoring", "event": "First public quantum ECDLP break — 6-bit key (Steve Tippeconnic)", "significance": "First elliptic-curve discrete-log attack on real quantum hardware" },
+    { "date": "2025-11", "category": "hardware", "event": "IBM Nighthawk (120 qubits) + Loon experimental fault-tolerant processor", "significance": "Path to Starling (200 logical qubits, 2029); Loon tests FT logic components" },
+    { "date": "2025-11", "category": "hardware", "event": "Quantinuum Helios — 48 error-corrected logical qubits", "significance": "First commercial system with dozens of logical qubits — logical-qubit era begins" },
     { "date": "2026-01", "category": "blockchain", "event": "Ethereum forms dedicated PQ security team", "significance": "Active engineering investment in blockchain PQC — YELLOW alert" },
+    { "date": "2026-01", "category": "hardware", "event": "QuEra — 96 logical qubits from 448 physical atoms (Nature)", "significance": "Logical-qubit world record; ~100x prior demonstrated logical-qubit count — YELLOW alert" },
+    { "date": "2026-04", "category": "factoring", "event": "Project Eleven Q-Day Prize — 15-bit ECDLP broken on ~70-qubit cloud quantum device", "significance": "Largest public quantum attack on ECC to date (~512x prior 6-bit record)" },
+    { "date": "2026-04", "category": "theory", "event": "Google whitepaper — RSA-2048/256-bit ECC breakable with <500,000 physical qubits", "significance": "Resource ESTIMATE (not an attack); revised sharply down from prior million-qubit figures" },
+    { "date": "2026-09", "category": "theory", "event": "IonQ full-stack blueprint — 256-bit ECC (secp256k1) signatures breakable with 19,397 physical / 1,457 logical qubits in 25.7 days", "significance": "Resource ESTIMATE (no key touched); first end-to-end compiled trapped-ion/qLDPC estimate; aligns with IonQ's 2027 fault-tolerant roadmap" },
     { "date": "2026-06", "category": "standards", "event": "US EO 14412 + OMB M-26-15 mandate federal PQC migration with enforcement deadlines", "significance": "First enforceable US federal PQC deadlines (HVAs key establishment 2030 / signatures 2031, full federal migration 2035) — ORANGE alert trigger (government mandate)" },
     { "date": "2026-06", "category": "funding", "event": "US EO 14413 establishes QC-ADDS — DOE to field a large-scale quantum computer", "significance": "National program to build a large-scale quantum computer; no delivery deadline" }
   ]

@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "last_updated": "2026-02-26",
+    "last_updated": "2026-09-16",
     "source": "Vendor roadmaps, government program announcements",
     "note": "Edit to add/update roadmap commitments. Push to trigger rebuild."
   },
@@ -61,6 +61,16 @@
       "program": "Google Quantum AI",
       "announced": "2024-12",
       "note": "Post-Willow roadmap milestone"
+    },
+    {
+      "entity": "IonQ",
+      "commitment": "Fault-tolerant 10,000 physical qubit system",
+      "target_year": 2027,
+      "status": "in_progress",
+      "program": "IonQ roadmap",
+      "announced": "2026-09",
+      "source": "https://www.ionq.com/blog/the-first-full-stack-blueprint-for-breaking-256-bit-elliptic-curve-signatures",
+      "note": "Trapped-ion; stated alongside IonQ's compiled 256-bit ECC resource estimate (19,397 physical / 1,457 logical qubits). Vendor target, not yet delivered."
     },
     {
       "entity": "DOE (EO 14413 / QC-ADDS)",

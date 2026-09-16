@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "last_updated": "2026-02-26",
+    "last_updated": "2026-09-16",
     "source": "Vendor announcements, academic papers, press releases",
     "note": "Edit to add new hardware milestones. Push to trigger rebuild."
   },
@@ -18,11 +18,17 @@
     { "date": "2023-12", "vendor": "IBM", "event": "Heron processor — focus on quality over quantity", "physical_qubits": 133, "logical_qubits": null, "note": "Strategic shift to error-corrected qubits" },
     { "date": "2024-12", "vendor": "Google", "event": "Willow — below-threshold quantum error correction", "physical_qubits": 105, "logical_qubits": 1, "error_correction": true, "note": "First demonstration of error correction improving with scale" },
     { "date": "2025-02", "vendor": "Microsoft", "event": "Majorana 1 — topological qubit chip", "physical_qubits": 8, "logical_qubits": null, "note": "Novel topological approach, disputed by some researchers" },
-    { "date": "2025-05", "vendor": "Quantinuum", "event": "H2 system — 56 qubits, record quantum volume", "physical_qubits": 56, "logical_qubits": null, "note": "Trapped-ion, highest quantum volume achieved" }
+    { "date": "2025-05", "vendor": "Quantinuum", "event": "H2 system — 56 qubits, record quantum volume", "physical_qubits": 56, "logical_qubits": null, "note": "Trapped-ion, highest quantum volume achieved" },
+    { "date": "2025-09", "vendor": "IonQ", "event": "Tempo development system — #AQ 64 on 64-qubit register", "physical_qubits": 64, "logical_qubits": null, "note": "Trapped-ion; IonQ's algorithmic-qubit benchmark, 100-qubit target" },
+    { "date": "2025-10", "vendor": "IonQ", "event": "Two-qubit gate fidelity 99.9923% ('four nines') via EQC", "physical_qubits": null, "logical_qubits": null, "note": "World-record trapped-ion 2Q gate fidelity" },
+    { "date": "2025-11", "vendor": "IBM", "event": "Nighthawk (120 qubits) + Loon experimental FT processor", "physical_qubits": 120, "logical_qubits": null, "note": "Nighthawk targets ~7,500 gates end-2026; Loon tests fault-tolerant logic components on path to Starling 2029" },
+    { "date": "2025-11", "vendor": "Quantinuum", "event": "Helios — 48 error-corrected logical qubits", "physical_qubits": 98, "logical_qubits": 48, "error_correction": true, "note": "Trapped-ion; ~50 logical qubits at 2:1 encoding, supersedes H2 as flagship" },
+    { "date": "2026-01", "vendor": "QuEra", "event": "96 logical qubits from 448 physical atoms — logical-qubit world record", "physical_qubits": 448, "logical_qubits": 96, "error_correction": true, "note": "Neutral-atom, [[16,6,4]] qLDPC codes with below-threshold error suppression; published in Nature (Jan 2026)" }
   ],
   "roadmap_targets": [
     { "vendor": "DOE", "target": "Fault-tolerant quantum computer", "target_year": 2028, "program": "Genesis Mission" },
-    { "vendor": "IBM", "target": "Fault-tolerant quantum", "target_year": 2029, "program": "IBM Quantum Roadmap" },
+    { "vendor": "IonQ", "target": "Fault-tolerant 10,000 physical qubit system", "target_year": 2027, "program": "IonQ roadmap (256-bit ECC blueprint)" },
+    { "vendor": "IBM", "target": "Starling — fault-tolerant, 200 logical qubits (1,000-qubit system)", "target_year": 2029, "program": "IBM Quantum Roadmap" },
     { "vendor": "Industry", "target": "2+ utility-scale systems operational", "target_year": 2028, "program": "CES 2025 consensus" },
     { "vendor": "IBM", "target": "100,000+ qubit system", "target_year": 2033, "program": "IBM Quantum Roadmap" }
   ]
