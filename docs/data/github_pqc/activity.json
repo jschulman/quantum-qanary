@@ -1,35 +1,35 @@
 {
   "metadata": {
     "source": "GitHub API",
-    "last_updated": "2026-09-14",
+    "last_updated": "2026-09-21",
     "mock": false
   },
   "repos": [
     {
       "name": "open-quantum-safe/liboqs",
-      "stars": 3062,
-      "forks": 773,
-      "open_issues": 111,
-      "last_push": "2026-09-13"
+      "stars": 3066,
+      "forks": 776,
+      "open_issues": 110,
+      "last_push": "2026-09-20"
     },
     {
       "name": "pq-crystals/kyber",
-      "stars": 1237,
+      "stars": 1239,
       "forks": 293,
       "open_issues": 30,
       "last_push": "2026-08-02"
     },
     {
       "name": "pq-crystals/dilithium",
-      "stars": 614,
-      "forks": 222,
+      "stars": 613,
+      "forks": 224,
       "open_issues": 14,
       "last_push": "2026-06-03"
     }
   ],
   "topic_stats": {
-    "total_repos": 1387,
-    "total_stars": 19136
+    "total_repos": 1422,
+    "total_stars": 19268
   },
   "monthly_activity": [
     {
@@ -144,12 +144,12 @@
     },
     {
       "date": "2025-08",
-      "new_repos": 19,
+      "new_repos": 20,
       "total_stars_delta": 0
     },
     {
       "date": "2025-09",
-      "new_repos": 25,
+      "new_repos": 26,
       "total_stars_delta": 0
     },
     {
@@ -179,12 +179,12 @@
     },
     {
       "date": "2026-03",
-      "new_repos": 82,
+      "new_repos": 83,
       "total_stars_delta": 0
     },
     {
       "date": "2026-04",
-      "new_repos": 140,
+      "new_repos": 141,
       "total_stars_delta": 0
     },
     {
@@ -194,22 +194,22 @@
     },
     {
       "date": "2026-06",
-      "new_repos": 130,
+      "new_repos": 136,
       "total_stars_delta": 0
     },
     {
       "date": "2026-07",
-      "new_repos": 150,
+      "new_repos": 151,
       "total_stars_delta": 0
     },
     {
       "date": "2026-08",
-      "new_repos": 124,
+      "new_repos": 127,
       "total_stars_delta": 0
     },
     {
       "date": "2026-09",
-      "new_repos": 45,
+      "new_repos": 66,
       "total_stars_delta": 0
     }
   ]
