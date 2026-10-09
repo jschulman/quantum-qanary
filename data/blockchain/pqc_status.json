@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "last_updated": "2026-02-26",
+    "last_updated": "2026-10-09",
     "source": "Chain governance, developer forums, GitHub repos",
     "note": "Edit to update chain PQC status. Push to trigger rebuild."
   },
@@ -19,10 +19,10 @@
       "name": "Bitcoin",
       "ticker": "BTC",
       "status": "discussed",
-      "detail": "No formal PQC plan. Community discussion ongoing. Pay-to-pubkey-hash provides partial protection for unspent outputs.",
-      "last_activity": "2024-06",
-      "exposure": "Reused addresses and spent outputs expose public keys",
-      "watch": ["BIP proposal for PQC signatures", "Consensus on migration approach"]
+      "detail": "BIP-360 (P2QRH, ML-DSA-based output type) merged as a draft Feb 2026; no activation plan or date. Hash-based address types (P2PKH/P2WPKH) protect unspent outputs until first spend; Taproot (P2TR) outputs expose the key on-chain. Oct 2026: Justin Drake's 'bunker mode' call urges migrating exposed-key funds to fresh hash-protected addresses.",
+      "last_activity": "2026-10",
+      "exposure": "~6-6.9M BTC (~31% of supply) behind exposed public keys — reused addresses, spent-from addresses, P2PK, and Taproot (CoinDesk, Europol, Oct 2026)",
+      "watch": ["BIP-360 activation path", "Consensus on migration approach", "Custodian cold-storage key rotation"]
     },
     {
       "name": "Solana",

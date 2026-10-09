@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "last_updated": "2026-09-16",
+    "last_updated": "2026-10-09",
     "source": "Congressional Research Service, RAND, CSIS, public government reports, industry analysis",
     "note": "Annual all-source investment (government + corporate R&D + VC) in USD billions; China figures are approximations. This is a deliberately conservative series — broader 'quantum technologies' accounting (incl. sensing/comms and China's headline state funds) puts 2025 nearer $33B (ResearchAndMarkets/QBN). 2026 is a partial year with no clean full-year total yet: private VC is decelerating from 2025's record (~$4.9B, a doubling), while government commitments keep rising (EU >EUR 43B public funding pledged for 2026). No 2026 annual row is entered until a methodology-consistent full-year figure exists."
   },
@@ -24,6 +24,7 @@
     { "date": "2025-01", "event": "US National Quantum Initiative reauthorized (2025-2029)", "amount_label": "$1.8B additional" },
     { "date": "2025-12", "event": "Global quantum VC hits record ~$4.9B in 2025 (roughly double 2024)", "amount_label": "~$4.9B VC (2025)" },
     { "date": "2026-06", "event": "US EO 14413 establishes QC-ADDS — DOE to field a large-scale quantum computer", "amount_label": "Undisclosed" },
-    { "date": "2026-09", "event": "2026 private VC tracking below 2025's record; government funding still rising (EU >EUR 43B pledged)", "amount_label": "Mixed — public up, VC down" }
+    { "date": "2026-09", "event": "2026 private VC tracking below 2025's record; government funding still rising (EU >EUR 43B pledged)", "amount_label": "Mixed — public up, VC down" },
+    { "date": "2026-10", "event": "DOE Quantum Genesis Q competition — incentive pools for systems reaching 100 / 150 / 200 logical qubits (applications close 2026-10-19; contingent on appropriations)", "amount_label": "$215M planned" }
   ]
 }

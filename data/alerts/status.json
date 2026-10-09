@@ -1,9 +1,9 @@
 {
   "metadata": {
-    "last_updated": "2026-10-05",
+    "last_updated": "2026-10-09",
     "source": "manual curation + computed",
     "note": "Edit this file to update alert status. Push to trigger dashboard rebuild.",
-    "last_checked": "2026-10-05T15:47:18Z",
+    "last_checked": "2026-10-09T09:20:08Z",
     "computed_level": "ORANGE"
   },
   "current_level": "ORANGE",
@@ -68,6 +68,12 @@
       "event": "US EO 14413 establishes QC-ADDS \u2014 directs DOE to field a large-scale quantum computer (no delivery deadline)",
       "level": "YELLOW",
       "source": "https://www.whitehouse.gov/presidential-actions/2026/06/ushering-in-the-next-frontier-of-quantum-innovation/"
+    },
+    {
+      "date": "2026-07",
+      "event": "First verified AI-discovered break of a standardization-track cryptographic scheme (HAWK-256, Anthropic Claude Mythos Preview; HAWK withdrawn from NIST process)",
+      "level": "YELLOW",
+      "source": "https://thehackernews.com/2026/07/claude-ai-just-cracked-post-quantum.html"
     }
   ],
   "watch_items": [
@@ -93,6 +99,18 @@
     },
     {
       "event": "Any credible quantum advantage in cryptanalysis at meaningful scale",
+      "level": "RED"
+    },
+    {
+      "event": "AI lab or researchers publicly report cryptanalytic progress against a deployed primitive (ECDSA/secp256k1, RSA, ML-KEM, ML-DSA)",
+      "level": "ORANGE"
+    },
+    {
+      "event": "Major custodians announce rotation of exposed-key cold storage ('bunker mode')",
+      "level": "ORANGE"
+    },
+    {
+      "event": "Practical classical or AI-found key recovery against a deployed primitive (e.g. secp256k1 ECDSA)",
       "level": "RED"
     }
   ]

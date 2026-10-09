@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "last_updated": "2026-04-25",
+    "last_updated": "2026-10-09",
     "source": "Academic papers, IACR ePrint, vendor publications",
     "note": "Edit this file to add new factoring records. Push to trigger dashboard rebuild."
   },
@@ -115,6 +115,44 @@
       "date": "2020-02",
       "method": "Classical (number field sieve, ~2700 CPU-years)",
       "note": "Largest RSA number factored by any method"
+    }
+  ],
+  "ai_cryptanalysis": [
+    {
+      "date": "2009-07",
+      "label": "112-bit prime-field ECDLP (secp112r1)",
+      "status": "context",
+      "deployed_target": false,
+      "method": "Classical parallel Pollard rho on ~200 PlayStation 3 consoles",
+      "source": "Bos, Kaihara, Kleinjung, Lenstra, Montgomery — Solving a 112-bit prime elliptic curve discrete logarithm problem on game consoles",
+      "note": "Largest public classical prime-field ECDLP solve. secp256k1 is 256-bit; generic attacks need ~2^128 work."
+    },
+    {
+      "date": "2026-07",
+      "label": "HAWK-256 key recovery (NIST additional-signature candidate)",
+      "status": "verified",
+      "deployed_target": false,
+      "method": "AI-discovered lattice automorphism (Anthropic Claude Mythos Preview); key recovery cost ~2^64 to ~2^38; ~60 hours, ~$100K compute",
+      "source": "https://thehackernews.com/2026/07/claude-ai-just-cracked-post-quantum.html",
+      "note": "First verified AI-found break of a standardization-track scheme. HAWK team confirmed and withdrew from NIST. Young (~4-year) assumption, smallest parameter set; nothing deployed affected."
+    },
+    {
+      "date": "2026-10",
+      "label": "AI refutes fine-grained complexity conjectures (integer multiplication, 3SUM, APSP)",
+      "status": "claimed",
+      "deployed_target": false,
+      "method": "OpenAI 722-manuscript release: multiplication in O(n (log n)^(1-k)), k = 2^-182; separately reported 3SUM in n^1.9992",
+      "source": "https://www.unite.ai/openai-releases-722-math-manuscripts-from-an-unreleased-ai-model/",
+      "note": "Not cryptanalysis — asymptotic improvements with no practical effect. Cited by Justin Drake ('bunker mode', 2026-10-07) as evidence that AI-accelerated math could break ECDSA. No ECDLP or RSA result published."
+    },
+    {
+      "date": "2026-10",
+      "label": "AI labs reportedly probing deployed cryptographic primitives",
+      "status": "unverified",
+      "deployed_target": true,
+      "method": "Reported internal testing of frontier models against cryptographic protocols and primitives",
+      "source": "https://scottaaronson.blog/",
+      "note": "Scott Aaronson, citing anonymous sources (2026-10-07). An investigation, not a result: no lab, model, scheme, or outcome named."
     }
   ]
 }

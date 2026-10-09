@@ -250,6 +250,7 @@
     renderSingleLadder($("rsaLadder"), (factoring.rsa_ladder || []).slice().reverse());
     renderSingleLadder($("ecdlpLadder"), (factoring.ecdlp_ladder || []).slice().reverse());
     renderClassicalContext(factoring.classical_context || []);
+    renderAiCryptanalysis(factoring.ai_cryptanalysis || []);
   }
 
   function renderSingleLadder(el, rungs) {
@@ -318,6 +319,21 @@
       + escapeHtml(item.label) + " factored classically (" + escapeHtml(item.date) + ") via " + escapeHtml(item.method)
       + (item.note ? ". " + escapeHtml(item.note) : "")
       + '</div>';
+  }
+
+  // Classical/AI attacks are a separate axis: they never advance the quantum ladders.
+  function renderAiCryptanalysis(entries) {
+    var el = $("aiCryptanalysis");
+    if (!entries.length) { el.innerHTML = ""; return; }
+    var html = '<div class="classical-context-title">Classical &amp; AI Cryptanalysis</div>';
+    entries.slice().reverse().forEach(function (item) {
+      html += '<div class="classical-context-text">'
+        + '<strong>' + escapeHtml(item.date) + ' — ' + escapeHtml(item.label) + '</strong>'
+        + ' [' + escapeHtml(item.status) + ']'
+        + (item.note ? '. ' + escapeHtml(item.note) : '')
+        + '</div>';
+    });
+    el.innerHTML = html;
   }
 
   // ─────────────────────────────────────────

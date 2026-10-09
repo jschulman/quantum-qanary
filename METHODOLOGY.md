@@ -16,6 +16,7 @@ No quantum computer has factored anything beyond 21 bits using Shor's algorithm.
 - A government announces a funded fault-tolerant quantum program (occurred November 2024)
 - A major blockchain forms a dedicated PQC team (occurred January 2026)
 - First non-trivial quantum ECDLP attack demonstrated (occurred April 2026 — 15-bit elliptic-curve key recovered via Shor's variant on a public quantum cloud, Project Eleven Q-Day Prize)
+- First verified AI-discovered break of a standardization-track cryptographic scheme (occurred July 2026 — Anthropic's Claude Mythos Preview cut HAWK-256 key recovery from ~2^64 to ~2^38; HAWK withdrawn from NIST). Classical/AI axis — see below.
 
 **Current status: YELLOW** — Multiple YELLOW triggers have fired.
 
@@ -33,6 +34,14 @@ No quantum computer has factored anything beyond 21 bits using Shor's algorithm.
 - RSA-512 broken by quantum computer (the canary)
 - 128-bit ECDLP solved by quantum computer (blockchain canary)
 - Any currently-deployed encryption scheme broken by quantum attack
+- Practical key recovery against a deployed primitive (e.g. secp256k1 ECDSA) by a classical or AI-found attack — watch item, applied via manual override (see below)
+
+### Classical & AI Cryptanalysis Axis
+The canary's ladders count quantum results only. But the keys the canary protects fail the same way whether a quantum computer or a classical algorithm breaks them, and AI-driven mathematics made the classical path a live concern in 2026. This axis tracks it separately, in `ai_cryptanalysis` in `data/factoring/records.json`:
+
+- Entries carry a status of `context`, `claimed`, `unverified`, or `verified`, plus `deployed_target` (whether the attacked scheme protects real assets today).
+- Entries never advance the quantum ladders and never feed the Q-Day distance estimate.
+- No code path computes an alert from this axis yet. A verified break of a standardization-track scheme was recorded as a YELLOW trigger by hand. Public cryptanalytic progress against a deployed primitive is an ORANGE watch item. Practical key recovery against a deployed primitive is a RED watch item. Apply both through `override` when they occur.
 
 ### Manual Override
 The `data/alerts/status.json` file has an `override` field. Setting it to a level (e.g., "ORANGE") forces the dashboard to that level regardless of computed triggers. Set to `null` to return to computed level.
