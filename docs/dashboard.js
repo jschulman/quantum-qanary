@@ -59,7 +59,7 @@
     funding: fetchJSON("funding/investments.json"),
     qday: fetchJSON("composite/qday_distance.json"),
     milestones: fetchJSON("milestones/timeline.json"),
-    arxiv: fetchJSON("arxiv/processed/paper_counts.json").catch(function () { return null; }),
+    arxiv: fetchJSON("arxiv/paper_counts.json").catch(function () { return null; }),
     divincenzo: fetchJSON("hardware/divincenzo.json").catch(function () { return null; })
   };
 
