@@ -22,6 +22,7 @@ import os
 import random
 import sys
 import time
+import urllib.error
 import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
@@ -33,9 +34,15 @@ RAW_DIR = os.path.join(BASE_DIR, "data", "arxiv", "raw")
 
 ARXIV_API_URL = "http://export.arxiv.org/api/query"
 RATE_LIMIT_SECONDS = 3
+MAX_ATTEMPTS = 4
+MAX_BACKOFF_SECONDS = 120
+RETRYABLE_STATUS = {429, 500, 502, 503, 504}
+
+
+class FetchError(Exception):
+    """A paper count could not be fetched; never record it as 0."""
 
 # Atom XML namespace
-ATOM_NS = "{http://www.w3.org/2005/Atom}"
 OPENSEARCH_NS = "{http://a9.com/-/spec/opensearch/1.1/}"
 
 CATEGORIES = {
@@ -98,35 +105,51 @@ def build_arxiv_query(category_key, year, month):
     params = urllib.parse.urlencode({
         "search_query": full_query,
         "start": 0,
-        "max_results": 0,  # We only need the total count
+        "max_results": 1,  # We only need totalResults; arXiv returns HTTP 500 for max_results=0
     })
     return f"{ARXIV_API_URL}?{params}"
 
 
+def retry_delay(attempt, retry_after):
+    """Exponential backoff from the 3s politeness delay, raised to honor Retry-After."""
+    delay = RATE_LIMIT_SECONDS * 2 ** attempt
+    if retry_after and retry_after.strip().isdigit():
+        delay = max(delay, int(retry_after))
+    return min(delay, MAX_BACKOFF_SECONDS)
+
+
 def fetch_paper_count(url):
-    """Fetch paper count from arXiv API for a given query URL."""
+    """Fetch paper count from arXiv API for a given query URL. Raises FetchError on failure."""
     req = urllib.request.Request(url, headers={
         "User-Agent": "QuantumQanary/1.0 (research dashboard; https://github.com/quantum-qanary)"
     })
-    try:
-        with urllib.request.urlopen(req, timeout=30) as response:
-            xml_data = response.read().decode("utf-8")
-    except Exception as e:
-        print(f"  [WARN] Request failed: {e}", file=sys.stderr)
-        return 0, None
+    for attempt in range(MAX_ATTEMPTS):
+        try:
+            with urllib.request.urlopen(req, timeout=30) as response:
+                xml_data = response.read().decode("utf-8")
+            break
+        except urllib.error.HTTPError as e:
+            if e.code not in RETRYABLE_STATUS or attempt == MAX_ATTEMPTS - 1:
+                raise FetchError(f"HTTP {e.code} after {attempt + 1} attempt(s)") from e
+            delay = retry_delay(attempt, e.headers.get("Retry-After"))
+            reason = f"HTTP {e.code}"
+        except OSError as e:  # URLError, timeouts, connection resets
+            if attempt == MAX_ATTEMPTS - 1:
+                raise FetchError(f"{e} after {attempt + 1} attempt(s)") from e
+            delay = retry_delay(attempt, None)
+            reason = str(e)
+        print(f"  [WARN] {reason}; retrying in {delay:.0f}s", file=sys.stderr)
+        time.sleep(delay)
 
     # Parse total results from Atom feed
     try:
         root = ET.fromstring(xml_data)
-        total_el = root.find(f"{OPENSEARCH_NS}totalResults")
-        if total_el is not None:
-            return int(total_el.text), xml_data
-        # Fallback: count entry elements
-        entries = root.findall(f"{ATOM_NS}entry")
-        return len(entries), xml_data
     except ET.ParseError as e:
-        print(f"  [WARN] XML parse error: {e}", file=sys.stderr)
-        return 0, xml_data
+        raise FetchError(f"XML parse error: {e}") from e
+    total_el = root.find(f"{OPENSEARCH_NS}totalResults")
+    if total_el is None:
+        raise FetchError("response has no opensearch:totalResults")
+    return int(total_el.text), xml_data
 
 
 def fetch_live_data(months):
@@ -274,7 +297,12 @@ def main():
         print("Running in LIVE mode -- fetching from arXiv API")
         print(f"Rate limit: {RATE_LIMIT_SECONDS}s between requests")
         print(f"Total requests: ~{len(months) * len(CATEGORIES)}")
-        results = fetch_live_data(months)
+        try:
+            results = fetch_live_data(months)
+        except FetchError as e:
+            print(f"\n[ERROR] arXiv fetch failed: {e}", file=sys.stderr)
+            print("Previous paper_counts.json left unchanged.", file=sys.stderr)
+            sys.exit(1)
 
     output = build_output(results, months, is_mock=args.mock)
 
