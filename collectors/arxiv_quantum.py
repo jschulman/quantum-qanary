@@ -34,8 +34,11 @@ RAW_DIR = os.path.join(BASE_DIR, "data", "arxiv", "raw")
 
 ARXIV_API_URL = "http://export.arxiv.org/api/query"
 RATE_LIMIT_SECONDS = 3
-MAX_ATTEMPTS = 4
+MAX_ATTEMPTS = 6
 MAX_BACKOFF_SECONDS = 120
+# arXiv 429s often carry no Retry-After. The old 3/6/12s ladder gave up
+# while the block was still in place (run 38263106111, 2026-10-12).
+RETRY_429_FLOOR_SECONDS = 30
 RETRYABLE_STATUS = {429, 500, 502, 503, 504}
 
 
@@ -110,11 +113,16 @@ def build_arxiv_query(category_key, year, month):
     return f"{ARXIV_API_URL}?{params}"
 
 
-def retry_delay(attempt, retry_after):
-    """Exponential backoff from the 3s politeness delay, raised to honor Retry-After."""
+def retry_delay(attempt, retry_after, status=None):
+    """Exponential backoff from the 3s politeness delay, raised to honor Retry-After.
+
+    A 429 with no Retry-After still waits at least RETRY_429_FLOOR_SECONDS.
+    """
     delay = RATE_LIMIT_SECONDS * 2 ** attempt
-    if retry_after and retry_after.strip().isdigit():
-        delay = max(delay, int(retry_after))
+    if status == 429:
+        delay = max(delay, RETRY_429_FLOOR_SECONDS * 2 ** attempt)
+    if retry_after and str(retry_after).strip().isdigit():
+        delay = max(delay, int(str(retry_after).strip()))
     return min(delay, MAX_BACKOFF_SECONDS)
 
 
@@ -131,7 +139,7 @@ def fetch_paper_count(url):
         except urllib.error.HTTPError as e:
             if e.code not in RETRYABLE_STATUS or attempt == MAX_ATTEMPTS - 1:
                 raise FetchError(f"HTTP {e.code} after {attempt + 1} attempt(s)") from e
-            delay = retry_delay(attempt, e.headers.get("Retry-After"))
+            delay = retry_delay(attempt, e.headers.get("Retry-After"), e.code)
             reason = f"HTTP {e.code}"
         except OSError as e:  # URLError, timeouts, connection resets
             if attempt == MAX_ATTEMPTS - 1:
@@ -152,15 +160,70 @@ def fetch_paper_count(url):
     return int(total_el.text), xml_data
 
 
-def fetch_live_data(months):
-    """Fetch live data from arXiv API for all categories and months."""
-    results = {}
+def month_is_open(year, month, today):
+    """True for the current month and the one before it.
+
+    submittedDate is fixed once arXiv has announced the paper, so older
+    months do not change. The previous month stays open because a paper
+    submitted at the end of the month can miss that day's snapshot.
+    """
+    serial = year * 12 + (month - 1)
+    current = today.year * 12 + (today.month - 1)
+    return serial >= current - 1
+
+
+def load_stored_counts(path):
+    """Return {category: {YYYY-MM: count}} from the last good snapshot.
+
+    A missing or unreadable file yields {}. Counts are reused only for
+    closed months; a failed fetch never invents a 0.
+    """
+    try:
+        with open(path, encoding="utf-8") as f:
+            data = json.load(f)
+    except (OSError, json.JSONDecodeError):
+        return {}
+    stored = {}
+    for cat_key, cat in data.get("categories", {}).items():
+        if cat_key not in CATEGORIES or not isinstance(cat, dict):
+            continue
+        counts = {}
+        for row in cat.get("monthly", []):
+            if not isinstance(row, dict):
+                continue
+            date = row.get("date")
+            count = row.get("count")
+            if isinstance(date, str) and isinstance(count, int) and not isinstance(count, bool) and count >= 0:
+                counts[date] = count
+        stored[cat_key] = counts
+    return stored
+
+
+def count_live_requests(months, stored, today):
+    """How many API calls this run will make."""
+    total = 0
     for cat_key in CATEGORIES:
-        results[cat_key] = {}
+        for year, month in months:
+            cached = stored.get(cat_key, {}).get(format_month(year, month))
+            if cached is None or month_is_open(year, month, today):
+                total += 1
+    return total
+
+
+def fetch_live_data(months, stored, today):
+    """Fetch live data from arXiv. Closed months with a stored count are reused."""
+    results = {cat_key: {} for cat_key in CATEGORIES}
+    reused = 0
+    for cat_key in CATEGORIES:
         print(f"Fetching category: {CATEGORIES[cat_key]['label']}")
 
         for year, month in months:
             month_str = format_month(year, month)
+            cached = stored.get(cat_key, {}).get(month_str)
+            if cached is not None and not month_is_open(year, month, today):
+                results[cat_key][month_str] = cached
+                reused += 1
+                continue
             url = build_arxiv_query(cat_key, year, month)
             count, raw_xml = fetch_paper_count(url)
             results[cat_key][month_str] = count
@@ -178,6 +241,7 @@ def fetch_live_data(months):
             # Rate limit: 1 request per 3 seconds
             time.sleep(RATE_LIMIT_SECONDS)
 
+    print(f"Reused {reused} stored closed-month counts")
     return results
 
 
@@ -296,9 +360,12 @@ def main():
     else:
         print("Running in LIVE mode -- fetching from arXiv API")
         print(f"Rate limit: {RATE_LIMIT_SECONDS}s between requests")
-        print(f"Total requests: ~{len(months) * len(CATEGORIES)}")
+        today = datetime.now()
+        output_path = os.path.join(OUTPUT_DIR, "paper_counts.json")
+        stored = load_stored_counts(output_path)
+        print(f"Total requests: {count_live_requests(months, stored, today)}")
         try:
-            results = fetch_live_data(months)
+            results = fetch_live_data(months, stored, today)
         except FetchError as e:
             print(f"\n[ERROR] arXiv fetch failed: {e}", file=sys.stderr)
             print("Previous paper_counts.json left unchanged.", file=sys.stderr)
