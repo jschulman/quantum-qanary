@@ -110,6 +110,10 @@
       "level": "ORANGE"
     },
     {
+      "event": "Bitcoin PQ migration moves from draft to code: a hybrid classical/PQ spend path (as Coinbase proposed Oct 2026) lands in a Bitcoin Core PR or activation proposal",
+      "level": "ORANGE"
+    },
+    {
       "event": "Practical classical or AI-found key recovery against a deployed primitive (e.g. secp256k1 ECDSA)",
       "level": "RED"
     }
