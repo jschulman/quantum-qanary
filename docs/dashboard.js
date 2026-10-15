@@ -58,7 +58,10 @@
     blockchain: fetchJSON("blockchain/pqc_status.json"),
     funding: fetchJSON("funding/investments.json"),
     qday: fetchJSON("composite/qday_distance.json"),
-    milestones: fetchJSON("milestones/timeline.json"),
+    milestones: fetchJSON("milestones/timeline.json").catch(function (err) {
+      console.warn("Milestone timeline unavailable:", err);
+      return { error: true };
+    }),
     arxiv: fetchJSON("arxiv/paper_counts.json").catch(function () { return null; }),
     divincenzo: fetchJSON("hardware/divincenzo.json").catch(function () { return null; })
   };
@@ -101,7 +104,8 @@
     renderHeader(data);
     renderAlertHero(data.alerts);
     renderQdayDistance(data.qday);
-    renderLadders(data.factoring);
+    renderLadders(data.factoring, data.qday);
+    renderMilestoneTimeline(data.milestones);
     renderHardwareChart(data.hardware);
     renderDiVincenzo(data.divincenzo);
     renderPqcTable(data.adoption);
@@ -176,6 +180,7 @@
   // 3. Q-Day Distance
   // ─────────────────────────────────────────
   function renderQdayDistance(qday) {
+    qday = qday || {};
     var est = qday.estimate || {};
     var low = est.low_years;
     var high = est.high_years;
@@ -194,13 +199,13 @@
       factoring: "Factoring Progress",
       logical_qubits: "Logical Qubits",
       roadmap_consensus: "Roadmap Consensus",
-      error_correction: "Error Correction",
+      error_correction: "Fault Tolerance",
       investment: "Investment Trend",
       divincenzo: "DiVincenzo Completeness"
     };
 
     keys.forEach(function (key, idx) {
-      var comp = components[key];
+      var comp = components[key] || {};
       var color = COMPONENT_COLORS[idx % COMPONENT_COLORS.length];
       var weightPct = (comp.weight * 100).toFixed(0);
 
@@ -219,8 +224,13 @@
         progress = Math.max(0, Math.min(100, (1 - comp.years_out / 15) * 100));
         detailText = "Avg target year: " + comp.avg_target_year;
       } else if (key === "error_correction") {
-        progress = comp.score || 0;
-        detailText = comp.below_threshold_demonstrated ? "Below-threshold: Yes" : "Below-threshold: No";
+        progress = typeof comp.score === "number" && isFinite(comp.score) ? comp.score : 0;
+        if (comp.tier !== undefined) {
+          detailText = "Tier " + comp.tier + "/" + (comp.max_tier == null ? "?" : comp.max_tier)
+            + ": " + (comp.tier_label || "Unknown");
+        } else {
+          detailText = comp.below_threshold_demonstrated ? "Below-threshold: Yes" : "Below-threshold: No";
+        }
       } else if (key === "investment") {
         progress = Math.min(100, comp.yoy_growth_pct * 2);
         detailText = comp.yoy_growth_pct + "% YoY growth";
@@ -246,11 +256,62 @@
   // ─────────────────────────────────────────
   // 4. Canary Ladders
   // ─────────────────────────────────────────
-  function renderLadders(factoring) {
+  function renderLadders(factoring, qday) {
+    factoring = factoring || {};
     renderSingleLadder($("rsaLadder"), (factoring.rsa_ladder || []).slice().reverse());
     renderSingleLadder($("ecdlpLadder"), (factoring.ecdlp_ladder || []).slice().reverse());
     renderClassicalContext(factoring.classical_context || []);
     renderAiCryptanalysis(factoring.ai_cryptanalysis || []);
+    renderFaultToleranceLadder(qday && qday.components && qday.components.error_correction);
+  }
+
+  function renderFaultToleranceLadder(component) {
+    var card = $("faultToleranceCard");
+    var el = $("faultToleranceLadder");
+    var rungs = component && Array.isArray(component.rungs) ? component.rungs : [];
+    var tier = component && component.tier;
+    var hasCurrent = typeof tier === "number" && tier >= 0 && tier < rungs.length && Math.floor(tier) === tier;
+    var html = "";
+
+    rungs.slice().reverse().forEach(function (rung, index) {
+      if (!rung || typeof rung !== "object") return;
+      var rungClass = "ladder-rung";
+      var iconClass = "rung-icon rung-icon-pending";
+      var iconChar = "\u25CB";
+
+      if (rung.status === "achieved") {
+        rungClass += " rung-achieved";
+        iconClass = "rung-icon rung-icon-achieved";
+        iconChar = "\u2713";
+      } else if (rung.status === "partial") {
+        rungClass += " rung-partial";
+        iconClass = "rung-icon rung-icon-partial";
+        iconChar = "\u25D0";
+      }
+      if (hasCurrent && rungs.length - 1 - index === tier) {
+        rungClass += " rung-current";
+      }
+
+      html += '<div class="' + rungClass + '">'
+        + '<span class="' + iconClass + '">' + iconChar + '</span>'
+        + '<div class="rung-body">'
+        + '<div class="rung-label">' + escapeHtml(rung.label) + '</div>'
+        + '<div class="rung-signal">' + escapeHtml(rung.criterion) + '</div>';
+      if (rung.date) {
+        html += '<div class="rung-date">' + escapeHtml(rung.date) + '</div>';
+      }
+      if (rung.evidence) {
+        html += '<div class="rung-signal">' + escapeHtml(rung.evidence) + '</div>';
+      }
+      if (typeof rung.source === "string" && rung.source.indexOf("https://") === 0) {
+        html += '<a class="rung-source" href="' + escapeHtml(rung.source).replace(/"/g, "&quot;")
+          + '" target="_blank" rel="noopener">source</a>';
+      }
+      html += '</div></div>';
+    });
+
+    el.innerHTML = html;
+    card.hidden = !html;
   }
 
   function renderSingleLadder(el, rungs) {
@@ -334,6 +395,59 @@
         + '</div>';
     });
     el.innerHTML = html;
+  }
+
+  function renderMilestoneTimeline(timeline) {
+    var section = $("timelineSection");
+    var el = $("milestoneTimeline");
+    var button = $("milestoneToggle");
+    if (timeline && timeline.error) {
+      el.innerHTML = '<div class="milestone-significance">Milestone timeline is unavailable right now.</div>';
+      section.hidden = false;
+      button.hidden = true;
+      return;
+    }
+    var milestones = timeline && Array.isArray(timeline.milestones) ? timeline.milestones : [];
+    var sorted = milestones.map(function (item, index) {
+      return { item: item, index: index };
+    }).filter(function (entry) {
+      return entry.item && typeof entry.item === "object";
+    }).sort(function (a, b) {
+      var dateA = typeof a.item.date === "string" ? a.item.date : "";
+      var dateB = typeof b.item.date === "string" ? b.item.date : "";
+      if (dateA < dateB) return 1;
+      if (dateA > dateB) return -1;
+      return a.index - b.index;
+    });
+    var categories = ["adoption", "blockchain", "cryptanalysis", "factoring", "funding", "hardware", "standards", "theory"];
+    var html = "";
+
+    sorted.forEach(function (entry, index) {
+      var item = entry.item;
+      var categoryClass = categories.indexOf(item.category) !== -1 ? " milestone-category-" + item.category : "";
+      if (index === 12) html += '<div id="milestoneMore" hidden>';
+      html += '<div class="milestone-item">'
+        + '<span class="triggered-dot milestone-dot"></span>'
+        + '<div class="milestone-meta"><span class="triggered-date">' + escapeHtml(item.date) + '</span>'
+        + '<span class="milestone-category' + escapeHtml(categoryClass) + '">' + escapeHtml(item.category || "Other") + '</span></div>'
+        + '<div class="milestone-event">' + escapeHtml(item.event) + '</div>'
+        + '<div class="milestone-significance">' + escapeHtml(item.significance) + '</div>'
+        + '</div>';
+    });
+    if (sorted.length > 12) html += '</div>';
+
+    el.innerHTML = html;
+    section.hidden = !sorted.length;
+    button.hidden = sorted.length <= 12;
+    button.setAttribute("aria-expanded", "false");
+    button.textContent = "Show all " + sorted.length + " milestones";
+    button.onclick = function () {
+      var more = $("milestoneMore");
+      if (!more) return;
+      more.hidden = !more.hidden;
+      button.setAttribute("aria-expanded", String(!more.hidden));
+      button.textContent = more.hidden ? "Show all " + sorted.length + " milestones" : "Show fewer";
+    };
   }
 
   // ─────────────────────────────────────────

@@ -404,11 +404,12 @@ a:hover {
    =========================================== */
 .ladders-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 24px;
 }
 
 .ladder-card {
+  min-width: 0;
   background: #1e293b;
   border: 1px solid #334155;
   border-radius: 12px;
@@ -455,6 +456,10 @@ a:hover {
   border-left-color: #22c55e;
 }
 
+.ladder-rung.rung-partial {
+  border-left-color: #f59e0b;
+}
+
 .ladder-rung.rung-canary {
   border-left-color: #eab308;
 }
@@ -486,6 +491,11 @@ a:hover {
 .rung-icon-pending {
   background: rgba(100, 116, 139, 0.15);
   color: #64748b;
+}
+
+.rung-icon-partial {
+  background: rgba(245, 158, 11, 0.15);
+  color: #f59e0b;
 }
 
 .rung-icon-canary {
@@ -530,6 +540,99 @@ a:hover {
   font-size: 0.75rem;
   color: #64748b;
   font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace;
+}
+
+.rung-source {
+  font-size: 0.75rem;
+}
+
+#faultToleranceLadder .rung-body {
+  overflow-wrap: anywhere;
+}
+
+/* Milestone timeline */
+.milestone-item {
+  position: relative;
+  padding: 12px 16px;
+  margin-bottom: 12px;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  overflow-wrap: anywhere;
+}
+
+.milestone-dot {
+  background: #06b6d4;
+}
+
+.milestone-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+
+.milestone-category {
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: rgba(100, 116, 139, 0.15);
+  color: #cbd5e1;
+  font-size: 0.75rem;
+}
+
+.milestone-category-adoption,
+.milestone-category-standards {
+  background: rgba(34, 197, 94, 0.15);
+  color: #22c55e;
+}
+
+.milestone-category-blockchain,
+.milestone-category-funding {
+  background: rgba(245, 158, 11, 0.15);
+  color: #f59e0b;
+}
+
+.milestone-category-cryptanalysis,
+.milestone-category-factoring {
+  background: rgba(249, 115, 22, 0.15);
+  color: #f97316;
+}
+
+.milestone-category-hardware,
+.milestone-category-theory {
+  background: rgba(6, 182, 212, 0.15);
+  color: #06b6d4;
+}
+
+.milestone-event {
+  font-weight: 600;
+}
+
+.milestone-significance {
+  color: #94a3b8;
+  font-size: 0.85rem;
+  margin-top: 4px;
+}
+
+.milestone-toggle {
+  margin: 8px 0 0 24px;
+  padding: 10px 16px;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  background: #1e293b;
+  color: #06b6d4;
+  font: inherit;
+  cursor: pointer;
+}
+
+.milestone-toggle:hover {
+  border-color: #06b6d4;
+}
+
+.milestone-toggle:focus-visible {
+  outline: 2px solid #06b6d4;
+  outline-offset: 3px;
 }
 
 .classical-context {
@@ -1215,6 +1318,14 @@ a:hover {
 
   .section {
     padding: 32px 0;
+  }
+
+  .milestone-item {
+    padding: 10px 12px;
+  }
+
+  .milestone-meta {
+    gap: 8px;
   }
 
   .mosca-inputs {

@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐦</text></svg>">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Quantum Qanary — Monitoring the Quantum Threat to Cryptography</title>
   <meta name="description" content="Real-time dashboard tracking quantum computing progress toward breaking cryptography (Q-Day). Alert levels, hardware milestones, PQC adoption, and threat timeline.">
@@ -90,7 +91,21 @@
           <div class="ladder" id="ecdlpLadder"></div>
           <div class="classical-context" id="aiCryptanalysis"></div>
         </div>
+        <div class="ladder-card" id="faultToleranceCard" hidden>
+          <h3 class="ladder-title">Fault-Tolerance Ladder</h3>
+          <p class="ladder-subtitle">Tier drives the Q-Day error-correction term</p>
+          <div class="ladder" id="faultToleranceLadder"></div>
+        </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ===== MILESTONE TIMELINE ===== -->
+  <section class="section" id="timelineSection" hidden>
+    <div class="container">
+      <h2 class="section-title">Milestone Timeline</h2>
+      <div class="triggered-timeline" id="milestoneTimeline"></div>
+      <button type="button" class="milestone-toggle" id="milestoneToggle" aria-expanded="false" aria-controls="milestoneMore" hidden></button>
     </div>
   </section>
 
