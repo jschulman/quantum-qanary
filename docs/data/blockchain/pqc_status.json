@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "last_updated": "2026-10-14",
+    "last_updated": "2026-10-15",
     "source": "Chain governance, developer forums, GitHub repos",
     "note": "Edit to update chain PQC status. Push to trigger rebuild."
   },
@@ -19,7 +19,7 @@
       "name": "Bitcoin",
       "ticker": "BTC",
       "status": "discussed",
-      "detail": "BIP-360 (P2MR, Pay-to-Merkle-Root — Taproot without the key-path spend; formerly P2QRH) merged as a draft Feb 2026; no activation plan or date. BIP-361 (Lopp et al., legacy-signature sunset/freeze) is a draft. Hash-based address types (P2PKH/P2WPKH) protect unspent outputs until first spend; Taproot (P2TR) outputs expose the key on-chain. Oct 2026: Justin Drake's 'bunker mode' call urges migrating exposed-key funds to fresh hash-protected addresses. Oct 13 2026: Coinbase (custodian of ~5% of BTC) published recommendations, framed as 'input to an open discussion' — start now, P2MR/P2TRv2 output containers, a staged 1-of-2 hybrid (classical or PQ key) spend path, a stateless PQ option, MPC-friendly schemes for custodians; dormant-coin policy handled separately, no position taken.",
+      "detail": "BIP-360 (P2MR, Pay-to-Merkle-Root — Taproot without the key-path spend; formerly P2QRH) merged as a draft Feb 2026; no activation plan or date. BIP-361 (Lopp et al., legacy-signature sunset/freeze) is a draft. Hash-based address types (P2PKH/P2WPKH) protect unspent outputs until first spend; Taproot (P2TR) outputs expose the key on-chain. Oct 2026: Justin Drake's 'bunker mode' call urges migrating exposed-key funds to fresh hash-protected addresses. Oct 13 2026: Coinbase (custodian of ~5% of BTC) published recommendations, framed as 'input to an open discussion' — start now, P2MR/P2TRv2 output containers, a staged 1-of-2 hybrid (classical or PQ key) spend path, a stateless PQ option, MPC-friendly schemes for custodians; dormant-coin policy handled separately, no position taken. Oct 15 2026: Google demonstrated magic state cultivation on hardware. Google's March 2026 ECDLP-256 estimate depends on cultivation and concludes that on fast-clock machines on-spend (mempool) attacks arrive at essentially the same time as at-rest attacks — so hash-protected outputs are exposed at first spend, and the exposed-key total is a floor, not a ceiling.",
       "last_activity": "2026-10",
       "exposure": "~6-6.9M BTC (~31% of supply) behind exposed public keys — reused addresses, spent-from addresses, P2PK, and Taproot (CoinDesk, Europol, Oct 2026)",
       "watch": ["BIP-360 activation path", "Consensus on migration approach", "Custodian cold-storage key rotation", "Coinbase's 1-of-2 hybrid spend path appears in a BIP or Bitcoin Core PR", "A PQ signature BIP (e.g. SHRINCS) selects an MPC-compatible scheme custodians can run", "Coinbase or ETF sponsors publish a dated custody-key migration plan"]
