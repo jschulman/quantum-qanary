@@ -1,0 +1,77 @@
+{
+  "metadata": {
+    "last_updated": "2026-10-15",
+    "source": "manual curation",
+    "note": "Ordered fault-tolerance ladder feeding the Q-Day error-correction component. Status is achieved, partial, or not_yet. The tier is the count of consecutive achieved rungs from rung 1; partial rungs add half a point to the score but do not advance the tier. See METHODOLOGY.md."
+  },
+  "rungs": [
+    {
+      "id": "below_threshold",
+      "label": "Below-threshold error correction",
+      "criterion": "Logical error rate falls as code distance grows (quantum memory)",
+      "status": "achieved",
+      "date": "2024-12",
+      "evidence": "Google Willow: distance-3 to 5 to 7 surface codes, logical error roughly halved at each step (Nature)",
+      "source": "https://blog.google/technology/research/google-willow-quantum-chip/"
+    },
+    {
+      "id": "logical_magic_states",
+      "label": "Fault-tolerant logical magic states",
+      "criterion": "Magic (T) states prepared inside an error-correcting code with error below the physical gate error",
+      "status": "achieved",
+      "date": "2025-06",
+      "evidence": "Quantinuum: logical magic state infidelity 7e-5 (June 2025). QuEra/Harvard/MIT: logical-level magic state distillation (Nature, July 2025). Google: magic state cultivation on Willow, 99.99% fidelity, 8% of attempts kept, color-to-surface code grafting (Science, Oct 2026)",
+      "source": "https://arxiv.org/abs/2506.14688",
+      "sources": [
+        "https://arxiv.org/abs/2506.14688",
+        "https://arxiv.org/abs/2412.15165",
+        "https://www.science.org/doi/10.1126/science.aee7961"
+      ]
+    },
+    {
+      "id": "breakeven_non_clifford",
+      "label": "Break-even logical non-Clifford gate in a circuit",
+      "criterion": "A logical non-Clifford gate, fed by magic states, beats the physical gate's error rate inside a fault-tolerant circuit",
+      "status": "partial",
+      "date": "2025-06",
+      "evidence": "Quantinuum H1-1: break-even two-qubit logical non-Clifford gate (infidelity 2e-4) and the first circuit using a fully fault-tolerant universal gate set. Partial: shown in a small error-detecting code with post-selection, not a scalable error-correcting code",
+      "source": "https://arxiv.org/abs/2506.14688"
+    },
+    {
+      "id": "algorithm_grade_magic",
+      "label": "Algorithm-grade magic states",
+      "criterion": "T states at or below 1e-6 error from cultivation (distance 5 or higher) or distillation, at a usable acceptance rate",
+      "status": "not_yet",
+      "date": null,
+      "evidence": "Best demonstrated as of Oct 2026: about 7e-5 (Quantinuum, 2025) and 1e-4 (Google cultivation, 2026). Shor-scale circuits need far lower error",
+      "source": null
+    },
+    {
+      "id": "magic_fed_computation",
+      "label": "Magic-state-fed logical computation",
+      "criterion": "At least 100 logical non-Clifford gates executed in one error-corrected circuit with real-time decoding",
+      "status": "not_yet",
+      "date": null,
+      "evidence": "No public demonstration found as of Oct 2026",
+      "source": null
+    },
+    {
+      "id": "crqc_class",
+      "label": "CRQC-class fault tolerance",
+      "criterion": "About 1,000+ logical qubits with T-state throughput sufficient for ECDLP-256 or RSA-2048 (Google's Mar 2026 estimate needs about 0.5M T states per second for a 9-minute ECDLP-256 run)",
+      "status": "not_yet",
+      "date": null,
+      "evidence": "Not demonstrated",
+      "source": "https://arxiv.org/abs/2603.28846"
+    }
+  ],
+  "tier_modifiers": {
+    "0": 1.10,
+    "1": 0.85,
+    "2": 0.80,
+    "3": 0.75,
+    "4": 0.70,
+    "5": 0.60,
+    "6": 0.50
+  }
+}

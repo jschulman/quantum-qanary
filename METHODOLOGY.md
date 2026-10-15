@@ -48,30 +48,51 @@ The `data/alerts/status.json` file has an `override` field. Setting it to a leve
 
 ## Q-Day Distance Estimate
 
-The Q-Day distance is a weighted composite of five signals, expressed as a range in years:
+The Q-Day distance is a weighted composite of six signals, expressed as a range in years (`normalizers/qday_distance.py`):
 
-| Component | Weight | What It Measures | Current Progress |
+| Component | Weight | What It Measures | Modifier Input |
 |-----------|--------|-----------------|-----------------|
-| **Factoring Progress** | 30% | Largest number factored by quantum Shor's (bits) relative to 2048-bit target | log₂ scale progress |
+| **Factoring Progress** | 25% | Largest number factored by quantum Shor's (bits) relative to 2048-bit target | log₂ scale progress |
 | **Logical Qubits** | 25% | Demonstrated logical qubits vs. ~4,000 needed for RSA-2048 | log₂ scale progress |
-| **Roadmap Consensus** | 20% | Average target year for fault-tolerant quantum from major vendors/governments | Years from now |
-| **Error Correction** | 15% | Whether below-threshold error correction has been demonstrated | Binary + quality score |
+| **Roadmap Consensus** | 20% | Status-weighted average target year for fault-tolerant quantum from major vendors/governments | Sets the base, in years from now |
+| **Fault Tolerance** | 10% | Tier reached on the fault-tolerance ladder (below) | Ladder tier |
 | **Investment Trend** | 10% | Year-over-year growth in global quantum computing investment | Growth rate signal |
+| **DiVincenzo Completeness** | 10% | Leading vendor's score on the five core DiVincenzo criteria | Completeness % |
 
 ### Calculation
 
-Each component produces a progress percentage (0-100). The weighted sum maps to a year range:
+Roadmap consensus sets the base estimate in years. Each other component maps to a timeline modifier: below 1.0 compresses the estimate and above 1.0 pushes it out. Roadmap consensus contributes a fixed 1.0. The composite modifier is the weight-averaged modifier:
 
 ```
-weighted_progress = Σ (component_progress × component_weight)
+composite = Σ (modifier × weight) / Σ weight
+midpoint  = roadmap_years_out × composite
+range     = midpoint ± max(2, 0.3 × midpoint) / 2
 ```
 
-The low/high year range is derived from:
-- **Roadmap consensus** provides the baseline center estimate
-- **Factoring + logical qubits** (the two largest weights) indicate how much engineering progress has been made
-- **Error correction** and **investment** serve as acceleration/deceleration signals
+The midpoint is the default for Mosca's Theorem calculator.
 
-The output is a range (e.g., "2-4 years") with a midpoint used as the default for Mosca's Theorem calculator.
+### Fault-Tolerance Ladder
+
+Until October 2026 this component was binary: had below-threshold error correction been demonstrated? That flag was set by Willow in December 2024 and could not register later progress. The component now climbs a curated, sourced ladder in `data/hardware/fault_tolerance.json`:
+
+| Tier | Rung | Criterion |
+|------|------|-----------|
+| 1 | Below-threshold error correction | Logical error falls as code distance grows |
+| 2 | Fault-tolerant logical magic states | Magic (T) states prepared in an error-correcting code with error below the physical gate error |
+| 3 | Break-even logical non-Clifford gate in a circuit | A magic-state-fed logical non-Clifford gate beats the physical gate inside a fault-tolerant circuit |
+| 4 | Algorithm-grade magic states | T states at or below 1e-6 error, at a usable acceptance rate |
+| 5 | Magic-state-fed logical computation | At least 100 logical non-Clifford gates in one error-corrected circuit with real-time decoding |
+| 6 | CRQC-class fault tolerance | About 1,000+ logical qubits with T-state throughput sufficient for ECDLP-256 or RSA-2048 |
+
+Each rung is `achieved`, `partial`, or `not_yet`, with a date, evidence, and source.
+
+- **Tier** is the number of consecutive `achieved` rungs counted from rung 1. A `partial` rung stops the count.
+- **Score** (0-100, shown on the dashboard) gives achieved rungs 1 point and partial rungs 0.5, so partial progress is visible without moving the estimate.
+- **Modifier** comes from the tier: 0 → 1.10, 1 → 0.85, 2 → 0.80, 3 → 0.75, 4 → 0.70, 5 → 0.60, 6 → 0.50. Tier 1 keeps the 0.85 the binary model applied, so the historical meaning of below-threshold QEC is unchanged.
+
+As of October 2026 the ladder sits at tier 2. Rung 3 is `partial`: Quantinuum's June 2025 break-even non-Clifford gate ran in a small error-detecting code with post-selection, not a scalable error-correcting code.
+
+Because this component carries 10% of the weight, its pull is small. Replacing the binary flag (tier 1 equivalent, 0.85) with tier 2 (0.80) moved the unrounded midpoint from 2.655 to 2.640 years — 0.015 years, which happens to cross the rounding boundary and changes the displayed midpoint from 2.7 to 2.6. Climbing from tier 2 to tier 6 would move it a further 0.09 years. The ladder exists to make fault-tolerance progress visible and auditable; changing its pull on the estimate is a reweighting decision.
 
 ### Important Caveat
 

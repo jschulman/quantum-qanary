@@ -9,7 +9,7 @@ Signal weights:
   - Factoring record progress: 25% (log scale)
   - Logical qubit progress: 25% (log scale)
   - Vendor roadmap consensus: 20% (weighted avg of credible vendor target years)
-  - Error correction trajectory: 10% (below-threshold demonstrated or not)
+  - Error correction trajectory: 10% (tier on the curated fault-tolerance ladder)
   - Investment acceleration: 10% (YoY growth rate of global funding)
   - DiVincenzo completeness: 10% (leading vendor's core criteria fulfillment)
 
@@ -174,34 +174,93 @@ def compute_roadmap_consensus_component(roadmap_data):
     }
 
 
-def compute_error_correction_component(hardware_data):
+RUNG_POINTS = {"achieved": 1.0, "partial": 0.5, "not_yet": 0.0}
+
+# Used when fault_tolerance.json omits tier_modifiers. Tier 1 keeps the
+# 0.85 the binary model applied once below-threshold QEC was shown.
+DEFAULT_TIER_MODIFIERS = {0: 1.10, 1: 0.85, 2: 0.80, 3: 0.75, 4: 0.70, 5: 0.60, 6: 0.50}
+
+
+def compute_error_correction_component(hardware_data, fault_tolerance_data):
     """
     Compute the error correction trajectory component.
 
     Weight: 10%
-    Binary question: has below-threshold error correction been demonstrated?
-    Score: 50 if yes, 0 if no. This is a significant milestone that
-    changes the trajectory calculation.
+    Climbs the curated fault-tolerance ladder in data/hardware/fault_tolerance.json.
+    Tier = consecutive "achieved" rungs counted from rung 1; a "partial" or
+    "not_yet" rung stops the count. Score (0-100) gives achieved rungs 1 point
+    and partial rungs 0.5, so partial progress is visible without moving the
+    tier. The tier selects the timeline modifier.
+
+    Falls back to the old binary check (any hardware milestone flagged
+    error_correction) when the ladder file is missing.
     """
-    if not hardware_data:
+    below_threshold = any(
+        m.get("error_correction", False)
+        for m in (hardware_data or {}).get("milestones", [])
+    )
+
+    rungs = (fault_tolerance_data or {}).get("rungs", [])
+    if not rungs:
+        tier = 1 if below_threshold else 0
         return {
             "weight": 0.10,
-            "below_threshold_demonstrated": False,
-            "score": 0,
+            "below_threshold_demonstrated": below_threshold,
+            "tier": tier,
+            "max_tier": 1,
+            "tier_label": "Below-threshold error correction" if tier else "None demonstrated",
+            "score": 50 if below_threshold else 0,
+            "modifier": DEFAULT_TIER_MODIFIERS[tier],
+            "rungs": [],
         }
 
-    below_threshold = False
-    for milestone in hardware_data.get("milestones", []):
-        if milestone.get("error_correction", False):
-            below_threshold = True
-            break
+    for i, rung in enumerate(rungs, 1):
+        if rung.get("status") not in RUNG_POINTS or not rung.get("id") or not rung.get("label"):
+            raise ValueError(
+                f"fault_tolerance.json rung {i}: needs id, label, and status in "
+                f"{sorted(RUNG_POINTS)} (got status={rung.get('status')!r})"
+            )
 
-    score = 50 if below_threshold else 0
+    tier = 0
+    for rung in rungs:
+        if rung.get("status") != "achieved":
+            break
+        tier += 1
+
+    points = sum(RUNG_POINTS[r["status"]] for r in rungs)
+    score = round(points / len(rungs) * 100, 1)
+
+    modifiers = {
+        int(k): v for k, v in (fault_tolerance_data.get("tier_modifiers") or {}).items()
+    } or DEFAULT_TIER_MODIFIERS
+    modifier = modifiers.get(tier, DEFAULT_TIER_MODIFIERS.get(tier, 1.0))
+
+    # The ladder is authoritative once it exists.
+    below_threshold = any(
+        r.get("id") == "below_threshold" and r.get("status") == "achieved" for r in rungs
+    )
 
     return {
         "weight": 0.10,
         "below_threshold_demonstrated": below_threshold,
+        "tier": tier,
+        "max_tier": len(rungs),
+        "tier_label": rungs[tier - 1].get("label") if tier else "None demonstrated",
         "score": score,
+        "modifier": modifier,
+        "rungs": [
+            {
+                "id": r.get("id"),
+                "label": r.get("label"),
+                "criterion": r.get("criterion"),
+                "status": r.get("status", "not_yet"),
+                "date": r.get("date"),
+                "evidence": r.get("evidence"),
+                "source": r.get("source"),
+                "sources": r.get("sources") or ([r["source"]] if r.get("source") else []),
+            }
+            for r in rungs
+        ],
     }
 
 
@@ -321,7 +380,7 @@ def compute_qday_estimate(components):
 
     For roadmaps: vendor target years provide direct timeline data.
 
-    For error correction: a binary accelerator that compresses timelines.
+    For error correction: the fault-tolerance ladder tier selects a modifier.
 
     For investment: accelerating investment compresses timelines.
     """
@@ -359,11 +418,8 @@ def compute_qday_estimate(components):
     else:
         qubit_modifier = 0.7
 
-    # Error correction modifier
-    if error_corr["below_threshold_demonstrated"]:
-        ec_modifier = 0.85  # Compresses timeline significantly
-    else:
-        ec_modifier = 1.1
+    # Error correction modifier (from the fault-tolerance ladder tier)
+    ec_modifier = error_corr["modifier"]
 
     # Investment modifier
     if investment["accelerating"] and investment["yoy_growth_pct"] > 15:
@@ -439,6 +495,14 @@ def main():
     divincenzo_data = load_json("data/hardware/divincenzo.json")
     print(f"  hardware/divincenzo.json: {'loaded' if divincenzo_data else 'MISSING'}")
 
+    fault_tolerance_data = load_json("data/hardware/fault_tolerance.json")
+    print(f"  hardware/fault_tolerance.json: {'loaded' if fault_tolerance_data else 'MISSING'}")
+    # The ladder is authoritative: only a genuinely absent file may fall back.
+    if os.path.exists(os.path.join(BASE_DIR, "data", "hardware", "fault_tolerance.json")):
+        rungs = (fault_tolerance_data or {}).get("rungs") if isinstance(fault_tolerance_data, dict) else None
+        if not isinstance(rungs, list) or not rungs:
+            sys.exit("ERROR: data/hardware/fault_tolerance.json is unreadable or has no rungs")
+
     # Compute each component
     print("\nComputing components:")
 
@@ -462,11 +526,12 @@ def main():
         f"{roadmap_component['years_out']} years out"
     )
 
-    error_corr_component = compute_error_correction_component(hardware_data)
+    error_corr_component = compute_error_correction_component(hardware_data, fault_tolerance_data)
     print(
-        f"  Error correction: below-threshold = "
-        f"{error_corr_component['below_threshold_demonstrated']}, "
-        f"score = {error_corr_component['score']}"
+        f"  Error correction: tier {error_corr_component['tier']}/"
+        f"{error_corr_component['max_tier']} ({error_corr_component['tier_label']}), "
+        f"score = {error_corr_component['score']}, "
+        f"modifier = {error_corr_component['modifier']}"
     )
 
     investment_component = compute_investment_component(funding_data)
