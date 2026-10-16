@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "last_updated": "2026-10-09",
+    "last_updated": "2026-10-16",
     "source": "Academic papers, IACR ePrint, vendor publications",
     "note": "Edit this file to add new factoring records. Push to trigger dashboard rebuild."
   },
@@ -153,6 +153,15 @@
       "method": "Reported internal testing of frontier models against cryptographic protocols and primitives",
       "source": "https://scottaaronson.blog/",
       "note": "Scott Aaronson, citing anonymous sources (2026-10-07). An investigation, not a result: no lab, model, scheme, or outcome named."
+    },
+    {
+      "date": "2026-10",
+      "label": "AI reconstructs NIST P-curve seed generation (no weakness found)",
+      "status": "verified",
+      "deployed_target": true,
+      "method": "Anthropic Claude identified lrand48 LCG output in the 1997–98 NIST seeds; recovered the 48-bit state via LLL lattice reduction and reversed it to Unix-timestamp seeds",
+      "source": "https://www.anthropic.com/research/ecdsa-curve-origins",
+      "note": "Provenance, not a break — Anthropic: 'not a cryptographic break, new attack, or weakness'; raises confidence P-curves carry no backdoor. secp256k1 not involved (Koblitz curve, no seed). First published frontier-lab analysis of a deployed curve: capability datapoint, null security result."
     }
   ]
 }
