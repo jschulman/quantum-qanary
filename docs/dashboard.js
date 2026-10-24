@@ -110,6 +110,7 @@
     renderDiVincenzo(data.divincenzo);
     renderPqcTable(data.adoption);
     renderBlockchain(data.blockchain);
+    renderMigrationRace(data.blockchain, data.qday);
     renderFundingChart(data.funding);
     renderArxivChart(data.arxiv);
     initMosca(data.qday);
@@ -769,6 +770,80 @@
         + '</div>';
     });
     gridEl.innerHTML = html;
+  }
+
+
+  // ─────────────────────────────────────────
+  // 6b. Migration Race — BTC vs ETH
+  // ─────────────────────────────────────────
+  // Gap = chain's PQ migration target minus the Q-Day window from the composite.
+  // Negative against the window's low end means the chain is late; no target means no gap to compute.
+  function ymToYear(ym) {
+    var parts = (ym || "").split("-");
+    return parseInt(parts[0], 10) + (parseInt(parts[1] || "1", 10) - 0.5) / 12;
+  }
+
+  function checkpointState(cp, now) {
+    if (cp.status === "pass" || cp.status === "missed") return cp.status;
+    return ymToYear(cp.due) < now ? "overdue" : "pending";
+  }
+
+  function renderMigrationRace(blockchain, qday) {
+    var el = $("migrationRace");
+    if (!el) return;
+    var chains = (blockchain.chains || []).filter(function (c) { return c.race; });
+    if (!chains.length) { el.innerHTML = ""; return; }
+
+    var nowD = new Date();
+    var now = nowD.getFullYear() + nowD.getMonth() / 12;
+    var est = (qday && qday.estimate) || {};
+    var base = qday && qday.metadata && qday.metadata.last_updated ? ymToYear(qday.metadata.last_updated.slice(0, 7)) : now;
+    var qLow = base + (est.low_years || 0), qHigh = base + (est.high_years || 0);
+    var hasWindow = est.low_years !== undefined && est.high_years !== undefined;
+
+    var out = "";
+    if (hasWindow) {
+      out += '<p class="race-window">Q-Day window from the composite estimate: <strong>'
+        + qLow.toFixed(1) + "–" + qHigh.toFixed(1) + "</strong>. A chain whose migration target lands after the window's start is racing the clock.</p>";
+    }
+    out += '<div class="race-grid">';
+    chains.forEach(function (chain) {
+      var r = chain.race, t = r.migration_target || {};
+      var gapHtml;
+      if (!t.date) {
+        gapHtml = '<div class="race-gap race-gap-none"><span class="race-gap-value">No date</span><span class="race-gap-label">No migration target set</span></div>';
+      } else {
+        var ty = ymToYear(t.date);
+        var gapLow = hasWindow ? qLow - ty : null;
+        var cls = gapLow === null ? "race-gap-none" : (gapLow >= 0 ? "race-gap-ok" : (qHigh - ty >= 0 ? "race-gap-tight" : "race-gap-late"));
+        var label = gapLow === null ? "Target " + escapeHtml(t.date)
+          : (gapLow >= 0 ? gapLow.toFixed(1) + " yr before the window opens"
+            : (qHigh - ty >= 0 ? "Lands " + (-gapLow).toFixed(1) + " yr after the window opens" : "Lands " + (ty - qHigh).toFixed(1) + " yr after the window closes"));
+        gapHtml = '<div class="race-gap ' + cls + '"><span class="race-gap-value">Target ' + escapeHtml(t.date) + '</span><span class="race-gap-label">' + label + '</span></div>';
+      }
+
+      out += '<div class="race-card"><div class="chain-header"><div><span class="chain-name">' + escapeHtml(chain.name) + '</span>'
+        + '<span class="chain-ticker">' + escapeHtml(chain.ticker) + '</span></div></div>'
+        + gapHtml
+        + '<div class="race-basis">' + escapeHtml(t.basis) + '</div>'
+        + '<h4 class="race-h">Checkpoints</h4><ul class="race-list">';
+      (r.checkpoints || []).forEach(function (cp) {
+        var st = checkpointState(cp, now);
+        var label = escapeHtml(cp.label);
+        if (cp.source) label = '<a href="' + escapeHtml(cp.source) + '" target="_blank" rel="noopener">' + label + "</a>";
+        out += '<li class="race-cp"><span class="race-pill race-pill-' + st + '">' + st + "</span>"
+          + '<div><div class="race-cp-label">' + label + ' <span class="race-due">due ' + escapeHtml(cp.due) + "</span></div>"
+          + '<div class="race-cp-ev">' + escapeHtml(cp.evidence) + "</div></div></li>";
+      });
+      out += '</ul><h4 class="race-h">Governance flags</h4><ul class="race-list">';
+      (r.governance_flags || []).forEach(function (f) {
+        out += '<li class="race-cp"><span class="race-pill race-flag-' + escapeHtml(f.state) + '">' + escapeHtml(f.state) + "</span>"
+          + '<div><div class="race-cp-label">' + escapeHtml(f.label) + '</div><div class="race-cp-ev">' + escapeHtml(f.detail) + "</div></div></li>";
+      });
+      out += "</ul></div>";
+    });
+    out += "</div>";
+    el.innerHTML = out;
   }
 
   // ─────────────────────────────────────────

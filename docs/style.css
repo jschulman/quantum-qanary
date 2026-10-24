@@ -1359,3 +1359,30 @@ a:hover {
     display: none;
   }
 }
+
+/* ===========================================
+   MIGRATION RACE (BTC vs ETH)
+   =========================================== */
+.race-window { font-size: 0.88rem; color: #cbd5e1; margin-bottom: 14px; }
+.race-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; }
+.race-card { background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px; }
+.race-gap { display: flex; flex-direction: column; gap: 2px; padding: 10px 12px; border-radius: 8px; margin-bottom: 8px; border-left: 3px solid; }
+.race-gap-value { font-size: 1.1rem; font-weight: 600; }
+.race-gap-label { font-size: 0.8rem; color: #94a3b8; }
+.race-gap-ok { background: rgba(34, 197, 94, 0.08); border-color: #22c55e; }
+.race-gap-tight { background: rgba(234, 179, 8, 0.08); border-color: #eab308; }
+.race-gap-late, .race-gap-none { background: rgba(239, 68, 68, 0.08); border-color: #ef4444; }
+.race-basis { font-size: 0.8rem; color: #94a3b8; margin-bottom: 12px; line-height: 1.45; }
+.race-h { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; color: #64748b; margin: 12px 0 6px; }
+.race-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.race-cp { display: grid; grid-template-columns: 72px 1fr; gap: 10px; align-items: start; }
+.race-cp-label { font-size: 0.86rem; color: #e2e8f0; }
+.race-cp-label a { color: #93c5fd; text-decoration: none; }
+.race-cp-label a:hover { text-decoration: underline; }
+.race-due { font-size: 0.75rem; color: #64748b; margin-left: 4px; white-space: nowrap; }
+.race-cp-ev { font-size: 0.78rem; color: #94a3b8; line-height: 1.4; margin-top: 2px; }
+.race-pill { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; text-align: center; padding: 3px 6px; border-radius: 10px; }
+.race-pill-pass, .race-flag-clear { background: rgba(34, 197, 94, 0.15); color: #22c55e; }
+.race-pill-pending { background: rgba(100, 116, 139, 0.18); color: #cbd5e1; }
+.race-pill-overdue, .race-flag-warning { background: rgba(234, 179, 8, 0.15); color: #eab308; }
+.race-pill-missed, .race-flag-alarm { background: rgba(239, 68, 68, 0.15); color: #ef4444; }

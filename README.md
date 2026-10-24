@@ -14,6 +14,7 @@ Real-time dashboard tracking quantum computing's approach to breaking cryptograp
 | Hardware Progress | Vendor announcements, press releases | On event |
 | PQC Adoption Matrix | Product changelogs, security advisories | Weekly |
 | Blockchain PQC Status | Chain governance, dev forums, GitHub | Weekly |
+| Migration Race (BTC vs ETH) | Dated checkpoints + governance flags in `data/blockchain/pqc_status.json` (`race` key), gap vs. the Q-Day window | On event |
 | Government Funding | CRS, RAND, CSIS, government reports | Monthly |
 | Research Velocity | arXiv API (quant-ph, cs.CR) | Daily |
 | Q-Day Distance Estimate | Weighted composite of above signals | Weekly |
