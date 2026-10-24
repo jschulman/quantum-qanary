@@ -810,7 +810,16 @@
     chains.forEach(function (chain) {
       var r = chain.race, t = r.migration_target || {};
       var gapHtml;
-      if (!t.date) {
+      if (!t.date && r.projection && hasWindow) {
+        // No target: project the best case (activate soon, then the BIP-361 phase-out) and test it against the window.
+        var pr = r.projection;
+        var projected = now + (pr.best_case_activation_years || 0) + (pr.protection_lag_years || 0);
+        var pastDue = projected > qHigh;
+        gapHtml = '<div class="race-gap ' + (pastDue ? "race-gap-late" : "race-gap-tight") + '"><span class="race-gap-value">'
+          + (pastDue ? "Past due" : "At risk") + '</span><span class="race-gap-label">No target. Best-case protection lands '
+          + projected.toFixed(1) + (pastDue ? ", " + (projected - qHigh).toFixed(1) + " yr after the window closes" : ", inside the window") + "</span></div>"
+          + '<div class="race-basis">' + escapeHtml(pr.basis) + "</div>";
+      } else if (!t.date) {
         gapHtml = '<div class="race-gap race-gap-none"><span class="race-gap-value">No date</span><span class="race-gap-label">No migration target set</span></div>';
       } else {
         var ty = ymToYear(t.date);

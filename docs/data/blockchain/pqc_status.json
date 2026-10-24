@@ -153,7 +153,15 @@
             "state": "clear",
             "detail": "No competing client or fork announced over the quantum question."
           }
-        ]
+        ],
+        "projection": {
+          "best_case_activation_years": 1,
+          "protection_lag_years": 5,
+          "basis": "Best case for Bitcoin: a PQ soft fork activates within 1 year of today, faster than Taproot (~22 months from BIP publication to activation). Network-level protection then follows BIP-361: Phase A at ~3 years, Phase B (legacy spends locked behind a rescue protocol) 2 years later.",
+          "sources": [
+            "https://github.com/bitcoin/bips/blob/master/bip-0361.mediawiki"
+          ]
+        }
       }
     },
     {
