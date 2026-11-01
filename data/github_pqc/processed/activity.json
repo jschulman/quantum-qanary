@@ -7,7 +7,7 @@
   "repos": [
     {
       "name": "open-quantum-safe/liboqs",
-      "stars": 3116,
+      "stars": 3117,
       "forks": 795,
       "open_issues": 137,
       "last_push": "2026-11-01"
@@ -28,8 +28,8 @@
     }
   ],
   "topic_stats": {
-    "total_repos": 1696,
-    "total_stars": 20414
+    "total_repos": 1699,
+    "total_stars": 20417
   },
   "monthly_activity": [
     {
@@ -98,8 +98,8 @@
       "total_stars_delta": 0
     },
     {
-      "date": "2024-12",
-      "new_repos": 9,
+      "date": "2025-01",
+      "new_repos": 10,
       "total_stars_delta": 0
     },
     {
@@ -169,7 +169,7 @@
     },
     {
       "date": "2026-03",
-      "new_repos": 82,
+      "new_repos": 83,
       "total_stars_delta": 0
     },
     {
@@ -204,12 +204,12 @@
     },
     {
       "date": "2026-10",
-      "new_repos": 166,
+      "new_repos": 168,
       "total_stars_delta": 0
     },
     {
       "date": "2026-11",
-      "new_repos": 3,
+      "new_repos": 5,
       "total_stars_delta": 0
     }
   ]
