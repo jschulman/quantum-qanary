@@ -1,35 +1,35 @@
 {
   "metadata": {
     "source": "GitHub API",
-    "last_updated": "2026-11-16",
+    "last_updated": "2026-11-23",
     "mock": false
   },
   "repos": [
     {
       "name": "open-quantum-safe/liboqs",
-      "stars": 3128,
-      "forks": 807,
-      "open_issues": 144,
-      "last_push": "2026-11-16"
+      "stars": 3136,
+      "forks": 810,
+      "open_issues": 151,
+      "last_push": "2026-11-23"
     },
     {
       "name": "pq-crystals/kyber",
       "stars": 1258,
-      "forks": 293,
+      "forks": 295,
       "open_issues": 30,
       "last_push": "2026-08-02"
     },
     {
       "name": "pq-crystals/dilithium",
-      "stars": 621,
-      "forks": 228,
+      "stars": 623,
+      "forks": 229,
       "open_issues": 17,
       "last_push": "2026-06-03"
     }
   ],
   "topic_stats": {
-    "total_repos": 1910,
-    "total_stars": 20623
+    "total_repos": 1976,
+    "total_stars": 20691
   },
   "monthly_activity": [
     {
@@ -109,12 +109,12 @@
     },
     {
       "date": "2025-03",
-      "new_repos": 8,
+      "new_repos": 9,
       "total_stars_delta": 0
     },
     {
       "date": "2025-04",
-      "new_repos": 20,
+      "new_repos": 19,
       "total_stars_delta": 0
     },
     {
@@ -154,7 +154,7 @@
     },
     {
       "date": "2025-12",
-      "new_repos": 43,
+      "new_repos": 42,
       "total_stars_delta": 0
     },
     {
@@ -164,27 +164,27 @@
     },
     {
       "date": "2026-02",
-      "new_repos": 64,
+      "new_repos": 66,
       "total_stars_delta": 0
     },
     {
       "date": "2026-03",
-      "new_repos": 86,
+      "new_repos": 87,
       "total_stars_delta": 0
     },
     {
       "date": "2026-04",
-      "new_repos": 135,
+      "new_repos": 137,
       "total_stars_delta": 0
     },
     {
       "date": "2026-05",
-      "new_repos": 117,
+      "new_repos": 124,
       "total_stars_delta": 0
     },
     {
       "date": "2026-06",
-      "new_repos": 138,
+      "new_repos": 135,
       "total_stars_delta": 0
     },
     {
@@ -194,7 +194,7 @@
     },
     {
       "date": "2026-08",
-      "new_repos": 142,
+      "new_repos": 143,
       "total_stars_delta": 0
     },
     {
@@ -204,12 +204,12 @@
     },
     {
       "date": "2026-10",
-      "new_repos": 305,
+      "new_repos": 309,
       "total_stars_delta": 0
     },
     {
       "date": "2026-11",
-      "new_repos": 63,
+      "new_repos": 113,
       "total_stars_delta": 0
     }
   ]
