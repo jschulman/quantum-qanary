@@ -1,7 +1,7 @@
 {
   "metadata": {
     "source": "arxiv API",
-    "last_updated": "2026-11-23",
+    "last_updated": "2026-11-24",
     "mock": false
   },
   "categories": {
@@ -150,7 +150,7 @@
         },
         {
           "date": "2026-11",
-          "count": 1
+          "count": 2
         }
       ]
     },
@@ -448,7 +448,7 @@
         },
         {
           "date": "2026-11",
-          "count": 5
+          "count": 6
         }
       ]
     }
@@ -596,7 +596,7 @@
     },
     {
       "date": "2026-11",
-      "total": 16
+      "total": 18
     }
   ]
 }
